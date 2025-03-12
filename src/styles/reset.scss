@@ -1,0 +1,57 @@
+/* Сбрасываем отступы и паддинги */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Включаем box-sizing для всех элементов */
+}
+
+/* Устанавливаем базовые стили для документа */
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif; /* Задаем базовый шрифт */
+  line-height: 1.5; /* Устанавливаем единый line-height */
+}
+
+/* Снимаем маркеры и стили со списков */
+ul, ol {
+  list-style: none;
+}
+
+/* Убираем подчеркивание с ссылок */
+a {
+  text-decoration: none;
+  color: inherit; /* Устанавливаем цвет в наследование */
+}
+
+/* Сбрасываем стили таблиц */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Убираем дефолтные стили для изображений */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Убираем дефолтный outline у кнопок */
+button, input, textarea {
+  border: none;
+  outline: none;
+  font: inherit; /* Устанавливаем шрифт в наследование */
+}
+
+/* Обнуляем поля ввода */
+input[type="text"], input[type="number"], textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Сбрасываем стили для списков */
+li {
+  list-style-type: none;
+}
+
