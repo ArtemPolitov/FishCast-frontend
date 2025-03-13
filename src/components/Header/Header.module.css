@@ -1,1 +1,6 @@
-/*# sourceMappingURL=Header.module.css.map */
+.header {
+  height: 70px;
+  border-bottom: 1px black solid;
+  display: flex;
+  align-items: center;
+}/*# sourceMappingURL=Header.module.css.map */

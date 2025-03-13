@@ -1,27 +1,25 @@
-import { Geist, Geist_Mono } from 'next/font/google';
-import '../styles/globals.css';
+import { Nunito } from 'next/font/google';
 import '../styles/reset.css';
+import '../styles/globals.css';
 import StoreProvider from '../providers/StoreProvider';
+import Header from '@/components/Header/Header';
 
-const geistSans = Geist({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const geistMono = Geist_Mono({
-  weight: ['400'],
-  subsets: ['latin'],
-  display: 'swap',
+const nunito = Nunito({
+  subsets: ['latin', 'cyrillic'], // Подключаем поддержку кириллицы
+  weight: ['300', '400', '500', '700'], // Выбираем нужные толщины
+  variable: '--font-nunito', // Переменная CSS для шрифта
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.className} ${geistMono.className}`} suppressHydrationWarning>
-        <StoreProvider>
-          {children}
-        </StoreProvider>
+      <body suppressHydrationWarning className={nunito.variable}>
+        <div className='content'>
+          <StoreProvider>
+            <Header/>
+            {children}
+          </StoreProvider>
+        </div>
       </body>
     </html>
   );

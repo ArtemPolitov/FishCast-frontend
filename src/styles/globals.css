@@ -1,1 +1,8 @@
-/*# sourceMappingURL=globals.css.map */
+.content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+body {
+  font-family: var(--font-nunito), sans-serif;
+}/*# sourceMappingURL=globals.css.map */

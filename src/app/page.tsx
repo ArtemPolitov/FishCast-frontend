@@ -4,7 +4,7 @@ import s from "./page.module.css";
 export default function Home() {
   return (
     <div>
-      <h1>MAin page</h1>
+      <h1>Главная страница</h1>
     </div>
   );
 }

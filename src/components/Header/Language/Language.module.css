@@ -1,0 +1,8 @@
+.language {
+  display: flex;
+}
+.language span {
+  height: 30px;
+  width: 1px;
+  background-color: black;
+}/*# sourceMappingURL=Language.module.css.map */
