@@ -14,4 +14,16 @@
 .language P:hover {
   text-decoration: underline;
   text-underline-offset: 8px;
+}
+
+@media (max-width: 1096px) {
+  .language {
+    gap: 4px;
+  }
+  .language span {
+    height: 25px;
+  }
+  .language P:hover {
+    text-underline-offset: 6px;
+  }
 }/*# sourceMappingURL=Language.module.css.map */

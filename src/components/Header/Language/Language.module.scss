@@ -15,3 +15,15 @@
     text-underline-offset: 8px;
   }
 }
+
+@media (max-width:1096px) {
+  .language{
+    gap:4px;
+    span{
+      height: 25px;
+    }
+    P:hover{
+      text-underline-offset: 6px;
+    }
+  }
+}

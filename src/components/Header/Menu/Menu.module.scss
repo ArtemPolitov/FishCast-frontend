@@ -1,0 +1,26 @@
+.menu{
+  display: flex;
+  gap:15px;
+  padding-top: 3px;
+  a:hover{
+    text-decoration: underline;
+    text-underline-offset: 8px;
+  }
+}
+
+@media (max-width:1096px) {
+  .menu{
+    gap:10px;
+    a:hover{
+      text-underline-offset: 6px;
+    }
+  }
+}
+
+@media (max-width:858px) {
+  .menu{
+    flex-direction: column;
+    gap:5px;
+    align-items: center;
+  }
+}

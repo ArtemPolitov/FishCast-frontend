@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning className={nunito.variable}>
         <div className='content'>
           <StoreProvider>
+            <div id="modal-root"></div>
             <Header/>
             {children}
           </StoreProvider>

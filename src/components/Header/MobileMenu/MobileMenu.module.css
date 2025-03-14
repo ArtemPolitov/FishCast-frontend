@@ -1,0 +1,25 @@
+.menu {
+  z-index: 1010;
+  position: absolute;
+  top: 58px;
+  left: 10px;
+  height: 145px;
+  width: 170px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.themeLanguageBlock {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 858px) {
+  .menu {
+    display: none;
+  }
+}/*# sourceMappingURL=MobileMenu.module.css.map */

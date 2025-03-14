@@ -6,7 +6,7 @@ export default function Authorization() {
   return (
     <div>
       <button className={s.loginButton}>
-        <Image src='/images/login-icon-light-theme.png' alt='Login' height={30} width={30}/>
+        <div className={s.buttonImage}><Image src='/images/login-icon-light-theme.png' alt='Login' height={30} width={30}/></div>
         <p>Войти</p>
       </button>
     </div>

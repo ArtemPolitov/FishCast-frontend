@@ -10,4 +10,26 @@
 
 .loginButton:hover {
   background-color: rgb(224, 223, 223);
+}
+
+@media (max-width: 1096px) {
+  .loginButton {
+    padding: 7px 7px;
+  }
+  .loginButton .buttonImage {
+    width: 25px;
+    height: auto;
+  }
+}
+@media (max-width: 640px) {
+  .loginButton {
+    padding: 6px 6px;
+  }
+  .loginButton p {
+    display: none;
+  }
+  .loginButton .buttonImage {
+    width: 23px;
+    height: auto;
+  }
 }/*# sourceMappingURL=Authorization.module.css.map */
