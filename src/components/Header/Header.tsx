@@ -11,15 +11,17 @@ export default function Header() {
     <header className={s.header}>
       <div className={s.logo}><Image src="/logo_light_theme.png" alt="FishCast Logo" width={320} height={57}/></div>
       <nav>
-        <div className="menu">
+        <div className={s.menu}>
           <Link href="/">Главная</Link>
           <Link href="/locations">Рыболовные места</Link>
           <Link href="/contacts">Справочник рыб</Link>
         </div>
       </nav>
-      <Theme/>
-      <Language/>
-      <Authorization/>
+      <div className={s.rightBlock}>
+        <Theme/>
+        <Language/>
+        <Authorization/>
+      </div>
     </header>
   )
 }

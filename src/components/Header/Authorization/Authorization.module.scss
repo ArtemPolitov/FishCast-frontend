@@ -1,4 +1,13 @@
 .loginButton{
   display: flex;
   align-items: center;
+  padding: 10px 10px;
+  gap:5px;
+  border-radius: 10px;
+  background-color: rgb(215, 215, 215);
+  cursor: pointer;
+}
+
+.loginButton:hover{
+  background-color: rgb(224, 223, 223);
 }

@@ -1,8 +1,17 @@
 .language {
   display: flex;
+  gap: 5px;
 }
 .language span {
   height: 30px;
   width: 1px;
   background-color: black;
+}
+.language P {
+  line-height: 1.6;
+  cursor: pointer;
+}
+.language P:hover {
+  text-decoration: underline;
+  text-underline-offset: 8px;
 }/*# sourceMappingURL=Language.module.css.map */
