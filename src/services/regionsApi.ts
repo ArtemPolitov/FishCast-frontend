@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const api = createApi({
-  reducerPath: "api",
+export const regionsApi = createApi({
+  reducerPath: "regionsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api/", // Базовый URL
   }),
@@ -12,4 +12,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetRegionsQuery } = api;
+export const { useGetRegionsQuery } = regionsApi;

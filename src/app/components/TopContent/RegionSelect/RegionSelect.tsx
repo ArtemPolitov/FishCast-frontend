@@ -1,31 +1,47 @@
 "use client";
-import { ChangeEvent } from 'react';
-import React from 'react'
-import s from './RegionSelect.module.css'
-import { useState,useEffect } from 'react'
-import { useGetRegionsQuery } from '../../../../services/api';  // Импортируем хук из API
+import { ChangeEvent, useState, useEffect } from "react";
+import React from "react";
+import s from "./RegionSelect.module.css";
+import { useGetRegionsQuery } from "../../../../services/regionsApi"; // Импортируем хук из API
 
-interface RegionSelectProps{
-  setSelectedRegionId:React.Dispatch<React.SetStateAction<number|null>>,
+interface RegionSelectProps {
+  setSelectedRegionId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-const RegionSelect: React.FC<RegionSelectProps> = ({setSelectedRegionId}) => {
+const RegionSelect: React.FC<RegionSelectProps> = ({ setSelectedRegionId }) => {
   const { data: regions } = useGetRegionsQuery();
+  const [selectedRegion, setSelectedRegion] = useState<string | "">("");
 
-  const regionSelectHandler = (e:ChangeEvent<HTMLSelectElement>) =>{
-    setSelectedRegionId(+e.target.value);
-  }
+  useEffect(() => {
+    if (selectedRegion) {
+      setSelectedRegionId(+selectedRegion);
+    }
+  }, [selectedRegion, setSelectedRegionId]);
+
+  const regionSelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedRegion(e.target.value);
+  };
 
   return (
     <div className={s.regionSelect}>
-      <select name="" id="" onChange={regionSelectHandler}>
-        <option value="" disabled selected className={s.defaultOption}>Выберите область</option>
-        {regions&&regions.map(region=>{
-          return <option value={region.id}>{region.name}</option>
-        })}
+      <select
+        value={selectedRegion}
+        onChange={regionSelectHandler}
+        name="region"
+        id="region-select"
+      >
+        <option value="" disabled className={s.defaultOption}>
+          Выберите область
+        </option>
+        {regions &&
+          regions.map((region) => (
+            <option key={region.id} value={region.id}>
+              {region.name}
+            </option>
+          ))}
       </select>
     </div>
-  )
-}
+  );
+};
 
 export default RegionSelect;

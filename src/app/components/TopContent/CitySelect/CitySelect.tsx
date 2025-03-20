@@ -1,45 +1,73 @@
-import React, { ChangeEvent, useEffect,useState } from 'react'
-import s from './CitySelect.module.css'
-import { useDispatch, useSelector } from 'react-redux';
-import {setIsCitySelected} from '../../../../store/citySelectionSlice';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import s from './CitySelect.module.css';
+import { useDispatch } from 'react-redux';
+import { setIsCitySelected, setSelectedCityData } from '../../../../store/citySelectionSlice';
+import { useGetCityByIdQuery } from '@/services/cityApi';
 
-
-interface CitySelectProps{
-  selectedRegionId:null|number;
+interface CitySelectProps {
+  selectedRegionId: null | number;
 }
 
-interface City{
-  id:number,
-  name:string,
+interface CityByRegion {
+  id: number;
+  name: string;
 }
 
-const CitySelect:React.FC<CitySelectProps> = ({selectedRegionId}) => {
-  const [citiesByRegion,setCitiesByRegion] = useState<City[]>([]);
+const CitySelect: React.FC<CitySelectProps> = ({ selectedRegionId }) => {
+  const [citiesByRegion, setCitiesByRegion] = useState<CityByRegion[]>([]);
   const dispatch = useDispatch();
+  const [selectedCityId, setSelectedCityId] = useState<number | null>(null);
 
-  useEffect(()=>{
-    const getCitiesData = async() =>{
-      const responce = await fetch(`http://localhost:5000/api/cities/by-region/${selectedRegionId}`);
-      const data = await responce.json();
-      setCitiesByRegion(data);
+  const { data: cityData } = useGetCityByIdQuery(selectedCityId ?? 0, {
+    skip: selectedCityId === null,
+  });
+  console.log(cityData);
+
+  // Диспатчим данные о городе в стор ТОЛЬКО когда cityData обновляется
+  useEffect(() => {
+    if (cityData) {
+      dispatch(setSelectedCityData(cityData));
     }
-    if(selectedRegionId) getCitiesData();
-  },[selectedRegionId]);
+  }, [cityData, dispatch]);
 
-  const citySelectHandler = (e:ChangeEvent<HTMLSelectElement>) =>{
+  useEffect(() => {
+    const getCitiesData = async () => {
+      if (selectedRegionId) {
+        const response = await fetch(`http://localhost:5000/api/cities/by-region/${selectedRegionId}`);
+        const data = await response.json();
+        setCitiesByRegion(data);
+      }
+    };
+    getCitiesData();
+  }, [selectedRegionId]);
+
+  const citySelectHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    const cityId = +e.target.value;
     dispatch(setIsCitySelected(true));
-  }
+    setSelectedCityId(cityId);
+  };
 
   return (
     <div className={s.citySelect}>
-      <select name="" id="" disabled={!selectedRegionId} onChange={citySelectHandler}>
-        <option value="" disabled selected className={s.defaultOption}>Выберите нас. пункт</option>
-        {citiesByRegion&&citiesByRegion.map(city=>{
-          return <option key={city.id} value={city.id}>{city.name}</option>
-        })}
+      <select
+        name=""
+        id=""
+        disabled={!selectedRegionId}
+        onChange={citySelectHandler}
+        defaultValue=""
+      >
+        <option value="" disabled className={s.defaultOption}>
+          Выберите нас. пункт
+        </option>
+        {citiesByRegion &&
+          citiesByRegion.map((city) => (
+            <option key={city.id} value={city.id}>
+              {city.name}
+            </option>
+          ))}
       </select>
     </div>
-  )
-}
+  );
+};
 
 export default CitySelect;

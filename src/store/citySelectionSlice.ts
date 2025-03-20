@@ -1,12 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 
-interface citySelectionState{
+interface СitySelectionState{
   isCitySelected:boolean,
+  selectedCityData: SelectedCityData | null;
 }
 
-const initialState:citySelectionState = {
+interface SelectedCityData{
+  name:string,
+  name_uk:string,
+  name_en:string,
+  lon:number,
+  lat:number,
+  region_id:number,
+  id: number,
+  _id:string,
+}
+
+const initialState:СitySelectionState  = {
   isCitySelected:false,
+  selectedCityData: null,
 }
 
 const citySelectionSlice = createSlice({
@@ -15,9 +28,12 @@ const citySelectionSlice = createSlice({
   reducers: {
     setIsCitySelected:(state,action:PayloadAction<boolean>)=>{
       state.isCitySelected=action.payload;
+    },
+    setSelectedCityData:(state,action:PayloadAction<SelectedCityData>)=>{
+      state.selectedCityData=action.payload;
     }
   },
 });
 
-export const {setIsCitySelected} = citySelectionSlice.actions
+export const {setIsCitySelected,setSelectedCityData} = citySelectionSlice.actions
 export default citySelectionSlice.reducer;

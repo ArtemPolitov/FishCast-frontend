@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { api } from '../services/api';  // Импортируем наше API
+import { regionsApi } from '../services/regionsApi';  // Импортируем наше API
 
 interface GeoDataState {
   regions: any[];  // Массив с регионами
@@ -19,14 +19,14 @@ const geoDataSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addMatcher(api.endpoints.getRegions.matchPending, (state) => {
+      .addMatcher(regionsApi.endpoints.getRegions.matchPending, (state) => {
         state.isLoading = true;  // Устанавливаем статус загрузки
       })
-      .addMatcher(api.endpoints.getRegions.matchFulfilled, (state, action) => {
+      .addMatcher(regionsApi.endpoints.getRegions.matchFulfilled, (state, action) => {
         state.isLoading = false;  // Статус загрузки завершен
         state.regions = action.payload;  // Сохраняем регионы в стейт
       })
-      .addMatcher(api.endpoints.getRegions.matchRejected, (state, action) => {
+      .addMatcher(regionsApi.endpoints.getRegions.matchRejected, (state, action) => {
         state.isLoading = false;  // Статус загрузки завершен
         state.error = action.error.message || 'Ошибка при загрузке регионов';  // Сохраняем ошибку
       });

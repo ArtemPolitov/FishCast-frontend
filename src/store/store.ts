@@ -1,16 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import citySelectionReducer from './citySelectionSlice';
-import geoDataReducer from './geoDataSlice';
-import { api } from '../services/api'; // Импортируем созданный API
+import geoDataReducer from './regionsDataSlice';
+import { regionsApi } from '../services/regionsApi'; // Импортируем созданный API
+import { cityApi } from '@/services/cityApi';
 
 export const store = configureStore({
   reducer: {
     'citySelection':citySelectionReducer,
     'geoData':geoDataReducer,
-    [api.reducerPath]: api.reducer, // Добавляем редюсер для RTK Query
+    [regionsApi.reducerPath]: regionsApi.reducer,
+    [cityApi.reducerPath]: cityApi.reducer,
   }, 
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware), // Добавляем middleware для RTK Query
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(regionsApi.middleware).concat(cityApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
