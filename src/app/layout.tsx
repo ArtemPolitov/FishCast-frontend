@@ -3,6 +3,9 @@ import '../styles/reset.css';
 import '../styles/globals.css';
 import StoreProvider from '../providers/StoreProvider';
 import Header from '@/components/Header/Header';
+import TopSidebar from '@/components/TopSidebar/TopSidebar';
+import BottomSidebar from '@/components/BottomSidebar/BottomSidebar';
+import Footer from '@/components/Footer/Footer';
 
 const nunito = Nunito({
   subsets: ['latin', 'cyrillic'], // Подключаем поддержку кириллицы
@@ -14,11 +17,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body suppressHydrationWarning className={nunito.variable}>
-        <div className='content'>
+        <div id="modal-root"></div>
+        <div className='wrapper'>
           <StoreProvider>
-            <div id="modal-root"></div>
             <Header/>
-            {children}
+            <div className='content'>
+              <div className='sidebars'>
+                <TopSidebar/>
+                <BottomSidebar/>
+              </div>
+              <div className='page'>
+                {children}
+              </div>
+            </div>
+            <Footer/>
           </StoreProvider>
         </div>
       </body>

@@ -1,1 +1,10 @@
-/*# sourceMappingURL=TopSidebar.module.css.map */
+.topSidebar {
+  width: 265px;
+  height: 220px;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+.topSidebar .topSidebarTitle {
+  text-align: center;
+  font-size: 23px;
+}/*# sourceMappingURL=TopSidebar.module.css.map */

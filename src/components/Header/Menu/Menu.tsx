@@ -7,8 +7,8 @@ export default function Menu() {
     <nav>
       <div className={s.menu}>
         <Link href="/">Главная</Link>
-        <Link href="/locations">Рыболовные места</Link>
-        <Link href="/contacts">Справочник рыб</Link>
+        <Link href="/locations">Локации</Link>
+        <Link href="/contacts">Рыбы</Link>
       </div>
     </nav>
   )

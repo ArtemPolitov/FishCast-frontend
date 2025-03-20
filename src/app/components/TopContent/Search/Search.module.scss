@@ -1,0 +1,21 @@
+.searchInput{
+  border: 1px solid black;
+  border-radius: 7px;
+  height: 35px;
+  font-size: 20px;
+}
+
+.searchBlock{
+  display: flex;
+  gap:10px;
+  max-height: 50px;
+  align-items: center;
+}
+
+.searchButton{
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

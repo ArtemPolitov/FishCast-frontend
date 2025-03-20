@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"BottomSidebar.module.css"}
+{"version":3,"sources":["BottomSidebar.module.scss","BottomSidebar.module.css"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,aAAA;EACA,uBAAA;EACA,kBAAA;ACCF;ADAE;EACE,kBAAA;EACA,eAAA;ACEJ","file":"BottomSidebar.module.css"}

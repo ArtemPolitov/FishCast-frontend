@@ -1,1 +1,10 @@
-/*# sourceMappingURL=BottomSidebar.module.css.map */
+.bottomSidebar {
+  width: 265px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+.bottomSidebar .bottomSidebarTitle {
+  text-align: center;
+  font-size: 23px;
+}/*# sourceMappingURL=BottomSidebar.module.css.map */
