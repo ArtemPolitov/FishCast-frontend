@@ -1,0 +1,192 @@
+.overlay{
+  position: fixed;
+  inset:0;
+  background-color: rgba(0, 0, 0, 0.474);
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.modal{
+  position: absolute;
+  width: 400px;
+  height: 335px;
+  border-radius: 7px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1010;
+  padding: 10px;
+  .subButton{
+    background: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0;
+  }
+  h2{
+    line-height: 1.2;
+  }
+  input{
+    border-radius: 7px;
+    padding-left: 7px;
+  }
+  .formInput{
+    border: 1px solid black;
+  }
+  input::placeholder{
+    color: grey; /* Цвет плейсхолдера */
+    
+  }
+  .divInput{
+    border: 2px solid rgba(245, 245, 220, 0);
+  }
+  P{
+    font-size: 15px;
+    line-height: 1.2;
+  }
+  .bottomBlock{
+    display: flex;
+    gap:10px;
+    align-items: center;
+    
+    button{
+      background: none;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 0;
+    }
+  }
+  .authModal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap:18px;
+    .authForm{
+      display: flex;
+      flex-direction: column;
+      gap:27px;
+      position: relative;
+    }
+
+  }
+  .regModal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap:16px;
+  }
+  .regForm{
+    display: flex;
+    flex-direction: column;
+    gap:27px;
+  }
+  .mainBtn{
+    padding: 5px 10px;
+  }
+}
+
+.inputError{
+  border:solid 1px red;
+}
+
+.errorMessage{
+  position: absolute;
+  color: red;
+  left: 3%;
+}
+
+.authEmailErrorMessage{
+  top: 22%;
+}
+
+.authPasswordErrorMessage{
+  top: 60%;
+}
+
+.regErrorMessage{
+  position: absolute;
+  color: red;
+  left: 20%;
+}
+
+.regNameErrorMessage{
+  top: 29%;
+}
+
+.regEmailErrorMessage{
+  top:46%;
+}
+
+.regPasswordErrorMessage{
+  top:64%;
+}
+
+.passwordInputWrapper{
+  position: relative;
+}
+
+.setPasswordVisibility{
+  position:absolute;
+  top:50%;
+  right: 2%;
+  transform: translateY(-50%);
+  background: none;
+}
+
+.setPasswordVisibility:hover{
+  background-color: rgba(0, 0, 0, 0);
+}
+
+@media (max-width:640px) {
+ .modal{
+    width: 295px;
+    height: 312px;
+    P{
+      font-size: 14px;
+      line-height: 1.2;
+      }
+    .bottomBlock{
+      gap:8px;
+
+      button{
+        background: none;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 0;
+      }
+    }
+    .modalTitle{
+      font-size: 26px;
+    }
+    input{
+      font-size: 18px;
+    }
+    .mainBtn{
+      font-size: 18px;
+    }
+    .authModal{
+      gap:16px;
+    }
+    .regModal{
+      gap:14px;
+    }
+    .regErrorMessage{
+      left: 10%;
+    }
+    
+    .regNameErrorMessage{
+      top: 28.5%;
+    }
+    
+    .regEmailErrorMessage{
+      top:46.5%;
+    }
+    
+    .regPasswordErrorMessage{
+      top:64.5%;
+    }
+  } 
+}

@@ -7,16 +7,22 @@ import Image from "next/image";
 import Menu from './Menu/Menu';
 import Theme from './Theme/Theme';
 import Language from './Language/Language';
-import Authorization from './Authorization/Authorization';
+import AuthorizationButton from './AuthorizationButton/AuthorizationButton';
 import MobileMenu from './MobileMenu/MobileMenu';
+import AuthorizationModal from './AuthorizationModal/AuthorizationModal';
 import { useState } from 'react';
 
 export default function Header() {
   const [isMobileMenuOpen,setIsMobileMenuOpen] = useState(false);
+  const [isAuthorizationModalOpen,setIsAuthorizationModalOpen] = useState(false);
 
   const burgerHandler = (e:React.MouseEvent<HTMLDivElement>) =>{
     e.stopPropagation();
     setIsMobileMenuOpen(prev => !prev);
+  }
+
+  const authorizationHandler = () =>{
+    setIsAuthorizationModalOpen(prev=>!prev);
   }
 
   return (
@@ -27,7 +33,7 @@ export default function Header() {
         <div className={s.rightBlock}>
           <Theme/>
           <Language/>
-          <Authorization/>
+          <AuthorizationButton onClick={authorizationHandler}/>
         </div>
       </div>
       <div className={s.mobileHeaderContent}>
@@ -37,9 +43,10 @@ export default function Header() {
           <span></span>
         </div>
         <div className={s.logo}><Image src="/logo_light_theme.png" alt="FishCast Logo" width={250} height={57} priority/></div>
-        <Authorization/>
+        <AuthorizationButton onClick={authorizationHandler}/>
       </div>
       <MobileMenu isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen}/>
+      <AuthorizationModal isAuthorizationModalOpen={isAuthorizationModalOpen} setIsAuthorizationModalOpen={setIsAuthorizationModalOpen}/>
     </header>
   )
 }

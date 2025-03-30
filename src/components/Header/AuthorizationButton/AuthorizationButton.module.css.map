@@ -1,0 +1,1 @@
+{"version":3,"sources":["AuthorizationButton.module.scss","AuthorizationButton.module.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,mBAAA;EACA,kBAAA;EACA,QAAA;ACCF;;ADEA;EACE;IACE,gBAAA;ECCF;EDAE;IACE,WAAA;IACA,YAAA;ECEJ;AACF;ADEA;EACE;IACE,gBAAA;ECAF;EDCE;IACE,aAAA;ECCJ;EDCE;IACE,WAAA;IACA,YAAA;ECCJ;AACF","file":"AuthorizationButton.module.css"}
