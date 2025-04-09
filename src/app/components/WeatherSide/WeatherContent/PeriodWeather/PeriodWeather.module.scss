@@ -1,0 +1,15 @@
+.periodWeather{
+  position: relative;
+  max-width: 400px;
+  min-height: 236px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding-top: 10px;
+  .loadingLabel{
+    position: absolute;
+    top:45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}

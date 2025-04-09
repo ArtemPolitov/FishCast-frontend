@@ -1,0 +1,32 @@
+.periodWeatherItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
+  line-height: 1.3;
+  max-height: 130px;
+  margin-bottom: 10px;
+}
+.periodWeatherItem .wind {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.periodWeatherItem .weatherIcon {
+  width: 53px;
+  height: 53px;
+}
+.periodWeatherItem .windIcon {
+  width: 20px;
+  height: 20px;
+}
+.periodWeatherItem .temperature {
+  font-weight: 600;
+  font-size: 20px;
+}
+.periodWeatherItem .windSpeed {
+  font-size: 18px;
+}
+.periodWeatherItem .time {
+  font-size: 18px;
+}/*# sourceMappingURL=PeriodWeatherItem.module.css.map */

@@ -8,7 +8,6 @@ export default function Menu() {
       <div className={s.menu}>
         <Link href="/">Главная</Link>
         <Link href="/locations">Локации</Link>
-        <Link href="/contacts">Рыбы</Link>
       </div>
     </nav>
   )

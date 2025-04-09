@@ -26,9 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <TopSidebar/>
                 <BottomSidebar/>
               </div>
-              <div className='page'>
-                {children}
-              </div>
+              {children}
             </div>
             <Footer/>
           </StoreProvider>

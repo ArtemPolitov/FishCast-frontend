@@ -3,7 +3,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 interface СitySelectionState{
   isCitySelected:boolean,
-  selectedCityData: SelectedCityData | null;
+  selectedCityData: SelectedCityData | null
 }
 
 interface SelectedCityData{
@@ -29,11 +29,11 @@ const citySelectionSlice = createSlice({
     setIsCitySelected:(state,action:PayloadAction<boolean>)=>{
       state.isCitySelected=action.payload;
     },
-    setSelectedCityData:(state,action:PayloadAction<SelectedCityData>)=>{
+    setSelectedCityData:(state,action:PayloadAction<SelectedCityData|null>)=>{
       state.selectedCityData=action.payload;
     }
   },
 });
 
-export const {setIsCitySelected,setSelectedCityData} = citySelectionSlice.actions
+export const {setIsCitySelected,setSelectedCityData} = citySelectionSlice.actions;
 export default citySelectionSlice.reducer;

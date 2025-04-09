@@ -1,0 +1,22 @@
+.weatherSide{
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 666px;
+  .selects{
+    display: flex;
+    gap:20px;
+  }
+  .chooseCityLabel{
+    position: absolute;
+    top:45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+  }
+}
