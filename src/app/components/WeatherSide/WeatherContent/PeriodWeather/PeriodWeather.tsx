@@ -5,44 +5,69 @@ import { useSelector } from 'react-redux'
 import { RootState } from '@/store/store'
 import { skipToken } from '@reduxjs/toolkit/query'
 import PeriodWeatherItem from './PeriodWeatherItem/PeriodWeatherItem'
+import { HourlyForecast4days } from '@/services/weatherApi'
+import { TimestampForecast } from '@/services/weatherApi'
 
 interface PeriodWeatherProps {
   weatherPeriod:string,
 }
 
-export interface PeriodWeatherItemData {
-  dt:number,
-  main:{
-    temp:number,
-    feels_like:number,
-    temp_min:number,
-    temp_max:number,
-    pressure:number,
-    sea_level:number,
-    grnd_level:number,
-    humidity:number,
-    temp_kf:number
-  },
-  weather:{
-    id:number,
-    main:string,
-    description:string,
-    icon:string
-  }[],
-  clouds:{
-    all:number
-  },
-  wind:{
-    speed:number,
-    deg:number,
-    gust:number
-  },
-  visibility:number,
-  pop:number,
-  sys:{
-    pod:string
-  },
-  dt_txt:string
+export const getDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[] =>{
+  let dayWeatherData = forecast4daysData?.list.slice(0,8);
+  if(dayWeatherData)return dayWeatherData;
+  else return [];
+}
+
+export const getSecondDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[]|[] =>{
+  const currentDayNumber = new Date().getDate();
+  let secondDayNumber = (currentDayNumber+1)<10?`0${currentDayNumber+1}`:(currentDayNumber+1).toString();
+  if(forecast4daysData){
+    let secondDayWeatherData = forecast4daysData.list.filter(item=>{
+      return(
+        item.dt_txt.slice(8,10) === secondDayNumber
+      )
+    });
+    return secondDayWeatherData;
+  }else return [];
+}
+
+export const getThirdDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[]|[] =>{
+  const currentDayNumber = new Date().getDate();
+  let thirdDayNumber = (currentDayNumber+2)<10?`0${currentDayNumber+2}`:(currentDayNumber+2).toString();
+  if(forecast4daysData){
+    let thirdDayWeatherData = forecast4daysData.list.filter(item=>{
+      return(
+        item.dt_txt.slice(8,10) === thirdDayNumber
+      )
+    });
+    return thirdDayWeatherData;
+  }else return [];
+}
+
+export const getFourthDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[]|[] =>{
+  const currentDayNumber = new Date().getDate();
+  let fourthDayNumber = (currentDayNumber+3)<10?`0${currentDayNumber+3}`:(currentDayNumber+3).toString();
+  if(forecast4daysData){
+    let fourthDayWeatherData = forecast4daysData.list.filter(item=>{
+      return(
+        item.dt_txt.slice(8,10) === fourthDayNumber
+      )
+    });
+    return fourthDayWeatherData;
+  }else return [];
+}
+
+export const getFifthDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[]|[] =>{
+  const currentDayNumber = new Date().getDate();
+  let fifthDayNumber = (currentDayNumber+4)<10?`0${currentDayNumber+4}`:(currentDayNumber+4).toString();
+  if(forecast4daysData){
+    let fifthDayWeatherData = forecast4daysData.list.filter(item=>{
+      return(
+        item.dt_txt.slice(8,10) === fifthDayNumber
+      )
+    });
+    return fifthDayWeatherData;
+  }else return [];
 }
 
 const PeriodWeather:React.FC<PeriodWeatherProps> = ({weatherPeriod}) => {
@@ -54,91 +79,35 @@ const PeriodWeather:React.FC<PeriodWeatherProps> = ({weatherPeriod}) => {
     selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
   );
 
-  const currentDayNumber = new Date().getDate();
-
-  const getDayWeatherData = ():PeriodWeatherItemData[] =>{
-    let dayWeatherData = hourlyForecast4daysData?.list.slice(0,8);
-    if(dayWeatherData)return dayWeatherData;
-    else return [];
-  }
-
-  const getSecondDayWeatherData = ():PeriodWeatherItemData[]|[] =>{
-    let secondDayNumber = (currentDayNumber+1)<10?`0${currentDayNumber+1}`:(currentDayNumber+1).toString();
-    if(hourlyForecast4daysData){
-      let secondDayWeatherData = hourlyForecast4daysData.list.filter(item=>{
-        return(
-          item.dt_txt.slice(8,10) === secondDayNumber
-        )
-      });
-      return secondDayWeatherData;
-    }else return [];
-  }
-
-  const getThirdDayWeatherData = ():PeriodWeatherItemData[]|[] =>{
-    let thirdDayNumber = (currentDayNumber+2)<10?`0${currentDayNumber+2}`:(currentDayNumber+2).toString();
-    if(hourlyForecast4daysData){
-      let thirdDayWeatherData = hourlyForecast4daysData.list.filter(item=>{
-        return(
-          item.dt_txt.slice(8,10) === thirdDayNumber
-        )
-      });
-      return thirdDayWeatherData;
-    }else return [];
-  }
-
-  const getFourthDayWeatherData = ():PeriodWeatherItemData[]|[] =>{
-    let fourthDayNumber = (currentDayNumber+3)<10?`0${currentDayNumber+3}`:(currentDayNumber+3).toString();
-    if(hourlyForecast4daysData){
-      let fourthDayWeatherData = hourlyForecast4daysData.list.filter(item=>{
-        return(
-          item.dt_txt.slice(8,10) === fourthDayNumber
-        )
-      });
-      return fourthDayWeatherData;
-    }else return [];
-  }
-
-  const getFifthDayWeatherData = ():PeriodWeatherItemData[]|[] =>{
-    let fifthDayNumber = (currentDayNumber+4)<10?`0${currentDayNumber+4}`:(currentDayNumber+4).toString();
-    if(hourlyForecast4daysData){
-      let fifthDayWeatherData = hourlyForecast4daysData.list.filter(item=>{
-        return(
-          item.dt_txt.slice(8,10) === fifthDayNumber
-        )
-      });
-      return fifthDayWeatherData;
-    }else return [];
-  }
-
   return (
     <div className={s.periodWeather}>
       {hourlyForecast4daysIsLoading&&<p className={s.loadingLabel}>Загрузка...</p>}
-      {weatherPeriod==='24h'&&
-        getDayWeatherData().map(weatherItem=>{
+      {weatherPeriod==='24h'&&hourlyForecast4daysData&&
+        getDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
           return(
             <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
           )
       })}
-      {weatherPeriod==='secondDay'&&
-        getSecondDayWeatherData().map(weatherItem=>{
+      {weatherPeriod==='secondDay'&&hourlyForecast4daysData&&
+        getSecondDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
           return(
             <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
           )
       })}
-      {weatherPeriod==='thirdDay'&&
-        getThirdDayWeatherData().map(weatherItem=>{
+      {weatherPeriod==='thirdDay'&&hourlyForecast4daysData&&
+        getThirdDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
           return(
             <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
           )
       })}  
-      {weatherPeriod==='fourthDay'&&
-        getFourthDayWeatherData().map(weatherItem=>{
+      {weatherPeriod==='fourthDay'&&hourlyForecast4daysData&&
+        getFourthDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
           return(
             <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
           )
       })}
-      {weatherPeriod==='fifthDay'&&
-        getFifthDayWeatherData().map(weatherItem=>{
+      {weatherPeriod==='fifthDay'&&hourlyForecast4daysData&&
+        getFifthDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
           return(
             <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
           )

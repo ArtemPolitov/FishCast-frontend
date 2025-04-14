@@ -19,7 +19,7 @@
   width: 100%;
   padding: 10px 0px;
   justify-content: center;
-  gap: 70px;
+  gap: 60px;
 }
 .weatherContent .currentWeather .currentWeatherContent .leftColumn {
   display: flex;
@@ -28,6 +28,10 @@
 }
 .weatherContent .currentWeather .currentWeatherContent .leftColumn .weatherTitle {
   font-weight: 600;
+}
+.weatherContent .currentWeather .currentWeatherContent .leftColumn .weatherDescription {
+  text-align: center;
+  max-width: 245px;
 }
 .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow {
   display: flex;
@@ -66,7 +70,7 @@
   padding: 2px;
   background: none;
   border-radius: 0;
-  width: 58px;
+  width: 60px;
   border-bottom: 1px solid rgba(0, 0, 0, 0);
   line-height: 1.3;
 }

@@ -6,6 +6,7 @@ import Header from '@/components/Header/Header';
 import TopSidebar from '@/components/TopSidebar/TopSidebar';
 import BottomSidebar from '@/components/BottomSidebar/BottomSidebar';
 import Footer from '@/components/Footer/Footer';
+import Sandbox from '@/components/Sandbox/Sandbox';
 
 const nunito = Nunito({
   subsets: ['latin', 'cyrillic'], // Подключаем поддержку кириллицы
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
             </div>
             <Footer/>
+            <Sandbox/>
           </StoreProvider>
         </div>
       </body>

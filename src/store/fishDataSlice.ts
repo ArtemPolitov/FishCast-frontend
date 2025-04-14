@@ -6,7 +6,9 @@ interface FishDataState {
  selectedFishData:SelectedFishData|null
 }
 
-interface SelectedFishData {
+export type FishGroup = 'peaceful' | 'predatory' | 'carp' | 'northern' | 'catfish';
+
+export interface SelectedFishData {
   _id?:number,
   id:number,
   name:{
@@ -36,6 +38,7 @@ interface SelectedFishData {
   optimal_water_temperature: number[],
   optimal_pressure: number[],
   image_url: string,
+  group:FishGroup
 }
 
 const initialState:FishDataState = {

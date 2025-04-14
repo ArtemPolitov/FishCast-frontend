@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './WeatherContent.module.css'
 import PeriodWeather from './PeriodWeather/PeriodWeather'
-import { useGetCurrentWeatherDataQuery,useGetHourlyForecast4daysQuery } from '@/services/weatherApi'
+import { useGetCurrentWeatherDataQuery } from '@/services/weatherApi'
 import { useState } from 'react'
 import { skipToken } from '@reduxjs/toolkit/query'
 import Image from 'next/image'
@@ -15,6 +15,30 @@ export const convertKelvinToCelsius = (tempKelvin:number):number =>{
   return Math.round(tempCelsius);
 }
 
+export const convertHpaToMmHg = (pressureHpa:number):number =>{
+  const pressureMmHg = pressureHpa/1.33322;
+  return Math.round(pressureMmHg);
+}
+
+export const getFourNextDays = (): string[] => {
+  const weekDays = ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+  const fourNextDays: string[] = [];
+
+  for (let i = 1; i < 5; i++) {
+    const utcDate = new Date();
+    utcDate.setUTCDate(utcDate.getUTCDate() + i);
+
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone: 'Europe/Kyiv',
+    };
+    const dateInKyiv = new Date(utcDate.toLocaleString('en-US', options));
+    const day = weekDays[dateInKyiv.getDay()];
+    fourNextDays.push(`${day} ${dateInKyiv.getDate()}`);
+  }
+
+  return fourNextDays;
+}
+
 export default function WeatherContent() {
   const [weatherPeriod,setWeatherPeriod] = useState('24h');
 
@@ -25,12 +49,6 @@ export default function WeatherContent() {
   const {data:currentWeatherData,isLoading:currentWeatherDataIsLoading,error:currentWeatherDataError} = useGetCurrentWeatherDataQuery(
     selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
   );
-  
-  
-  const convertHpaToMmHg = (pressureHpa:number):number =>{
-    const pressureMmHg = pressureHpa/1.33322;
-    return Math.round(pressureMmHg);
-  }
 
   const getWindDirection  = (windDegree:number,currentLanguage:string):string|null =>{
     interface WindDirection {
@@ -72,18 +90,6 @@ export default function WeatherContent() {
     return currentLanguage==="ru"?windDirection.ru:windDirection.ua;
   }
 
-  const getFourNextDays = ():string[] =>{
-    const weekDays = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
-    let fourNextDays = [];
-    const currentDate = new Date();
-    for(let i=1;i<5;i++){
-      const copyDate = new Date(currentDate);
-      copyDate.setDate(currentDate.getDate() + i);
-      fourNextDays.push(`${weekDays[copyDate.getDay()]} ${copyDate.getDate()}`)
-    }
-    return fourNextDays;
-  }
-
   const fourNextDays:string[] = getFourNextDays();
 
   const dayWeatherHandler = () =>{
@@ -105,8 +111,6 @@ export default function WeatherContent() {
   const fifthDayWeatherHandler = () =>{
     setWeatherPeriod('fifthDay');
   }
-
-  
 
   return (
     <div className={s.weatherContent}>

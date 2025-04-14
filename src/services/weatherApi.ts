@@ -2,7 +2,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const APIKEY = 'e341961d0d0fda13f8601a5248720bd3';
 
-interface CurrentWeatherData {
+interface RainData {
+  '1h'?: number;
+  '3h'?: number;
+};
+
+export interface CurrentWeatherData {
   coord:{
     lon:number,
     lat:number
@@ -30,9 +35,7 @@ interface CurrentWeatherData {
     deg:number,
     gust?:number
   },
-  rain?:{
-    "1h":number,
-  },
+  rain?:RainData,
   snow?:{
     "1h":number,
   }
@@ -53,50 +56,50 @@ interface CurrentWeatherData {
   cod:number
 }
 
-interface HourlyForecast4days {
+export interface TimestampForecast {
+  dt: number; // Время прогноза, Unix timestamp
+  main: {
+    temp: number; // Температура (по умолчанию в Кельвинах)
+    feels_like: number; // Ощущаемая температура
+    temp_min: number; // Минимальная температура
+    temp_max: number; // Максимальная температура
+    pressure: number; // Давление на уровне моря
+    sea_level: number; // Давление на уровне моря
+    grnd_level: number; // Давление на уровне земли
+    humidity: number; // Влажность (%)
+    temp_kf: number; // Внутренний параметр
+  };
+  weather: {
+    id: number; // ID погодных условий
+    main: string; // Группа погодных условий (например, дождь, снег и т.д.)
+    description: string; // Описание погодных условий
+    icon: string; // Иконка погоды
+  }[];
+  clouds: {
+    all: number; // Облачность в %
+  };
+  wind: {
+    speed: number; // Скорость ветра (м/с)
+    deg: number; // Направление ветра (в градусах)
+    gust: number; // Порывы ветра (м/с)
+  };
+  visibility: number; // Видимость (в метрах)
+  pop: number; // Вероятность осадков (от 0 до 1)
+  rain?:RainData,
+  snow?: {
+    '3h': number; // Объем снега за последние 3 часа (в мм)
+  };
+  sys: {
+    pod: 'd' | 'n'; // Часть дня (d - день, n - ночь)
+  };
+  dt_txt: string; // Время прогноза в ISO формате
+}
+
+export interface HourlyForecast4days {
   cod: string; // Код ответа
   message: number; // Сообщение
   cnt: number; // Количество временных точек
-  list: {
-    dt: number; // Время прогноза, Unix timestamp
-    main: {
-      temp: number; // Температура (по умолчанию в Кельвинах)
-      feels_like: number; // Ощущаемая температура
-      temp_min: number; // Минимальная температура
-      temp_max: number; // Максимальная температура
-      pressure: number; // Давление на уровне моря
-      sea_level: number; // Давление на уровне моря
-      grnd_level: number; // Давление на уровне земли
-      humidity: number; // Влажность (%)
-      temp_kf: number; // Внутренний параметр
-    };
-    weather: {
-      id: number; // ID погодных условий
-      main: string; // Группа погодных условий (например, дождь, снег и т.д.)
-      description: string; // Описание погодных условий
-      icon: string; // Иконка погоды
-    }[];
-    clouds: {
-      all: number; // Облачность в %
-    };
-    wind: {
-      speed: number; // Скорость ветра (м/с)
-      deg: number; // Направление ветра (в градусах)
-      gust: number; // Порывы ветра (м/с)
-    };
-    visibility: number; // Видимость (в метрах)
-    pop: number; // Вероятность осадков (от 0 до 1)
-    rain?: {
-      '3h': number; // Объем дождя за последние 3 часа (в мм)
-    };
-    snow?: {
-      '3h': number; // Объем снега за последние 3 часа (в мм)
-    };
-    sys: {
-      pod: 'd' | 'n'; // Часть дня (d - день, n - ночь)
-    };
-    dt_txt: string; // Время прогноза в ISO формате
-  }[];
+  list: TimestampForecast[];
   city: {
     id: number; // ID города
     name: string; // Название города

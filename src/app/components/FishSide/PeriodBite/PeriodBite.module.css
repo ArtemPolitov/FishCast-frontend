@@ -1,0 +1,12 @@
+.periodBite {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.periodBite .periodBiteCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}/*# sourceMappingURL=PeriodBite.module.css.map */

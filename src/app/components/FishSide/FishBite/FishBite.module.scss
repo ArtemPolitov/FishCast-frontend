@@ -1,0 +1,16 @@
+.fishBite{
+  display: flex;
+  gap:1px;
+  .biteImg{
+    width: 26px;
+    height: 15px;
+  }
+  .normalSize{
+    width: 26px;
+    height: 15px;
+  }
+  .smallSize{
+    width: 19px;
+    height: 11px;
+  }
+}
