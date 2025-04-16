@@ -21,7 +21,7 @@ export const convertHpaToMmHg = (pressureHpa:number):number =>{
 }
 
 export const getFourNextDays = (): string[] => {
-  const weekDays = ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+  const weekDays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
   const fourNextDays: string[] = [];
 
   for (let i = 1; i < 5; i++) {

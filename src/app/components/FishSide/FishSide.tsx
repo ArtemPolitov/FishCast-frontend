@@ -63,7 +63,7 @@ export default function FishSide() {
             </div>
             <div className={s.currentBite}>
                   <p className={s.biteLabel}>Текущий клев:</p>
-                  {currentWeatherData&&<FishBite weatherData={currentWeatherData} size='normalSize'/>}
+                  {currentWeatherData&&<FishBite weatherData={currentWeatherData} fishGroup={selectedFishData.group} size='normalSize'/>}
             </div>
             <div className={s.periodBiteBlock}>
               <div className={s.periodBiteButtons}>

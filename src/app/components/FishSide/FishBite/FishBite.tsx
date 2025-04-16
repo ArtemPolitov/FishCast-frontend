@@ -9,9 +9,11 @@ import { skipToken } from '@reduxjs/toolkit/query'
 import { CurrentWeatherData } from '@/services/weatherApi'
 import Image from 'next/image'
 import { TimestampForecast } from '@/services/weatherApi'
+import { FishGroup } from '@/store/fishDataSlice'
 
 interface FishBiteProps {
   weatherData:CurrentWeatherData|TimestampForecast,
+  fishGroup:FishGroup,
   size:string
 }
 
@@ -38,12 +40,12 @@ export function getKyivHour(dt: number): number {
   return hour;
 }
 
-const FishBite:React.FC<FishBiteProps> = ({weatherData,size}) =>{
+const FishBite:React.FC<FishBiteProps> = ({weatherData,fishGroup,size}) =>{
 
 
-  const selectedFishData = useSelector((state:RootState)=>state.fishData.selectedFishData);
+  //const selectedFishData = useSelector((state:RootState)=>state.fishData.selectedFishData);
 
-  const fishBiteValue = weatherData&&selectedFishData&& calculateFishBite(selectedFishData.group,getWaterTemperature(convertKelvinToCelsius(weatherData?.main.temp)),convertHpaToMmHg(weatherData?.main.pressure),weatherData?.wind.speed,weatherData?.clouds.all,checkRain(weatherData),getKyivHour(weatherData.dt));
+  const fishBiteValue = weatherData&& calculateFishBite(fishGroup,getWaterTemperature(convertKelvinToCelsius(weatherData?.main.temp)),convertHpaToMmHg(weatherData?.main.pressure),weatherData?.wind.speed,weatherData?.clouds.all,checkRain(weatherData),getKyivHour(weatherData.dt));
   const fishBiteValueArr = Array.from({ length: fishBiteValue || 0 });
   const idealBiteDifferenceArr = Array.from({ length: 5 - (fishBiteValue || 0) });
 

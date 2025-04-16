@@ -6,7 +6,7 @@ interface FishDataState {
  selectedFishData:SelectedFishData|null
 }
 
-export type FishGroup = 'peaceful' | 'predatory' | 'carp' | 'northern' | 'catfish';
+export type FishGroup = 'peaceful' | 'predatory' | 'bleak' | 'bream' | 'pike' | 'rudd' | 'silver carp' | 'tench' | 'zander' | 'carp' | 'northern' | 'catfish' | 'goby' | 'saberfish' | 'ide';
 
 export interface SelectedFishData {
   _id?:number,

@@ -67,7 +67,8 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
     setRegEmailInputError('');
     setRegPasswordInputData('');
     setRegPasswordInputError('');
-
+    setIsAuthPasswordVisible(false);
+    setIsRegPasswordVisible(false);
   }
 
   const nameValidation = (name:string):boolean =>{

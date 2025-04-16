@@ -17,6 +17,8 @@ const PeriodBite:React.FC<PeriodBiteProps> = ({bitePeriod}) =>{
   const selectedCityLat = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lat);
   const selectedCityLon = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lon);
 
+  const selectedFishData = useSelector((state:RootState)=>state.fishData.selectedFishData);
+
   const {data:hourlyForecast4daysData,isLoading:hourlyForecast4daysIsLoading,error:hourlyForecast4daysError}=useGetHourlyForecast4daysQuery(
       selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
     );
@@ -25,60 +27,60 @@ const PeriodBite:React.FC<PeriodBiteProps> = ({bitePeriod}) =>{
   return (
     <div className={s.periodBite}>
       {
-        bitePeriod==='24h'&&hourlyForecast4daysData&&
+        bitePeriod==='24h'&&hourlyForecast4daysData&&selectedFishData&&
           getDayWeatherData(hourlyForecast4daysData).map(item=>{
             return(
               <div className={s.periodBiteCard}>
                 <p className={s.time}>{getKyivHour(item.dt)<10?`0${getKyivHour(item.dt)}:00`:`${getKyivHour(item.dt)}:00`}</p>
-                <FishBite weatherData={item} size='smallSize'/>
+                <FishBite weatherData={item} fishGroup={selectedFishData?.group} size='smallSize'/>
               </div>
               
             )
           })
       }
       {
-        bitePeriod==='secondDay'&&hourlyForecast4daysData&&
+        bitePeriod==='secondDay'&&hourlyForecast4daysData&&selectedFishData&&
         getSecondDayWeatherData(hourlyForecast4daysData).map(item=>{
             return(
               <div className={s.periodBiteCard}>
                 <p className={s.time}>{getKyivHour(item.dt)<10?`0${getKyivHour(item.dt)}:00`:`${getKyivHour(item.dt)}:00`}</p>
-                <FishBite weatherData={item} size='smallSize'/>
+                <FishBite weatherData={item} fishGroup={selectedFishData?.group} size='smallSize'/>
               </div>
               
             )
           })
       }
       {
-        bitePeriod==='thirdDay'&&hourlyForecast4daysData&&
+        bitePeriod==='thirdDay'&&hourlyForecast4daysData&&selectedFishData&&
         getThirdDayWeatherData(hourlyForecast4daysData).map(item=>{
             return(
               <div className={s.periodBiteCard}>
                 <p className={s.time}>{getKyivHour(item.dt)<10?`0${getKyivHour(item.dt)}:00`:`${getKyivHour(item.dt)}:00`}</p>
-                <FishBite weatherData={item} size='smallSize'/>
+                <FishBite weatherData={item} fishGroup={selectedFishData.group} size='smallSize'/>
               </div>
               
             )
           })
       }
       {
-        bitePeriod==='fourthDay'&&hourlyForecast4daysData&&
+        bitePeriod==='fourthDay'&&hourlyForecast4daysData&&selectedFishData&&
         getFourthDayWeatherData(hourlyForecast4daysData).map(item=>{
             return(
               <div className={s.periodBiteCard}>
                 <p className={s.time}>{getKyivHour(item.dt)<10?`0${getKyivHour(item.dt)}:00`:`${getKyivHour(item.dt)}:00`}</p>
-                <FishBite weatherData={item} size='smallSize'/>
+                <FishBite weatherData={item} fishGroup={selectedFishData.group} size='smallSize'/>
               </div>
               
             )
           })
       }
       {
-        bitePeriod==='fifthDay'&&hourlyForecast4daysData&&
+        bitePeriod==='fifthDay'&&hourlyForecast4daysData&&selectedFishData&&
         getFifthDayWeatherData(hourlyForecast4daysData).map(item=>{
             return(
               <div className={s.periodBiteCard}>
                 <p className={s.time}>{getKyivHour(item.dt)<10?`0${getKyivHour(item.dt)}:00`:`${getKyivHour(item.dt)}:00`}</p>
-                <FishBite weatherData={item} size='smallSize'/>
+                <FishBite weatherData={item} fishGroup={selectedFishData.group} size='smallSize'/>
               </div>
               
             )
