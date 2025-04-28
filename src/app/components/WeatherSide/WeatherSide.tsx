@@ -10,13 +10,13 @@ import WeatherContent from './WeatherContent/WeatherContent'
 
 
 export default function WeatherSide() {
-  const [selectedRegionId,setSelectedRegionId] = useState<number|null>(null);
+  const selectedRegionId = useSelector((state:RootState)=>state.geoData.selectedRegionData?.id);
   const isCitySelected = useSelector((state: RootState) => state.citySelection.isCitySelected);
 
   return (
     <div className={s.weatherSide}>
       <div className={s.selects}>
-        <RegionSelect setSelectedRegionId={setSelectedRegionId}/>
+        <RegionSelect/>
         <CitySelect selectedRegionId={selectedRegionId}/>
       </div>
         {!isCitySelected ? (

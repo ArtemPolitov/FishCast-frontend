@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import {RootState} from '@/store/store'
 
 interface CitySelectProps {
-  selectedRegionId: null | number;
+  selectedRegionId: undefined | number;
 }
 
 interface CityByRegion {
@@ -30,6 +30,7 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedRegionId }) => {
   useEffect(() => {
     if (cityData) {
       dispatch(setSelectedCityData(cityData));
+      localStorage.setItem('selectedCityData',JSON.stringify(cityData));
     }
   }, [cityData, dispatch]);
 

@@ -29,7 +29,7 @@ export default function Header() {
     <header className={s.header}>
       <div className={s.headerContent}>
         <div className={s.logo}><Image src="/logo_light_theme.png" alt="FishCast Logo" width={320} height={57} priority/></div>
-        <Menu/> 
+        {/*<Menu/>*/} 
         <div className={s.rightBlock}>
           <Theme/>
           <Language/>

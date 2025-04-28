@@ -2,11 +2,15 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap:10px;
+  row-gap: 20px;
+  column-gap:10px;
   .periodBiteCard{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
+    gap:7px;
+    .time{
+      font-size: 18px;
+    }
   }
 }

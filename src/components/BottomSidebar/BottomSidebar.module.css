@@ -1,10 +1,68 @@
+@charset "UTF-8";
 .bottomSidebar {
-  width: 265px;
-  height: 310px;
+  width: 360px;
+  height: 377px;
   border: 1px solid black;
   border-radius: 7px;
+  display: flex;
+  flex-direction: column;
 }
 .bottomSidebar .bottomSidebarTitle {
   text-align: center;
   font-size: 23px;
+}
+.bottomSidebar .nearestLocations {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-grow: 1;
+  /* Общая полоса прокрутки */
+  /* "Дорожка" скроллбара */
+  /* "Бегунок" скроллбара */
+  /* Когда наводишь курсор на ползунок */
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.bottomSidebar .nearestLocations::-webkit-scrollbar {
+  width: 8px; /* ширина полосы прокрутки */
+}
+.bottomSidebar .nearestLocations::-webkit-scrollbar-track {
+  background: transparent; /* фон дорожки прозрачный */
+}
+.bottomSidebar .nearestLocations::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4); /* темный ползунок с прозрачностью */
+  border-radius: 4px; /* скругление углов */
+}
+.bottomSidebar .nearestLocations::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.6); /* чуть темнее при наведении */
+}
+.bottomSidebar .nearestLocations .locationCard {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 7px;
+}
+.bottomSidebar .nearestLocations .locationCard .locationInfo {
+  font-size: 17px;
+}
+.bottomSidebar .nearestLocations .locationCard .imgWrapper {
+  width: 60px;
+  height: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.bottomSidebar .nearestLocations .locationCard .imgWrapper .locationImg {
+  border-radius: 5px;
+}
+.bottomSidebar .nearestLocations .locationCardActive {
+  border: 1px solid rgb(0, 0, 0);
+}
+.bottomSidebar .nearestLocations .locationCard:hover {
+  border-color: black;
+}
+.bottomSidebar .emptyBlock {
+  height: 2.2%;
 }/*# sourceMappingURL=BottomSidebar.module.css.map */

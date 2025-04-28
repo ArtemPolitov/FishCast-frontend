@@ -15,10 +15,12 @@ export default function FishSelect() {
   const { data: fishData } = useGetFishByIdQuery(selectedFishId ?? 0, { 
     skip: selectedFishId===null, 
   });
+  const selectedFishData = useSelector((state:RootState)=>state.fishData.selectedFishData);
   
   useEffect(()=>{
     if (fishData){
       dispatch(setSelectedFishData(fishData));
+      localStorage.setItem('selectedFishData',JSON.stringify(fishData));
     }
   },[fishData,dispatch]);
 
@@ -30,7 +32,7 @@ export default function FishSelect() {
 
   return (
     <div className={s.fishSelect}>
-      <select name="" id="" disabled={!isCitySelected} onChange={fishSelectHandler} defaultValue="">
+      <select name="" id="" disabled={!isCitySelected} onChange={fishSelectHandler} value={selectedFishData?.id ?? ""}>
         <option value="" disabled className={s.defaultOption}>
           Выберите рыбу
         </option>

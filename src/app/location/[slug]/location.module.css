@@ -1,0 +1,133 @@
+@charset "UTF-8";
+.locationPage {
+  display: flex;
+  height: 635px;
+  position: relative;
+  gap: 20px;
+  overflow: hidden; /* добавляем */
+}
+.locationPage .locationInfo {
+  display: flex;
+  flex-direction: column;
+}
+.locationPage .locationInfo .locationInfoContent {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+  min-height: 0;
+  /* Общая полоса прокрутки */
+  /* "Дорожка" скроллбара */
+  /* "Бегунок" скроллбара */
+  /* Когда наводишь курсор на ползунок */
+}
+.locationPage .locationInfo .locationInfoContent .backButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  background-color: #D7D7D7;
+  border-radius: 7px;
+  gap: 5px;
+  top: 10px;
+  left: 10px;
+  padding: 5px;
+}
+.locationPage .locationInfo .locationInfoContent .backButton p {
+  font-size: 18px;
+}
+.locationPage .locationInfo .locationInfoContent .backButton:hover {
+  background-color: rgb(224, 223, 223);
+}
+.locationPage .locationInfo .locationInfoContent .imgWrapper {
+  height: 250px;
+  width: 400px;
+}
+.locationPage .locationInfo .locationInfoContent .imgWrapper .locationImg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 7px;
+}
+.locationPage .locationInfo .locationInfoContent .locationText {
+  display: flex;
+  flex-direction: column;
+}
+.locationPage .locationInfo .locationInfoContent .locationText .locationDescr {
+  font-size: 18px;
+}
+.locationPage .locationInfo .locationInfoContent .map {
+  flex: 1;
+  width: 100%;
+}
+.locationPage .locationInfo .locationInfoContent::-webkit-scrollbar {
+  width: 8px; /* ширина полосы прокрутки */
+}
+.locationPage .locationInfo .locationInfoContent::-webkit-scrollbar-track {
+  background: transparent; /* фон дорожки прозрачный */
+}
+.locationPage .locationInfo .locationInfoContent::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4); /* темный ползунок с прозрачностью */
+  border-radius: 4px; /* скругление углов */
+}
+.locationPage .locationInfo .locationInfoContent::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.6); /* чуть темнее при наведении */
+}
+.locationPage .fishBite {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 7px;
+  padding-top: 5px;
+  min-width: 290px;
+}
+.locationPage .fishBite h3 {
+  text-align: center;
+}
+.locationPage .fishBite .fishCards {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  /* Общая полоса прокрутки */
+  /* "Дорожка" скроллбара */
+  /* "Бегунок" скроллбара */
+  /* Когда наводишь курсор на ползунок */
+}
+.locationPage .fishBite .fishCards::-webkit-scrollbar {
+  width: 8px; /* ширина полосы прокрутки */
+}
+.locationPage .fishBite .fishCards::-webkit-scrollbar-track {
+  background: transparent; /* фон дорожки прозрачный */
+}
+.locationPage .fishBite .fishCards::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4); /* темный ползунок с прозрачностью */
+  border-radius: 4px; /* скругление углов */
+}
+.locationPage .fishBite .fishCards::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.6); /* чуть темнее при наведении */
+}
+.locationPage .fishBite .fishCards .fishCard {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.locationPage .fishBite .fishCards .fishCard .fishImgWrapper {
+  width: 100px;
+  height: 60px;
+}
+.locationPage .fishBite .fishCards .fishCard .fishImgWrapper .fishImg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}/*# sourceMappingURL=location.module.css.map */

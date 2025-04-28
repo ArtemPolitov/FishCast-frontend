@@ -7,6 +7,7 @@ import TopSidebar from '@/components/TopSidebar/TopSidebar';
 import BottomSidebar from '@/components/BottomSidebar/BottomSidebar';
 import Footer from '@/components/Footer/Footer';
 import Sandbox from '@/components/Sandbox/Sandbox';
+import StoreInitializer from '@/components/StoreInitializer/StoreInitializer';
 
 const nunito = Nunito({
   subsets: ['latin', 'cyrillic'], // Подключаем поддержку кириллицы
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div id="modal-root"></div>
         <div className='wrapper'>
           <StoreProvider>
+            <StoreInitializer/>
             <Header/>
             <div className='content'>
               <div className='sidebars'>

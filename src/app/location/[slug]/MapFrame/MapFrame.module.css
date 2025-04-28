@@ -1,0 +1,14 @@
+@charset "UTF-8";
+.mapFrame {
+  width: 100%;
+  height: 300px; /* увеличил, чтобы карта была нормальной высоты */
+  position: relative;
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+.mapIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}/*# sourceMappingURL=MapFrame.module.css.map */

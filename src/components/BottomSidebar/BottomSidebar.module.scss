@@ -1,10 +1,69 @@
 .bottomSidebar{
-  width: 265px;
-  height: 310px;
+  width: 360px;
+  height: 377px;
   border: 1px solid black;
   border-radius: 7px;
+  display: flex;
+  flex-direction: column;
   .bottomSidebarTitle{
     text-align: center;
     font-size: 23px;
+  }
+  .nearestLocations{
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-grow: 1;
+    /* Общая полоса прокрутки */
+    &::-webkit-scrollbar {
+      width: 8px; /* ширина полосы прокрутки */
+    }
+  
+    /* "Дорожка" скроллбара */
+    &::-webkit-scrollbar-track {
+      background: transparent; /* фон дорожки прозрачный */
+    }
+  
+    /* "Бегунок" скроллбара */
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.4); /* темный ползунок с прозрачностью */
+      border-radius: 4px; /* скругление углов */
+    }
+  
+    /* Когда наводишь курсор на ползунок */
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.6); /* чуть темнее при наведении */
+    }
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    gap:7px;
+    .locationCard{
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      gap:8px;
+      border: 1px solid rgba(0, 0, 0, 0);
+      border-radius: 7px;
+      .locationInfo{
+        font-size: 17px;
+      }
+      .imgWrapper{
+        width: 60px;
+        height: 40px;
+        object-fit:cover;
+        .locationImg{
+          border-radius: 5px;
+        }
+      }
+    }
+    .locationCardActive{
+      border: 1px solid rgb(0, 0, 0);
+    }
+    .locationCard:hover{
+      border-color: black;
+    }
+  }
+  .emptyBlock{
+    height: 2.2%;
   }
 }

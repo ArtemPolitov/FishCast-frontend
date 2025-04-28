@@ -62,7 +62,7 @@ export default function TopSidebar() {
 
   return (
     <div className={s.topSidebar}>
-      <h2 className={s.topSidebarTitle}>Лучший клев</h2>
+      <h2 className={s.topSidebarTitle}>Лучший клев в окрестностях</h2>
       <div className={s.fishCards}>
         {isCitySelected&&
           bestBiteFishesData&&bestBiteFishesData.map(item=>{

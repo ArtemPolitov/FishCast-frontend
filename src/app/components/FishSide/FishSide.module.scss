@@ -7,9 +7,11 @@
   align-items: center;
   position: relative;
   width: 480px;
+  max-width: 480px;
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  
   .chooseLabel{
     position: absolute;
     text-align: center;
@@ -23,29 +25,29 @@
     align-items: center;
     padding: 15px 0px;
     .fishInfo{
-      height: 280px;
+      height: 335px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap:9px;
+      gap:10px;
       padding-bottom: 10px;
       .fishImg{
-        width: 195px;
+        width: 250px;
       }
       
       .fishDescr{
         font-size: 18px;
         text-align: center;
-        line-height: 1.3;
+        line-height: 1.4;
       }
     }
     .currentBite{
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-bottom: 10px;
       gap:10px;
       border-bottom: 1px solid black;
+      padding-bottom: 25px;
       .biteLabel{
         font-weight: 600;
         line-height: 1;
@@ -56,8 +58,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap:15px;
-      
+      gap:20px;
+      padding-top: 5px;
       .periodBiteButtons{
         display: flex;
         gap:10px;

@@ -5,6 +5,7 @@ import { regionsApi } from '../services/regionsApi'; // Импортируем �
 import { cityApi } from '@/services/cityApi';
 import { fishApi } from '@/services/fishApi';
 import { weatherApi } from '@/services/weatherApi';
+import {locationsApi} from '@/services/locationsApi';
 import fishDataReducer from './fishDataSlice';
 
 export const store = configureStore({
@@ -15,9 +16,10 @@ export const store = configureStore({
     [regionsApi.reducerPath]: regionsApi.reducer,
     [cityApi.reducerPath]: cityApi.reducer,
     [fishApi.reducerPath]: fishApi.reducer,
-    [weatherApi.reducerPath]: weatherApi.reducer
+    [weatherApi.reducerPath]: weatherApi.reducer,
+    [locationsApi.reducerPath]: locationsApi.reducer
   }, 
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(regionsApi.middleware).concat(cityApi.middleware).concat(fishApi.middleware).concat(weatherApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(regionsApi.middleware).concat(cityApi.middleware).concat(fishApi.middleware).concat(weatherApi.middleware).concat(locationsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

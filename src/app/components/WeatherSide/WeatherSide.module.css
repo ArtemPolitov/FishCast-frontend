@@ -8,6 +8,7 @@
   align-items: center;
   position: relative;
   width: 590px;
+  max-width: 590px;
 }
 .weatherSide .selects {
   display: flex;

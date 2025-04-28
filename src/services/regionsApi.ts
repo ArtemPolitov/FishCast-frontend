@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { SelectedRegionData } from "@/store/regionsDataSlice";
 
 export const regionsApi = createApi({
   reducerPath: "regionsApi",
@@ -9,7 +10,10 @@ export const regionsApi = createApi({
     getRegions: builder.query<any[], void>({  // Запрос для получения регионов
       query: () => "regions",  // Эндпоинт: /regions
     }),
+    getRegionById: builder.query<SelectedRegionData,number>({
+      query:(id)=>`regions/${id}`,
+    })
   }),
 });
 
-export const { useGetRegionsQuery } = regionsApi;
+export const { useGetRegionsQuery,useGetRegionByIdQuery } = regionsApi;
