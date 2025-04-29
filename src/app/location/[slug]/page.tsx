@@ -17,6 +17,8 @@ import { CurrentWeatherData } from '@/services/weatherApi';
 import { FishDataWithBite } from '@/services/fishApi';
 import Link from 'next/link';
 import MapFrame from './MapFrame/MapFrame';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 interface LocationPageProps {
   params: {
@@ -28,9 +30,9 @@ export default function LocationPage({ params }: LocationPageProps) {
   const { slug } = params;
   const { data: locationData, isLoading:locationDataIsLoading, isError:locationDataError } = useGetLocationBySlugQuery(slug);
   const {data:allFishesData, isLoading:allFishesDataIsLoading, isError:allFishesDataIsError} = useGetAllFishesQuery();
-
   const locationLat = locationData?.coordinates.latitude;
   const locationLon = locationData?.coordinates.longitude;
+  const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
   const { data: currentWeatherData, isLoading: currentWeatherIsLoading, isError: currentWeatherIsError }=useGetCurrentWeatherDataQuery(
     locationLat && locationLon
     ? { lat: locationLat, lon: locationLon }
@@ -60,11 +62,15 @@ export default function LocationPage({ params }: LocationPageProps) {
   }
 
   return (
-    <div className={s.locationPage}>
+    <div className={`${s.locationPage} ${currentTheme==='dark'?s.dark:''}`}>
       <div className={s.locationInfo}>
         <div className={s.locationInfoContent}>
           <Link href='/' className={s.backButton}>
-            <Image src='/images/arrow_back_icon.png' alt='back img' height={25} width={25}/>
+            {
+              currentTheme==='light'?
+              <Image src='/images/arrow_back_icon.png' alt='back img' height={25} width={25}/>:
+              <Image src='/images/arrow_back_icon_dark.png' alt='back img' height={25} width={25}/>
+            }
             <p>На главную</p>
           </Link>
           <div className={s.imgWrapper}><Image src={locationData.image_url} alt='location img' height={350} width={350} className={s. locationImg}/></div>

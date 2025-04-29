@@ -4,6 +4,36 @@
   position: relative;
   gap:20px;
   overflow: hidden; /* добавляем */
+  &.dark{
+    .locationInfo{
+      .locationInfoContent{
+        border-color: white;
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.551); 
+        }
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(255, 255, 255, 0.69);
+        }
+        .backButton{
+          background-color: #616161;
+        }
+        .backButton:hover{
+          background-color: #6f6f6f;
+        }
+      }
+    }
+    .fishBite{
+      border-color: white;
+      .fishCards{
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(255, 255, 255, 0.551); 
+        }
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(255, 255, 255, 0.69);
+        }
+      }
+    }
+  }
 
   .locationInfo{
     display: flex;
@@ -75,12 +105,10 @@
       &::-webkit-scrollbar-thumb {
         background-color: rgba(0, 0, 0, 0.4); /* темный ползунок с прозрачностью */
         border-radius: 4px; /* скругление углов */
-
       }
     
-      /* Когда наводишь курсор на ползунок */
       &::-webkit-scrollbar-thumb:hover {
-        background-color: rgba(0, 0, 0, 0.6); /* чуть темнее при наведении */
+        background-color: rgba(0, 0, 0, 0.6); 
       }
     }
 

@@ -20,6 +20,23 @@
   z-index: 1010;
   padding: 10px;
 }
+.modal.dark {
+  background-color: var(--background-dark);
+}
+.modal.dark input {
+  border-color: white;
+  color: white;
+  background-color: var(--background-dark);
+}
+.modal.dark .bottomBlock button {
+  background: none;
+}
+.modal.dark .setPasswordVisibility {
+  background: none;
+}
+.modal.dark .inputError {
+  border: solid 1px red;
+}
 .modal .subButton {
   background: none;
   font-size: 15px;

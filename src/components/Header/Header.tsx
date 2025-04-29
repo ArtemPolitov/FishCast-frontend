@@ -11,10 +11,13 @@ import AuthorizationButton from './AuthorizationButton/AuthorizationButton';
 import MobileMenu from './MobileMenu/MobileMenu';
 import AuthorizationModal from './AuthorizationModal/AuthorizationModal';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 export default function Header() {
   const [isMobileMenuOpen,setIsMobileMenuOpen] = useState(false);
   const [isAuthorizationModalOpen,setIsAuthorizationModalOpen] = useState(false);
+  const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
 
   const burgerHandler = (e:React.MouseEvent<HTMLDivElement>) =>{
     e.stopPropagation();
@@ -28,8 +31,13 @@ export default function Header() {
   return (
     <header className={s.header}>
       <div className={s.headerContent}>
-        <div className={s.logo}><Image src="/logo_light_theme.png" alt="FishCast Logo" width={320} height={57} priority/></div>
-        {/*<Menu/>*/} 
+        <div className={s.logo}>
+          {
+            currentTheme==='light'?
+            <Image src="/logo_light_theme.png" alt="FishCast Logo" width={320} height={57} priority/>:
+            <Image src="/logo_dark_theme.png" alt="FishCast Logo" width={320} height={57} priority/>
+          }
+        </div>
         <div className={s.rightBlock}>
           <Theme/>
           <Language/>

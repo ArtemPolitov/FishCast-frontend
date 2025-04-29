@@ -6,6 +6,30 @@
   gap: 20px;
   overflow: hidden; /* добавляем */
 }
+.locationPage.dark .locationInfo .locationInfoContent {
+  border-color: white;
+}
+.locationPage.dark .locationInfo .locationInfoContent::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.551);
+}
+.locationPage.dark .locationInfo .locationInfoContent::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.69);
+}
+.locationPage.dark .locationInfo .locationInfoContent .backButton {
+  background-color: #616161;
+}
+.locationPage.dark .locationInfo .locationInfoContent .backButton:hover {
+  background-color: #6f6f6f;
+}
+.locationPage.dark .fishBite {
+  border-color: white;
+}
+.locationPage.dark .fishBite .fishCards::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.551);
+}
+.locationPage.dark .fishBite .fishCards::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.69);
+}
 .locationPage .locationInfo {
   display: flex;
   flex-direction: column;
@@ -27,7 +51,6 @@
   /* Общая полоса прокрутки */
   /* "Дорожка" скроллбара */
   /* "Бегунок" скроллбара */
-  /* Когда наводишь курсор на ползунок */
 }
 .locationPage .locationInfo .locationInfoContent .backButton {
   position: absolute;
@@ -79,7 +102,7 @@
   border-radius: 4px; /* скругление углов */
 }
 .locationPage .locationInfo .locationInfoContent::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.6); /* чуть темнее при наведении */
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .locationPage .fishBite {
   display: flex;

@@ -1,3 +1,8 @@
+:root{
+  --background-light: #ffffff;
+  --background-dark: rgb(62, 62, 62);
+}
+
 .wrapper{
  padding: 0 15px;
   max-width: 1500px;
@@ -7,6 +12,28 @@
 body {
   font-family: var(--font-nunito), sans-serif;
   font-size: 20px;
+  background-color: var(--background-light);
+}
+
+.darkTheme{
+  background-color: var(--background-dark);
+  color:#ffffff;
+  div{
+    border-color: #ffffff;
+  }
+  
+  select{
+    background-color:var(--background-dark);
+    border-color: #ffffff;
+    color: #ffffff;
+  } 
+  button{
+    color:white;
+    background-color: #616161;
+  }
+  button:hover{
+    background-color: #6f6f6f;
+  }
 }
 
 .content{

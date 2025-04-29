@@ -37,6 +37,18 @@
 .bottomSidebar .nearestLocations::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.6); /* чуть темнее при наведении */
 }
+.bottomSidebar .nearestLocations.dark::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.551);
+}
+.bottomSidebar .nearestLocations.dark::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.69);
+}
+.bottomSidebar .nearestLocations.dark .locationCardActive {
+  border: 1px solid rgb(255, 255, 255);
+}
+.bottomSidebar .nearestLocations.dark .locationCard:hover {
+  border-color: rgb(255, 255, 255);
+}
 .bottomSidebar .nearestLocations .locationCard {
   padding: 5px;
   display: flex;

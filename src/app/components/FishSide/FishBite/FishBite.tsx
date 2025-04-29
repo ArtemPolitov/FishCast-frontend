@@ -41,22 +41,20 @@ export function getKyivHour(dt: number): number {
 }
 
 const FishBite:React.FC<FishBiteProps> = ({weatherData,fishGroup,size}) =>{
-
-
-  //const selectedFishData = useSelector((state:RootState)=>state.fishData.selectedFishData);
-
   const fishBiteValue = weatherData&& calculateFishBite(fishGroup,getWaterTemperature(convertKelvinToCelsius(weatherData?.main.temp)),convertHpaToMmHg(weatherData?.main.pressure),weatherData?.wind.speed,weatherData?.clouds.all,checkRain(weatherData),getKyivHour(weatherData.dt));
   const fishBiteValueArr = Array.from({ length: fishBiteValue || 0 });
   const idealBiteDifferenceArr = Array.from({ length: 5 - (fishBiteValue || 0) });
+  const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
 
-  
   return (
     <div className={s.fishBite}>
       
       {
         fishBiteValueArr.map((item,index)=>{
           return(
-            <Image src={'/images/opaque_fish.png'} alt='fish bite' height={26} width={26} key={index} className={s[size]}/>
+            currentTheme==='light'?
+            <Image src={'/images/opaque_fish.png'} alt='fish bite' height={26} width={26} key={index} className={s[size]}/>:
+            <Image src={'/images/opaque_fish_dark.png'} alt='fish bite' height={26} width={26} key={index} className={s[size]}/>
           )
         })
         
@@ -64,7 +62,9 @@ const FishBite:React.FC<FishBiteProps> = ({weatherData,fishGroup,size}) =>{
       {
         idealBiteDifferenceArr.map((item,index)=>{
           return(
-            <Image src={'/images/transparent_fish.png'} alt='fish bite' height={26} width={26} key={index} className={s[size]}/>
+            currentTheme==='light'?
+            <Image src={'/images/transparent_fish.png'} alt='fish bite' height={26} width={26} key={index} className={s[size]}/>:
+            <Image src={'/images/transparent_fish_dark.png'} alt='fish bite' height={26} width={26} key={index} className={s[size]}/>
           )
         })
       }

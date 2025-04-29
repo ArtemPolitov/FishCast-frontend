@@ -2,9 +2,12 @@
   display: flex;
   gap: 5px;
 }
+.language.dark span {
+  background-color: rgb(255, 255, 255);
+}
 .language span {
   height: 30px;
-  width: 1px;
+  width: 2px;
   background-color: black;
 }
 .language P {

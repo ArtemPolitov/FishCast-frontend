@@ -64,6 +64,15 @@
   border-top: 1px solid black;
   padding-top: 5px;
 }
+.weatherContent .periodWeatherBlock.dark {
+  border-color: white;
+}
+.weatherContent .periodWeatherBlock.dark .periodWeatherButton:hover {
+  border-color: white;
+}
+.weatherContent .periodWeatherBlock.dark .activeButton {
+  border-color: white;
+}
 .weatherContent .periodWeatherButtons {
   display: flex;
   justify-content: center;

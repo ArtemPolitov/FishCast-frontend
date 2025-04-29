@@ -1,9 +1,14 @@
 .language{
   display: flex;
   gap:5px;
+  &.dark{
+    span{
+      background-color: rgb(255, 255, 255);
+    }
+  }
   span{
     height: 30px;
-    width: 1px;
+    width: 2px;
     background-color: black;
   }
   P{

@@ -4,6 +4,8 @@ import { Dispatch, SetStateAction } from "react";
 import { useState } from 'react';
 import s from './AuthorizationModal.module.css'
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 interface AuthorizationModal{
   isAuthorizationModalOpen:boolean,
@@ -32,6 +34,8 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
   const [isRegPasswordVisible,setIsRegPasswordVisible] = useState(false);
 
   const modal = document.getElementById('modal-root');
+
+  const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
 
   const authEmailHandler = (e:ChangeEvent<HTMLInputElement>) =>{
     setAuthEmailInputData(e.target.value);
@@ -159,7 +163,7 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
     return(
       createPortal(
         <div className={s.overlay} onClick={closeModal}>
-          <div className={s.modal} onClick={(e)=>e.stopPropagation()}>
+          <div className={`${s.modal} ${currentTheme==='dark'?s.dark:''}`} onClick={(e)=>e.stopPropagation()}>
             {modalType==='auth'&&<div className={s.authModal}>
               <h2 className={s.modalTitle}>Вход</h2>
               <p>Авторизуйтесь для доступа к полному функционалу сайта</p>
@@ -168,9 +172,15 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
                 {authEmailInputError&&<p className={`${s.errorMessage} ${s.authEmailErrorMessage}`}>{authEmailInputError}</p>}
                 <div className={s.passwordInputWrapper}>
                   <input type={isAuthPasswordVisible?"text":"password"} placeholder="Пароль" onChange={authPasswordHandler} className={`${authPasswordInputError?s.  inputError:s.formInput}`} onClick={()=>setAuthPasswordInputError('')}/>
-                  <button className={s.setPasswordVisibility} onClick={authChangePasswordVisibilityHandler} type="button">
-                    {isAuthPasswordVisible?<Image src='/images/non_visible.png' alt='Set visibility' width={27} height={20}/>:<Image src='/images/visible.png' alt='Set visibility' width={27} height={20}/>}
-                  </button>
+                  {
+                    currentTheme==='light'?
+                    <button className={s.setPasswordVisibility} onClick={authChangePasswordVisibilityHandler} type="button">
+                      {isAuthPasswordVisible?<Image src='/images/non_visible.png' alt='Set visibility' width={27} height={20}/>:<Image  src='/images/visible.png' alt='Set visibility' width={27} height={20}/>}
+                    </button>:
+                    <button className={s.setPasswordVisibility} onClick={authChangePasswordVisibilityHandler} type="button">
+                      {isAuthPasswordVisible?<Image src='/images/non_visible_dark.png' alt='Set visibility' width={27} height={20}/>:<Image src='/images/visible_dark.png' alt='Set visibility' width={27} height={20}/>}
+                    </button>
+                  }
                 </div>
                 {authPasswordInputError&&<p className={`${s.errorMessage} ${s.authPasswordErrorMessage}`}>{authPasswordInputError}</p>}
                 <button className={s.mainBtn} type="submit">Войти</button>
@@ -189,9 +199,15 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
                 {regEmailInputError&&<p className={`${s.regErrorMessage} ${s.regEmailErrorMessage}`}>{regEmailInputError}</p>}
                 <div className={s.passwordInputWrapper}>
                   <input type={isRegPasswordVisible?"text":"password"} placeholder="Пароль" onChange={regPasswordHandler} className={regPasswordInputError?s. inputError:s.formInput} onClick={()=>setRegPasswordInputError('')}/>
-                  <button className={s.setPasswordVisibility} onClick={regChangePasswordVisibilityHandler} type="button">
-                    {isRegPasswordVisible?<Image src='/images/non_visible.png' alt='Set visibility' width={27} height={20}/>:<Image src='/images/visible.png' alt='Set visibility' width={27} height={20}/>}
-                  </button>
+                  {
+                    currentTheme==='light'?
+                    <button className={s.setPasswordVisibility} onClick={regChangePasswordVisibilityHandler} type="button">
+                      {isRegPasswordVisible?<Image src='/images/non_visible.png' alt='Set visibility' width={27} height={20}/>:<Image src='/images/visible.png' alt='Set visibility' width={27} height={20}/>}
+                    </button>:
+                    <button className={s.setPasswordVisibility} onClick={regChangePasswordVisibilityHandler} type="button">
+                      {isRegPasswordVisible?<Image src='/images/non_visible_dark.png' alt='Set visibility' width={27} height={20}/>:<Image src='/images/visible_dark.png' alt='Set visibility' width={27} height={20}/>}
+                    </button>
+                  }
                 </div>
                 {regPasswordInputError&&<p className={`${s.regErrorMessage} ${s.regPasswordErrorMessage}`}>{regPasswordInputError}</p>}
                 <button className={s.mainBtn} type="submit">Зарегистрироваться</button>

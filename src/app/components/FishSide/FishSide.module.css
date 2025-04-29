@@ -25,6 +25,15 @@
   align-items: center;
   padding: 15px 0px;
 }
+.fishSide .content.dark .currentBite {
+  border-color: white;
+}
+.fishSide .content.dark .periodBiteBlock .periodBiteButtons .periodBiteButton:hover {
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+.fishSide .content.dark .periodBiteBlock .periodBiteButtons .activeButton {
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
 .fishSide .content .fishInfo {
   height: 335px;
   display: flex;

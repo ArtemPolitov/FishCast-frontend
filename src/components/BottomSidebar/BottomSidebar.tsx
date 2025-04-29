@@ -80,16 +80,14 @@ export default function BottomSidebar() {
   const isCitySelected = useSelector((store:RootState)=>store.citySelection.isCitySelected);
   const selectedCityLat = useSelector((store:RootState)=>store.citySelection.selectedCityData?.lat);
   const selectedCityLon = useSelector((store:RootState)=>store.citySelection.selectedCityData?.lon);
-  
   const {data:allLocationsData,isLoading:allLocationsDataIsLoading,error:allLocationsDataIsError} = useGetAllLocationsQuery();
-
   const pathname = usePathname();
-  
+  const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
 
   return (
     <div className={s.bottomSidebar}>
       <h2 className={s.bottomSidebarTitle}>Локации поблизости</h2>
-      <div className={s.nearestLocations}>
+      <div className={`${s.nearestLocations} ${currentTheme==='dark'?s.dark:''}`}>
         {selectedCityLat&&selectedCityLon&&allLocationsData&&isCitySelected&&
           getNearestLocationsData(selectedCityLat,selectedCityLon,allLocationsData)?.map(location=>{
             const isActive = pathname === `/location/${location.slug}`;

@@ -41,11 +41,9 @@ export const getFourNextDays = (): string[] => {
 
 export default function WeatherContent() {
   const [weatherPeriod,setWeatherPeriod] = useState('24h');
-
   const selectedCityLat = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lat);
   const selectedCityLon = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lon);
-
-
+  const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
   const {data:currentWeatherData,isLoading:currentWeatherDataIsLoading,error:currentWeatherDataError} = useGetCurrentWeatherDataQuery(
     selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
   );
@@ -128,32 +126,58 @@ export default function WeatherContent() {
               <p className={s.weatherTitle}>{weather_names[`${currentWeatherData.weather[0].main as keyof typeof weather_names}`].ru}</p>
               {weather_descriptions[`${currentWeatherData.weather[0].description as keyof typeof weather_descriptions}`]&&<p className={s.weatherDescription}>{weather_descriptions[`${currentWeatherData.weather[0].description as keyof typeof weather_descriptions}`].ru}</p>}
             </div>
-            <div className={s.rightColumn}>
-              <div className={s.rightColumnItem}>
-                <Image src={`/images/temperature_feels_like_icon.png`} alt='feels like' height={50} width={50} className={s.rightColumnIcon}/>
-                <p>{`${convertKelvinToCelsius(currentWeatherData.main.feels_like)}°C`}</p>
+            {
+              currentTheme==='light'?
+              <div className={s.rightColumn}>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/temperature_feels_like_icon.png`} alt='feels like' height={50} width={50} className={s.  rightColumnIcon}/>
+                  <p>{`${convertKelvinToCelsius(currentWeatherData.main.feels_like)}°C`}</p>
+                </div>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/pressure_icon.png`} alt='pressure' height={50} width={50} className={s.rightColumnIcon}/>
+                  <p>{`${convertHpaToMmHg(currentWeatherData.main.pressure)} мм рт. ст.`}</p>
+                </div>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/wind_icon.png`} alt='wind' height={50} width={50} className={s.rightColumnIcon}/>
+                  <p>{`${Math.round(currentWeatherData.wind.speed)} м/с, ${getWindDirection(currentWeatherData.wind.deg,"ru")}`}</p>
+                </div>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/cloudiness_icon.png`} alt='cloudiness' height={50} width={50} className={s.rightColumnIcon}/>
+                  <p>{`${currentWeatherData.clouds.all}%`}</p>
+                </div>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/humidity_icon.png`} alt='humidity' height={50} width={50} className={s.rightColumnIcon}/>
+                  <p>{`${currentWeatherData.main.humidity}%`}</p>
+                </div>
+              </div>:
+              <div className={s.rightColumn}>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/temperature_feels_like_icon_dark.png`} alt='feels like' height={50} width={50} className={s.   rightColumnIcon}/>
+                  <p>{`${convertKelvinToCelsius(currentWeatherData.main.feels_like)}°C`}</p>
+                </div>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/pressure_icon_dark.png`} alt='pressure' height={50} width={50} className={s.rightColumnIcon}/>
+                  <p>{`${convertHpaToMmHg(currentWeatherData.main.pressure)} мм рт. ст.`}</p>
+                </div>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/wind_icon_dark.png`} alt='wind' height={50} width={50} className={s.rightColumnIcon}/>
+                  <p>{`${Math.round(currentWeatherData.wind.speed)} м/с, ${getWindDirection(currentWeatherData.wind.deg,"ru")}`}</p>
+                </div>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/cloudiness_icon_dark.png`} alt='cloudiness' height={50} width={50} className={s.rightColumnIcon}/>
+                  <p>{`${currentWeatherData.clouds.all}%`}</p>
+                </div>
+                <div className={s.rightColumnItem}>
+                  <Image src={`/images/humidity_icon_dark.png`} alt='humidity' height={50} width={50} className={s.rightColumnIcon}/>
+                  <p>{`${currentWeatherData.main.humidity}%`}</p>
+                </div>
               </div>
-              <div className={s.rightColumnItem}>
-                <Image src={`/images/pressure_icon.png`} alt='pressure' height={50} width={50} className={s.rightColumnIcon}/>
-                <p>{`${convertHpaToMmHg(currentWeatherData.main.pressure)} мм рт. ст.`}</p>
-              </div>
-              <div className={s.rightColumnItem}>
-                <Image src={`/images/wind_icon.png`} alt='wind' height={50} width={50} className={s.rightColumnIcon}/>
-                <p>{`${Math.round(currentWeatherData.wind.speed)} м/с, ${getWindDirection(currentWeatherData.wind.deg,"ru")}`}</p>
-              </div>
-              <div className={s.rightColumnItem}>
-                <Image src={`/images/cloudiness_icon.png`} alt='cloudiness' height={50} width={50} className={s.rightColumnIcon}/>
-                <p>{`${currentWeatherData.clouds.all}%`}</p>
-              </div>
-              <div className={s.rightColumnItem}>
-                <Image src={`/images/humidity_icon.png`} alt='humidity' height={50} width={50} className={s.rightColumnIcon}/>
-                <p>{`${currentWeatherData.main.humidity}%`}</p>
-              </div>
-            </div>
+            }
+
           </div>
         }
       </div>
-      <div className={s.periodWeatherBlock}>
+      <div className={`${s.periodWeatherBlock} ${currentTheme==='dark'?s.dark:''}`}>
         <div className={s.periodWeatherButtons}>
           <button className={`${s.periodWeatherButton} ${weatherPeriod==='24h'?s.activeButton:''}`} onClick={dayWeatherHandler}>24 ч</button>
           <button className={`${s.periodWeatherButton} ${weatherPeriod==='secondDay'?s.activeButton:''}`} onClick={secondDayWeatherHandler}>{fourNextDays[0]}</button>

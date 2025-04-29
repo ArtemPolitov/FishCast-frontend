@@ -7,12 +7,14 @@ import { fishApi } from '@/services/fishApi';
 import { weatherApi } from '@/services/weatherApi';
 import {locationsApi} from '@/services/locationsApi';
 import fishDataReducer from './fishDataSlice';
+import themeReducer from './themeSlice';
 
 export const store = configureStore({
   reducer: {
     'citySelection':citySelectionReducer,
     'geoData':geoDataReducer,
     'fishData':fishDataReducer,
+    'theme':themeReducer,
     [regionsApi.reducerPath]: regionsApi.reducer,
     [cityApi.reducerPath]: cityApi.reducer,
     [fishApi.reducerPath]: fishApi.reducer,

@@ -20,11 +20,12 @@ export default function FishSide() {
   const isCitySelected = useSelector((state:RootState)=>state.citySelection.selectedCityData);
   const isFishSelected = useSelector((state:RootState)=>state.fishData.isFishSelected);
   const selectedFishData = useSelector((state:RootState)=>state.fishData.selectedFishData);
-
   const selectedCityLat = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lat);
   const selectedCityLon = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lon);
 
   const {data:currentWeatherData,isLoading:currentWeatherDataIsLoading} = useGetCurrentWeatherDataQuery(selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,);
+
+  const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
   
   const fourNextDays:string[] = getFourNextDays();
 
@@ -56,7 +57,7 @@ export default function FishSide() {
         {!isCitySelected&&!isFishSelected&&<p className={s.chooseLabel}>Выберите населеный пункт</p>}
         {isCitySelected&&!isFishSelected&&<p className={s.chooseLabel}>Выберите рыбу</p>}
         {selectedFishData&&isCitySelected&&isFishSelected&&
-          <div className={s.content}>
+          <div className={`${s.content} ${currentTheme==='dark'?s.dark:''}`}>
             <div className={s.fishInfo}>
               <Image src={selectedFishData?.image_url} alt='fish img' width={200} height={200} className={s.fishImg}/>
               <p className={s.fishDescr}>{selectedFishData.description.ru}</p>
