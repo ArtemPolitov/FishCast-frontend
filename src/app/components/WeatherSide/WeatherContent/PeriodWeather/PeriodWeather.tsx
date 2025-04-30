@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './PeriodWeather.module.css'
-import {useGetHourlyForecast4daysQuery} from '@/services/weatherApi'
+import { useGetHourlyForecast4daysQuery } from '@/services/weatherApi'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/store/store'
 import { skipToken } from '@reduxjs/toolkit/query'
@@ -9,112 +9,150 @@ import { HourlyForecast4days } from '@/services/weatherApi'
 import { TimestampForecast } from '@/services/weatherApi'
 
 interface PeriodWeatherProps {
-  weatherPeriod:string,
+  weatherPeriod: string,
 }
 
-export const getDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[] =>{
-  let dayWeatherData = forecast4daysData?.list.slice(0,8);
-  if(dayWeatherData)return dayWeatherData;
-  else return [];
-}
+// Функция для конвертации метки времени в Киевский часовой пояс
+const convertToKyivDate = (timestamp: number) => {
+  const date = new Date(timestamp * 1000); // Преобразуем метку времени в миллисекунды
+  const kyivDate = new Date(date.toLocaleString('en-US', { timeZone: 'Europe/Kiev' }));
+  return kyivDate;
+};
 
-export const getSecondDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[]|[] =>{
-  const currentDayNumber = new Date().getDate();
-  let secondDayNumber = (currentDayNumber+1)<10?`0${currentDayNumber+1}`:(currentDayNumber+1).toString();
-  if(forecast4daysData){
-    let secondDayWeatherData = forecast4daysData.list.filter(item=>{
-      return(
-        item.dt_txt.slice(8,10) === secondDayNumber
-      )
+export const getDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  const todayDateStr = `${yyyy}-${mm}-${dd}`; // формат 'YYYY-MM-DD'
+
+  if (forecast4daysData) {
+    return forecast4daysData.list
+      .filter(item => item.dt_txt.slice(0, 10) === todayDateStr) // Фильтрация по дате
+      .slice(0, 8); // Ограничиваем результат первыми 8 отметками
+  }
+
+  return [];
+};
+
+
+
+
+export const getSecondDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
+  const now = new Date();
+  const secondDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); // безопасное добавление
+
+  const yyyy = secondDay.getFullYear();
+  const mm = String(secondDay.getMonth() + 1).padStart(2, '0');
+  const dd = String(secondDay.getDate()).padStart(2, '0');
+  const secondDayDateStr = `${yyyy}-${mm}-${dd}`; // 'YYYY-MM-DD'
+
+  if (forecast4daysData) {
+    return forecast4daysData.list.filter(item => {
+      const kyivDate = convertToKyivDate(item.dt); // Конвертируем в Киевское время
+      const itemDateStr = `${kyivDate.getFullYear()}-${String(kyivDate.getMonth() + 1).padStart(2, '0')}-${String(kyivDate.getDate()).padStart(2, '0')}`;
+      return itemDateStr === secondDayDateStr;
     });
-    return secondDayWeatherData;
-  }else return [];
-}
+  }
 
-export const getThirdDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[]|[] =>{
-  const currentDayNumber = new Date().getDate();
-  let thirdDayNumber = (currentDayNumber+2)<10?`0${currentDayNumber+2}`:(currentDayNumber+2).toString();
-  if(forecast4daysData){
-    let thirdDayWeatherData = forecast4daysData.list.filter(item=>{
-      return(
-        item.dt_txt.slice(8,10) === thirdDayNumber
-      )
+  return [];
+};
+
+export const getThirdDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
+  const now = new Date();
+  const thirdDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2); // безопасное добавление
+
+  const yyyy = thirdDay.getFullYear();
+  const mm = String(thirdDay.getMonth() + 1).padStart(2, '0');
+  const dd = String(thirdDay.getDate()).padStart(2, '0');
+  const thirdDayDateStr = `${yyyy}-${mm}-${dd}`; // 'YYYY-MM-DD'
+
+  if (forecast4daysData) {
+    return forecast4daysData.list.filter(item => {
+      const kyivDate = convertToKyivDate(item.dt); // Конвертируем в Киевское время
+      const itemDateStr = `${kyivDate.getFullYear()}-${String(kyivDate.getMonth() + 1).padStart(2, '0')}-${String(kyivDate.getDate()).padStart(2, '0')}`;
+      return itemDateStr === thirdDayDateStr;
     });
-    return thirdDayWeatherData;
-  }else return [];
-}
+  }
 
-export const getFourthDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[]|[] =>{
-  const currentDayNumber = new Date().getDate();
-  let fourthDayNumber = (currentDayNumber+3)<10?`0${currentDayNumber+3}`:(currentDayNumber+3).toString();
-  if(forecast4daysData){
-    let fourthDayWeatherData = forecast4daysData.list.filter(item=>{
-      return(
-        item.dt_txt.slice(8,10) === fourthDayNumber
-      )
+  return [];
+};
+
+export const getFourthDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
+  const now = new Date();
+  const fourthDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3); // безопасное добавление
+
+  const yyyy = fourthDay.getFullYear();
+  const mm = String(fourthDay.getMonth() + 1).padStart(2, '0');
+  const dd = String(fourthDay.getDate()).padStart(2, '0');
+  const fourthDayDateStr = `${yyyy}-${mm}-${dd}`;
+
+  if (forecast4daysData) {
+    return forecast4daysData.list.filter(item => {
+      const kyivDate = convertToKyivDate(item.dt); // Конвертируем в Киевское время
+      const itemDateStr = `${kyivDate.getFullYear()}-${String(kyivDate.getMonth() + 1).padStart(2, '0')}-${String(kyivDate.getDate()).padStart(2, '0')}`;
+      return itemDateStr === fourthDayDateStr;
     });
-    return fourthDayWeatherData;
-  }else return [];
-}
+  }
 
-export const getFifthDayWeatherData = (forecast4daysData:HourlyForecast4days):TimestampForecast[]|[] =>{
-  const currentDayNumber = new Date().getDate();
-  let fifthDayNumber = (currentDayNumber+4)<10?`0${currentDayNumber+4}`:(currentDayNumber+4).toString();
-  if(forecast4daysData){
-    let fifthDayWeatherData = forecast4daysData.list.filter(item=>{
-      return(
-        item.dt_txt.slice(8,10) === fifthDayNumber
-      )
+  return [];
+};
+
+export const getFifthDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
+  const now = new Date();
+  const fifthDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 4); // безопасное добавление
+
+  const yyyy = fifthDay.getFullYear();
+  const mm = String(fifthDay.getMonth() + 1).padStart(2, '0');
+  const dd = String(fifthDay.getDate()).padStart(2, '0');
+  const fifthDayDateStr = `${yyyy}-${mm}-${dd}`;
+
+  if (forecast4daysData) {
+    return forecast4daysData.list.filter(item => {
+      const kyivDate = convertToKyivDate(item.dt); // Конвертируем в Киевское время
+      const itemDateStr = `${kyivDate.getFullYear()}-${String(kyivDate.getMonth() + 1).padStart(2, '0')}-${String(kyivDate.getDate()).padStart(2, '0')}`;
+      return itemDateStr === fifthDayDateStr;
     });
-    return fifthDayWeatherData;
-  }else return [];
-}
+  }
 
-const PeriodWeather:React.FC<PeriodWeatherProps> = ({weatherPeriod}) => {
+  return [];
+};
 
-  const selectedCityLat = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lat);
-  const selectedCityLon = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lon);
+const PeriodWeather: React.FC<PeriodWeatherProps> = ({ weatherPeriod }) => {
+  const selectedCityLat = useSelector((state: RootState) => state.citySelection.selectedCityData?.lat);
+  const selectedCityLon = useSelector((state: RootState) => state.citySelection.selectedCityData?.lon);
 
-  const {data:hourlyForecast4daysData,isLoading:hourlyForecast4daysIsLoading,error:hourlyForecast4daysError}=useGetHourlyForecast4daysQuery(
-    selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
+  const { data: hourlyForecast4daysData, isLoading: hourlyForecast4daysIsLoading, error: hourlyForecast4daysError } = useGetHourlyForecast4daysQuery(
+    selectedCityLat && selectedCityLon ? { lat: selectedCityLat, lon: selectedCityLon } : skipToken,
   );
 
   return (
     <div className={s.periodWeather}>
-      {hourlyForecast4daysIsLoading&&<p className={s.loadingLabel}>Загрузка...</p>}
-      {weatherPeriod==='24h'&&hourlyForecast4daysData&&
-        getDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
-          return(
-            <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
-          )
-      })}
-      {weatherPeriod==='secondDay'&&hourlyForecast4daysData&&
-        getSecondDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
-          return(
-            <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
-          )
-      })}
-      {weatherPeriod==='thirdDay'&&hourlyForecast4daysData&&
-        getThirdDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
-          return(
-            <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
-          )
-      })}  
-      {weatherPeriod==='fourthDay'&&hourlyForecast4daysData&&
-        getFourthDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
-          return(
-            <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
-          )
-      })}
-      {weatherPeriod==='fifthDay'&&hourlyForecast4daysData&&
-        getFifthDayWeatherData(hourlyForecast4daysData).map(weatherItem=>{
-          return(
-            <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem}/>
-          )
-      })}        
-      
+      {hourlyForecast4daysIsLoading && <p className={s.loadingLabel}>Загрузка...</p>}
+      {weatherPeriod === '24h' && hourlyForecast4daysData &&
+        getDayWeatherData(hourlyForecast4daysData).map(weatherItem => (
+          <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem} />
+        ))}
+      {weatherPeriod === 'secondDay' && hourlyForecast4daysData &&
+        getSecondDayWeatherData(hourlyForecast4daysData).map(weatherItem => (
+          <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem} />
+        ))}
+      {weatherPeriod === 'thirdDay' && hourlyForecast4daysData &&
+        getThirdDayWeatherData(hourlyForecast4daysData).map(weatherItem => (
+          <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem} />
+        ))}
+      {weatherPeriod === 'fourthDay' && hourlyForecast4daysData &&
+        getFourthDayWeatherData(hourlyForecast4daysData).map(weatherItem => (
+          <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem} />
+        ))}
+      {weatherPeriod === 'fifthDay' && hourlyForecast4daysData &&
+        getFifthDayWeatherData(hourlyForecast4daysData).map(weatherItem => (
+          <PeriodWeatherItem key={weatherItem.dt} periodWeatherItemData={weatherItem} />
+        ))}
     </div>
-  )
-}
+  );
+};
 
 export default PeriodWeather;
