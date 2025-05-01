@@ -20,25 +20,12 @@ const convertToKyivDate = (timestamp: number) => {
 };
 
 export const getDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
-  const todayDateStr = `${yyyy}-${mm}-${dd}`; // формат 'YYYY-MM-DD'
-
   if (forecast4daysData) {
     return forecast4daysData.list
-      .filter(item => item.dt_txt.slice(0, 10) === todayDateStr) // Фильтрация по дате
-      .slice(0, 8); // Ограничиваем результат первыми 8 отметками
+      .slice(0, 8); 
   }
-
   return [];
 };
-
-
-
 
 export const getSecondDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
   const now = new Date();
@@ -47,22 +34,21 @@ export const getSecondDayWeatherData = (forecast4daysData: HourlyForecast4days):
   const yyyy = secondDay.getFullYear();
   const mm = String(secondDay.getMonth() + 1).padStart(2, '0');
   const dd = String(secondDay.getDate()).padStart(2, '0');
-  const secondDayDateStr = `${yyyy}-${mm}-${dd}`; // 'YYYY-MM-DD'
+  const secondDayDateStr = `${yyyy}-${mm}-${dd}`; 
 
   if (forecast4daysData) {
     return forecast4daysData.list.filter(item => {
-      const kyivDate = convertToKyivDate(item.dt); // Конвертируем в Киевское время
+      const kyivDate = convertToKyivDate(item.dt); 
       const itemDateStr = `${kyivDate.getFullYear()}-${String(kyivDate.getMonth() + 1).padStart(2, '0')}-${String(kyivDate.getDate()).padStart(2, '0')}`;
       return itemDateStr === secondDayDateStr;
     });
   }
-
   return [];
 };
 
 export const getThirdDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
   const now = new Date();
-  const thirdDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2); // безопасное добавление
+  const thirdDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 2); 
 
   const yyyy = thirdDay.getFullYear();
   const mm = String(thirdDay.getMonth() + 1).padStart(2, '0');
@@ -71,7 +57,7 @@ export const getThirdDayWeatherData = (forecast4daysData: HourlyForecast4days): 
 
   if (forecast4daysData) {
     return forecast4daysData.list.filter(item => {
-      const kyivDate = convertToKyivDate(item.dt); // Конвертируем в Киевское время
+      const kyivDate = convertToKyivDate(item.dt); 
       const itemDateStr = `${kyivDate.getFullYear()}-${String(kyivDate.getMonth() + 1).padStart(2, '0')}-${String(kyivDate.getDate()).padStart(2, '0')}`;
       return itemDateStr === thirdDayDateStr;
     });
@@ -82,7 +68,7 @@ export const getThirdDayWeatherData = (forecast4daysData: HourlyForecast4days): 
 
 export const getFourthDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
   const now = new Date();
-  const fourthDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3); // безопасное добавление
+  const fourthDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 3); 
 
   const yyyy = fourthDay.getFullYear();
   const mm = String(fourthDay.getMonth() + 1).padStart(2, '0');
@@ -91,7 +77,7 @@ export const getFourthDayWeatherData = (forecast4daysData: HourlyForecast4days):
 
   if (forecast4daysData) {
     return forecast4daysData.list.filter(item => {
-      const kyivDate = convertToKyivDate(item.dt); // Конвертируем в Киевское время
+      const kyivDate = convertToKyivDate(item.dt); 
       const itemDateStr = `${kyivDate.getFullYear()}-${String(kyivDate.getMonth() + 1).padStart(2, '0')}-${String(kyivDate.getDate()).padStart(2, '0')}`;
       return itemDateStr === fourthDayDateStr;
     });
@@ -102,7 +88,7 @@ export const getFourthDayWeatherData = (forecast4daysData: HourlyForecast4days):
 
 export const getFifthDayWeatherData = (forecast4daysData: HourlyForecast4days): TimestampForecast[] => {
   const now = new Date();
-  const fifthDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 4); // безопасное добавление
+  const fifthDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 4);
 
   const yyyy = fifthDay.getFullYear();
   const mm = String(fifthDay.getMonth() + 1).padStart(2, '0');
@@ -111,7 +97,7 @@ export const getFifthDayWeatherData = (forecast4daysData: HourlyForecast4days): 
 
   if (forecast4daysData) {
     return forecast4daysData.list.filter(item => {
-      const kyivDate = convertToKyivDate(item.dt); // Конвертируем в Киевское время
+      const kyivDate = convertToKyivDate(item.dt); 
       const itemDateStr = `${kyivDate.getFullYear()}-${String(kyivDate.getMonth() + 1).padStart(2, '0')}-${String(kyivDate.getDate()).padStart(2, '0')}`;
       return itemDateStr === fifthDayDateStr;
     });

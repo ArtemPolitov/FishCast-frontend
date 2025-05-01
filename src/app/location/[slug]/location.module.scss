@@ -42,6 +42,7 @@
       .backButton{
         position: absolute;
         display: flex;
+        justify-content: center;
         align-items: center;
         background-color: #D7D7D7;
         border-radius: 7px;
@@ -49,6 +50,7 @@
         top:10px;
         left: 10px;
         padding: 5px;
+        min-width: 150px;
         p{
           font-size: 18px;
         }

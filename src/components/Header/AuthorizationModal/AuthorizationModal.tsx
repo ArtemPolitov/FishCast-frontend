@@ -36,6 +36,7 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
   const modal = document.getElementById('modal-root');
 
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
+  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
 
   const authEmailHandler = (e:ChangeEvent<HTMLInputElement>) =>{
     setAuthEmailInputData(e.target.value);
@@ -165,8 +166,8 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
         <div className={s.overlay} onClick={closeModal}>
           <div className={`${s.modal} ${currentTheme==='dark'?s.dark:''}`} onClick={(e)=>e.stopPropagation()}>
             {modalType==='auth'&&<div className={s.authModal}>
-              <h2 className={s.modalTitle}>Вход</h2>
-              <p>Авторизуйтесь для доступа к полному функционалу сайта</p>
+              <h2 className={s.modalTitle}>{currentLanguage==='ru'?'Вход':'Вхід'}</h2>
+              <p>{currentLanguage==='ru'?'Авторизуйтесь для доступа к полному функционалу сайта':'Авторизуйтесь для доступу до повного функціоналу сайту'}</p>
               <form action="" className={s.authForm} onSubmit={handleAuth} noValidate>
                 <input type="text" placeholder="Email" onChange={authEmailHandler} name='authEmail' className={`${authEmailInputError?s.inputError:s.formInput}`} onClick={()=>setAuthEmailInputError('')}/>
                 {authEmailInputError&&<p className={`${s.errorMessage} ${s.authEmailErrorMessage}`}>{authEmailInputError}</p>}
@@ -183,17 +184,17 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
                   }
                 </div>
                 {authPasswordInputError&&<p className={`${s.errorMessage} ${s.authPasswordErrorMessage}`}>{authPasswordInputError}</p>}
-                <button className={s.mainBtn} type="submit">Войти</button>
+                <button className={s.mainBtn} type="submit">{currentLanguage==='ru'?'Войти':'Увійти'}</button>
               </form>
               <div className={s.bottomBlock}>
-                <p>Еще нет аккаунта?</p>
-                <button onClick={()=>setModalType('reg')}>Зарегистрироваться</button>
+                <p>{currentLanguage==='ru'?'Еще нет аккаунта?':'Ще немає облікового запису?'}</p>
+                <button onClick={()=>setModalType('reg')}>{currentLanguage==='ru'?'Зарегистрироваться':'Зареєструватись'}</button>
               </div>
             </div>}
             {modalType==='reg'&&<div className={s.regModal}>
-              <h2 className={s.modalTitle}>Регистрация</h2>
+              <h2 className={s.modalTitle}>{currentLanguage==='ru'?'Регистрация':'Реєстрація'}</h2>
               <form action="" className={s.regForm} onSubmit={handleReg} noValidate>
-                <input type="text" placeholder="Имя" onChange={regNameHandler} className={regNameInputError?s.inputError:s.formInput} onClick={()=>setRegNameInputError('')} value={regNameInputData}/>
+                <input type="text" placeholder={currentLanguage==='ru'?'Имя':'Ім’я'} onChange={regNameHandler} className={regNameInputError?s.inputError:s.formInput} onClick={()=>setRegNameInputError('')} value={regNameInputData}/>
                 {regNameInputError&&<p className={`${s.regErrorMessage} ${s.regNameErrorMessage}`}>{regNameInputError}</p>}
                 <input type="text" placeholder="Email" onChange={regEmailHandler} className={regEmailInputError?s.inputError:s.formInput} onClick={()=>setRegEmailInputError('')}/>
                 {regEmailInputError&&<p className={`${s.regErrorMessage} ${s.regEmailErrorMessage}`}>{regEmailInputError}</p>}
@@ -210,11 +211,11 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
                   }
                 </div>
                 {regPasswordInputError&&<p className={`${s.regErrorMessage} ${s.regPasswordErrorMessage}`}>{regPasswordInputError}</p>}
-                <button className={s.mainBtn} type="submit">Зарегистрироваться</button>
+                <button className={s.mainBtn} type="submit">{currentLanguage==='ru'?'Зарегистрироваться':'Зареєструватись'}</button>
               </form>
               <div className={s.bottomBlock}>
-                <p>Уже есть аккаунт?</p>
-                <button onClick={()=>setModalType('auth')}>Войти</button>
+                <p>{currentLanguage==='ru'?'Уже есть аккаунт?':'Вже є обліковий запис?'}</p>
+                <button onClick={()=>setModalType('auth')}>{currentLanguage==='ru'?'Войти':'Увійти'}</button>
               </div>
             </div>}
           </div>

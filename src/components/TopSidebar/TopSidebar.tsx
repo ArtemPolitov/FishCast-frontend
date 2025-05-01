@@ -21,6 +21,7 @@ export default function TopSidebar() {
   const selectedCityLat = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lat);
   const selectedCityLon = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lon);
   const isCitySelected = useSelector((state:RootState)=>state.citySelection.isCitySelected);
+  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
   const {data:currentWeatherData,isLoading:currentWeatherDataIsLoading,error:currentWeatherDataError} = useGetCurrentWeatherDataQuery(
     selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
   );
@@ -58,12 +59,15 @@ export default function TopSidebar() {
 
   const bestBiteFishesData = fishesData&&getFiveBestBiteFishes(fishesData);
 
-  
-
   return (
     <div className={s.topSidebar}>
-      <h2 className={s.topSidebarTitle}>Лучший клев в окрестностях</h2>
+      <h2 className={s.topSidebarTitle}>{currentLanguage==='ru'?'Лучший клев в окрестностях':'Найкращий кльов поблизу'}</h2>
       <div className={s.fishCards}>
+        {
+          currentWeatherDataIsLoading&&
+          <p className={s.isLoadingLabel}>{currentLanguage==='ru'?'Загрузка...':'Завантаження...'}</p>
+        }
+
         {isCitySelected&&
           bestBiteFishesData&&bestBiteFishesData.map(item=>{
             return(

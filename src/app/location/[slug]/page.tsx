@@ -33,6 +33,7 @@ export default function LocationPage({ params }: LocationPageProps) {
   const locationLat = locationData?.coordinates.latitude;
   const locationLon = locationData?.coordinates.longitude;
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
+  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
   const { data: currentWeatherData, isLoading: currentWeatherIsLoading, isError: currentWeatherIsError }=useGetCurrentWeatherDataQuery(
     locationLat && locationLon
     ? { lat: locationLat, lon: locationLon }
@@ -71,12 +72,12 @@ export default function LocationPage({ params }: LocationPageProps) {
               <Image src='/images/arrow_back_icon.png' alt='back img' height={25} width={25}/>:
               <Image src='/images/arrow_back_icon_dark.png' alt='back img' height={25} width={25}/>
             }
-            <p>На главную</p>
+            <p>{currentLanguage==='ru'?'На главную':'На головну'}</p>
           </Link>
           <div className={s.imgWrapper}><Image src={locationData.image_url} alt='location img' height={350} width={350} className={s. locationImg}/></div>
           <div className={s.locationText}>
-            <h3>{locationData.name.ru}</h3>
-            <p className={s.locationDescr}>{locationData.description.ru}</p>
+            <h3>{currentLanguage==='ru'?locationData.name.ru:locationData.name.ua}</h3>
+            <p className={s.locationDescr}>{currentLanguage==='ru'?locationData.description.ru:locationData.description.ua}</p>
           </div>
           <div className={s.map}>
             <MapFrame lat={locationData.coordinates.latitude} lon={locationData.coordinates.longitude}/>
@@ -85,7 +86,7 @@ export default function LocationPage({ params }: LocationPageProps) {
         <div className={s.emptyBlock}></div>
       </div>
       <div className={s.fishBite}>
-        <h3>Клев на локации</h3>
+        <h3>{currentLanguage==='ru'?'Клев на локации':'Кльов на локації'}</h3>
         <div className={s.fishCards}>
           {allFishesData&&currentWeatherData&&
             getLocationFishesDataWithBite(allFishesData,locationData,currentWeatherData).map(fishData=>{

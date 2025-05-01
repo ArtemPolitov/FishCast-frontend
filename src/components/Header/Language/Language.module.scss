@@ -14,6 +14,10 @@
   P{
     line-height: 1.6;
     cursor: pointer;
+    &.active{
+      text-decoration: underline;
+      text-underline-offset: 8px;
+    }
   }
   P:hover{
     text-decoration: underline;

@@ -12,6 +12,7 @@ import WeatherContent from './WeatherContent/WeatherContent'
 export default function WeatherSide() {
   const selectedRegionId = useSelector((state:RootState)=>state.geoData.selectedRegionData?.id);
   const isCitySelected = useSelector((state: RootState) => state.citySelection.isCitySelected);
+  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
 
   return (
     <div className={s.weatherSide}>
@@ -20,7 +21,7 @@ export default function WeatherSide() {
         <CitySelect selectedRegionId={selectedRegionId}/>
       </div>
         {!isCitySelected ? (
-          <p className={s.chooseCityLabel}>Укажите Ваше местоположение</p>
+          <p className={s.chooseCityLabel}>{currentLanguage==='ru'?'Укажите Ваше местоположение':'Вкажіть Ваше місцезнаходження'}</p>
         ) : (
           <WeatherContent/>
         )}

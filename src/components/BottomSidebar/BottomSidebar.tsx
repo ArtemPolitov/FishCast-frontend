@@ -5,7 +5,6 @@ import { useGetAllLocationsQuery,useGetLocationByIdQuery } from '@/services/loca
 import { useSelector } from 'react-redux'
 import { RootState, store } from '@/store/store'
 import { LocationData } from '@/services/locationsApi'
-import Location from './Location/Location'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -83,11 +82,15 @@ export default function BottomSidebar() {
   const {data:allLocationsData,isLoading:allLocationsDataIsLoading,error:allLocationsDataIsError} = useGetAllLocationsQuery();
   const pathname = usePathname();
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
+  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
 
   return (
     <div className={s.bottomSidebar}>
-      <h2 className={s.bottomSidebarTitle}>Локации поблизости</h2>
+      <h2 className={s.bottomSidebarTitle}>{currentLanguage==='ru'?'Локации поблизости':'Локації поблизу'}</h2>
       <div className={`${s.nearestLocations} ${currentTheme==='dark'?s.dark:''}`}>
+        {
+          allLocationsDataIsLoading&&<p className={s.isLoadingLabel}>{currentLanguage==='ru'?'Загрузка...':'Завантаження...'}</p>
+        }
         {selectedCityLat&&selectedCityLon&&allLocationsData&&isCitySelected&&
           getNearestLocationsData(selectedCityLat,selectedCityLon,allLocationsData)?.map(location=>{
             const isActive = pathname === `/location/${location.slug}`;
@@ -95,7 +98,7 @@ export default function BottomSidebar() {
               <Link key={location._id} href={`/location/${location.slug}`} passHref>
                 <div className={`${s.locationCard} ${isActive?s.locationCardActive:''}`} key={location._id}>
                   <div className={s.imgWrapper}><Image src={location.image_url} alt={'location img'} height={50} width={50} className=  {s.locationImg}/></div>
-                  <p className={s.locationInfo}>{`${location.name.ru}, ${location.distance} км`}</p>
+                  <p className={s.locationInfo}>{`${currentLanguage==='ru'?location.name.ru:location.name.ua}, ${location.distance} км`}</p>
                 </div>
               </Link>
             )

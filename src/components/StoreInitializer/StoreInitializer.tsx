@@ -7,6 +7,7 @@ import { setIsFishSelected,setSelectedFishData } from '@/store/fishDataSlice';
 import { setTheme } from '@/store/themeSlice';
 
 import { useEffect } from 'react';
+import { setLanguage } from '@/store/localizationSlice';
 
 export default function StoreInitializer() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function StoreInitializer() {
     const selectedCityDataLS = localStorage.getItem('selectedCityData');
     const selectedFishDataLS = localStorage.getItem('selectedFishData');
     const currentThemeLS = localStorage.getItem('theme');
+    const currentLanguageLS = localStorage.getItem('language');
     if (selectedRegionDataLS){
       dispatch(setSelectedRegionData(JSON.parse(selectedRegionDataLS)));
     }
@@ -29,6 +31,9 @@ export default function StoreInitializer() {
     }
     if (currentThemeLS === 'dark') {
       dispatch(setTheme(currentThemeLS));
+    }
+    if(currentLanguageLS==='ru'){
+      dispatch(setLanguage('ru'));
     }
   },[])
   return null; 

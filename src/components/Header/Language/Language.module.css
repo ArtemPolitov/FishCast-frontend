@@ -14,6 +14,10 @@
   line-height: 1.6;
   cursor: pointer;
 }
+.language P.active {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
 .language P:hover {
   text-decoration: underline;
   text-underline-offset: 8px;

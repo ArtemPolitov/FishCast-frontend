@@ -20,9 +20,9 @@ export const convertHpaToMmHg = (pressureHpa:number):number =>{
   return Math.round(pressureMmHg);
 }
 
-export const getFourNextDays = (): string[] => {
+export const getFourNextDaysRu = (): string[] => {
   const weekDays = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-  const fourNextDays: string[] = [];
+  const fourNextDaysRu: string[] = [];
 
   for (let i = 1; i < 5; i++) {
     const utcDate = new Date();
@@ -33,10 +33,29 @@ export const getFourNextDays = (): string[] => {
     };
     const dateInKyiv = new Date(utcDate.toLocaleString('en-US', options));
     const day = weekDays[dateInKyiv.getDay()];
-    fourNextDays.push(`${day} ${dateInKyiv.getDate()}`);
+    fourNextDaysRu.push(`${day} ${dateInKyiv.getDate()}`);
   }
 
-  return fourNextDays;
+  return fourNextDaysRu;
+}
+
+export const getFourNextDaysUa = (): string[] => {
+  const weekDaysUa = ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+  const fourNextDaysUa: string[] = [];
+
+  for (let i = 1; i < 5; i++) {
+    const utcDate = new Date();
+    utcDate.setUTCDate(utcDate.getUTCDate() + i);
+
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone: 'Europe/Kyiv',
+    };
+    const dateInKyiv = new Date(utcDate.toLocaleString('en-US', options));
+    const day = weekDaysUa[dateInKyiv.getDay()];
+    fourNextDaysUa.push(`${day} ${dateInKyiv.getDate()}`);
+  }
+
+  return fourNextDaysUa;
 }
 
 export default function WeatherContent() {
@@ -44,6 +63,7 @@ export default function WeatherContent() {
   const selectedCityLat = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lat);
   const selectedCityLon = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lon);
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
+  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
   const {data:currentWeatherData,isLoading:currentWeatherDataIsLoading,error:currentWeatherDataError} = useGetCurrentWeatherDataQuery(
     selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
   );
@@ -88,7 +108,8 @@ export default function WeatherContent() {
     return currentLanguage==="ru"?windDirection.ru:windDirection.ua;
   }
 
-  const fourNextDays:string[] = getFourNextDays();
+  const fourNextDaysRu:string[] = getFourNextDaysRu();
+  const fourNextDaysUa:string[] = getFourNextDaysUa();
 
   const dayWeatherHandler = () =>{
     setWeatherPeriod('24h');
@@ -114,7 +135,11 @@ export default function WeatherContent() {
     <div className={s.weatherContent}>
       <div className={s.currentWeather}>
         {currentWeatherDataIsLoading&&
-          <p className={s.currentWeatherLoading}>Загрузка...</p>
+          <p className={s.currentWeatherLoading}>{currentLanguage==='ru'?'Загрузка...':'Завантаження...'}</p>
+        }
+        {
+          currentWeatherDataError&&
+          <p className={s.currentWeatherLoading}>{currentLanguage==='ru'?'Ошибка загрузки данных':'Помилка завантаження даних'}</p>
         }
         {currentWeatherData&&
           <div className={s.currentWeatherContent}>
@@ -123,8 +148,8 @@ export default function WeatherContent() {
                 <Image src={`https://openweathermap.org/img/wn/${currentWeatherData.weather[0].icon}@2x.png`} alt='weather_img'width=   {100} height={100} className={s.currentWeatherImg}/>
                 <p className={s.currentTemperature}>{`${convertKelvinToCelsius(currentWeatherData.main.temp)}°C`}</p>
               </div>
-              <p className={s.weatherTitle}>{weather_names[`${currentWeatherData.weather[0].main as keyof typeof weather_names}`].ru}</p>
-              {weather_descriptions[`${currentWeatherData.weather[0].description as keyof typeof weather_descriptions}`]&&<p className={s.weatherDescription}>{weather_descriptions[`${currentWeatherData.weather[0].description as keyof typeof weather_descriptions}`].ru}</p>}
+              <p className={s.weatherTitle}>{currentLanguage==='ru'?weather_names[`${currentWeatherData.weather[0].main as keyof typeof weather_names}`].ru:weather_names[`${currentWeatherData.weather[0].main as keyof typeof weather_names}`].ua}</p>
+              {weather_descriptions[`${currentWeatherData.weather[0].description as keyof typeof weather_descriptions}`]&&<p className={s.weatherDescription}>{currentLanguage==='ru'?weather_descriptions[`${currentWeatherData.weather[0].description as keyof typeof weather_descriptions}`].ru:weather_descriptions[`${currentWeatherData.weather[0].description as keyof typeof weather_descriptions}`].ua}</p>}
             </div>
             {
               currentTheme==='light'?
@@ -139,7 +164,7 @@ export default function WeatherContent() {
                 </div>
                 <div className={s.rightColumnItem}>
                   <Image src={`/images/wind_icon.png`} alt='wind' height={50} width={50} className={s.rightColumnIcon}/>
-                  <p>{`${Math.round(currentWeatherData.wind.speed)} м/с, ${getWindDirection(currentWeatherData.wind.deg,"ru")}`}</p>
+                  <p>{`${Math.round(currentWeatherData.wind.speed)} м/с, ${currentLanguage==='ru'?getWindDirection(currentWeatherData.wind.deg,"ru"):getWindDirection(currentWeatherData.wind.deg,"ua")}`}</p>
                 </div>
                 <div className={s.rightColumnItem}>
                   <Image src={`/images/cloudiness_icon.png`} alt='cloudiness' height={50} width={50} className={s.rightColumnIcon}/>
@@ -180,10 +205,10 @@ export default function WeatherContent() {
       <div className={`${s.periodWeatherBlock} ${currentTheme==='dark'?s.dark:''}`}>
         <div className={s.periodWeatherButtons}>
           <button className={`${s.periodWeatherButton} ${weatherPeriod==='24h'?s.activeButton:''}`} onClick={dayWeatherHandler}>24 ч</button>
-          <button className={`${s.periodWeatherButton} ${weatherPeriod==='secondDay'?s.activeButton:''}`} onClick={secondDayWeatherHandler}>{fourNextDays[0]}</button>
-          <button className={`${s.periodWeatherButton} ${weatherPeriod==='thirdDay'?s.activeButton:''}`} onClick={thirdDayWeatherHandler}>{fourNextDays[1]}</button>
-          <button className={`${s.periodWeatherButton} ${weatherPeriod==='fourthDay'?s.activeButton:''}`} onClick={fourthDayWeatherHandler}>{fourNextDays[2]}</button>
-          <button className={`${s.periodWeatherButton} ${weatherPeriod==='fifthDay'?s.activeButton:''}`} onClick={fifthDayWeatherHandler}>{fourNextDays[3]}</button>
+          <button className={`${s.periodWeatherButton} ${weatherPeriod==='secondDay'?s.activeButton:''}`} onClick={secondDayWeatherHandler}>{currentLanguage==='ru'?fourNextDaysRu[0]:fourNextDaysUa[0]}</button>
+          <button className={`${s.periodWeatherButton} ${weatherPeriod==='thirdDay'?s.activeButton:''}`} onClick={thirdDayWeatherHandler}>{currentLanguage==='ru'?fourNextDaysRu[1]:fourNextDaysUa[1]}</button>
+          <button className={`${s.periodWeatherButton} ${weatherPeriod==='fourthDay'?s.activeButton:''}`} onClick={fourthDayWeatherHandler}>{currentLanguage==='ru'?fourNextDaysRu[2]:fourNextDaysUa[2]}</button>
+          <button className={`${s.periodWeatherButton} ${weatherPeriod==='fifthDay'?s.activeButton:''}`} onClick={fifthDayWeatherHandler}>{currentLanguage==='ru'?fourNextDaysRu[3]:fourNextDaysUa[3]}</button>
         </div>
         <PeriodWeather weatherPeriod={weatherPeriod}/>
       </div>

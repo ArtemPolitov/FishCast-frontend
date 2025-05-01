@@ -12,7 +12,8 @@ const RegionSelect = () => {
   const { data: regions } = useGetRegionsQuery();
   const [selectedRegionId,setSelectedRegionId] = useState<null|number>(null);
   const isCitySelected = useSelector((state: RootState) => state.citySelection.isCitySelected);
-  const selectedRegionIdFromStore = useSelector((state:RootState)=>state.geoData.selectedRegionData?.id)
+  const selectedRegionIdFromStore = useSelector((state:RootState)=>state.geoData.selectedRegionData?.id);
+  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
 
   // Получаем данные выбранного региона
   const { data: selectedRegionData } = useGetRegionByIdQuery(selectedRegionId!, {
@@ -48,11 +49,11 @@ const RegionSelect = () => {
         id="region-select"
       >
         <option value="" disabled className={s.defaultOption}>
-          Выберите область
+          {currentLanguage==='ru'?'Выберите область':'Виберіть область'}
         </option>
         {regions?.map((region) => (
           <option key={region.id} value={region.id}>
-            {region.name} 
+            {currentLanguage==='ru'?region.name:region.name_uk} 
           </option>
         ))}
       </select>

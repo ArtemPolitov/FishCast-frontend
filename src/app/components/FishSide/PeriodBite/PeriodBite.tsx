@@ -16,8 +16,8 @@ const PeriodBite:React.FC<PeriodBiteProps> = ({bitePeriod}) =>{
 
   const selectedCityLat = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lat);
   const selectedCityLon = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lon);
-
   const selectedFishData = useSelector((state:RootState)=>state.fishData.selectedFishData);
+  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
 
   const {data:hourlyForecast4daysData,isLoading:hourlyForecast4daysIsLoading,error:hourlyForecast4daysError}=useGetHourlyForecast4daysQuery(
       selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
@@ -26,6 +26,12 @@ const PeriodBite:React.FC<PeriodBiteProps> = ({bitePeriod}) =>{
 
   return (
     <div className={s.periodBite}>
+      {
+        hourlyForecast4daysIsLoading&&<p className={s.label}>{currentLanguage==='ru'?'Загрузка...':'Завантаження...'}</p>
+      }
+      {
+        hourlyForecast4daysError&&<p className={s.label}>{currentLanguage==='ru'?'Ошибка загрузки данных':'Помилка завантаження даних'}</p>
+      }
       {
         bitePeriod==='24h'&&hourlyForecast4daysData&&selectedFishData&&
           getDayWeatherData(hourlyForecast4daysData).map(item=>{

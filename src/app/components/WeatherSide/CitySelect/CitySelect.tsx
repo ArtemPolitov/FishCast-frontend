@@ -13,6 +13,7 @@ interface CitySelectProps {
 interface CityByRegion {
   id: number;
   name: string;
+  name_uk:string;
 }
 
 const CitySelect: React.FC<CitySelectProps> = ({ selectedRegionId }) => {
@@ -20,7 +21,7 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedRegionId }) => {
   const dispatch = useDispatch();
   const [selectedCityId, setSelectedCityId] = useState<number | null>(null);
   const globalSelectedCityId = useSelector((store:RootState)=>store.citySelection.selectedCityData?.id);
-
+  const currentLanguage = useSelector((store:RootState)=>store.localization.currentLanguage);
   const { data: cityData } = useGetCityByIdQuery(selectedCityId ?? 0, {
     skip: selectedCityId === null,
   });
@@ -61,11 +62,11 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedRegionId }) => {
         value={globalSelectedCityId ?? "default"}
       >
         <option value="default" disabled className={s.defaultOption}>
-          Выберите нас. пункт
+          {currentLanguage==='ru'?'Выберите нас. пункт':'Оберіть нас. пункт'}
         </option>
         {citiesByRegion.map((city) => (
           <option key={city.id} value={city.id}>
-            {city.name}
+            {currentLanguage==='ru'?city.name:city.name_uk}
           </option>
         ))}
       </select>

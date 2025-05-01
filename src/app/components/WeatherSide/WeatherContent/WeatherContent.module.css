@@ -8,7 +8,7 @@
 .weatherContent .currentWeather {
   display: flex;
   position: relative;
-  min-height: 170px;
+  min-height: 210px;
 }
 .weatherContent .currentWeather .currentWeatherLoading {
   position: absolute;

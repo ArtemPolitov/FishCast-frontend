@@ -10,6 +10,7 @@ interface AuthorizationButtonProps{
 
 const AuthorizationButton:React.FC<AuthorizationButtonProps> = ({onClick}) =>{
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
+  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
 
   return (
     <div>
@@ -21,7 +22,7 @@ const AuthorizationButton:React.FC<AuthorizationButtonProps> = ({onClick}) =>{
             <Image src='/images/login-icon-dark-theme.png' alt='Login' height={30} width={30}/>
           }
         </div>
-        <p>Войти</p>
+        <p>{currentLanguage==='ru'?'Войти':'Увійти'}</p>
       </button>
     </div>
   )
