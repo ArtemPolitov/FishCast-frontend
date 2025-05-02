@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import s from './WeatherContent.module.css'
 import PeriodWeather from './PeriodWeather/PeriodWeather'
 import { useGetCurrentWeatherDataQuery } from '@/services/weatherApi'
@@ -130,6 +130,31 @@ export default function WeatherContent() {
   const fifthDayWeatherHandler = () =>{
     setWeatherPeriod('fifthDay');
   }
+  
+  const date = new Date();
+  const [currentDate,setCurrentDate] = useState<Date>(date);
+
+  useEffect(()=>{
+    const interval = setInterval(()=>{
+      const date = new Date();
+      setCurrentDate(date);
+    },1000);
+    return() => clearInterval(interval);
+  },[]);
+
+  function getCorrectDate (currentDate:Date) {
+    const padStart = (value:number):string =>{
+      return value<10?`0${value}`:`${value}`;
+    }
+    const currentDay = padStart(currentDate.getDate());
+    const currentMonth = padStart(currentDate.getMonth() + 1);
+    const currentYear = currentDate.getFullYear();
+    const currentHour = padStart(currentDate.getHours());
+    const currentMinutes = padStart(currentDate.getMinutes());
+    const currentSeconds = padStart(currentDate.getSeconds());
+    const correctDate = `${currentDay}.${currentMonth}.${currentYear} | ${currentHour}:${currentMinutes}:${currentSeconds}`;
+    return correctDate;
+  }
 
   return (
     <div className={s.weatherContent}>
@@ -144,6 +169,7 @@ export default function WeatherContent() {
         {currentWeatherData&&
           <div className={s.currentWeatherContent}>
             <div className={s.leftColumn}>
+              <p className={s.dateTime}>{currentDate&&getCorrectDate(currentDate)}</p>
               <div className={s.iconTempRow}>
                 <Image src={`https://openweathermap.org/img/wn/${currentWeatherData.weather[0].icon}@2x.png`} alt='weather_img'width=   {100} height={100} className={s.currentWeatherImg}/>
                 <p className={s.currentTemperature}>{`${convertKelvinToCelsius(currentWeatherData.main.temp)}°C`}</p>

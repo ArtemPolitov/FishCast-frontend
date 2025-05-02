@@ -32,7 +32,7 @@ export default function Sandbox() {
   
   
 
-  currentWeatherData&&console.log(`Уровень клева: ${calculateFishBite('bleak',getWaterTemperature(convertKelvinToCelsius(currentWeatherData?.main.temp)),convertHpaToMmHg(currentWeatherData.main.pressure),currentWeatherData.wind.speed,currentWeatherData.clouds.all,checkRain(currentWeatherData),getKyivHour(currentWeatherData.dt))}`);
+  //currentWeatherData&&console.log(`Уровень клева: ${calculateFishBite('bleak',getWaterTemperature(convertKelvinToCelsius//(currentWeatherData?.main.temp)),convertHpaToMmHg(currentWeatherData.main.pressure),currentWeatherData.wind.speed,//currentWeatherData.clouds.all,checkRain(currentWeatherData),getKyivHour(currentWeatherData.dt))}`);
 
   return (
     <div>

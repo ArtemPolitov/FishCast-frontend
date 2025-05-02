@@ -26,18 +26,24 @@
 .weatherContent .currentWeather .currentWeatherContent .leftColumn {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+.weatherContent .currentWeather .currentWeatherContent .leftColumn .dateTime {
+  font-weight: 600;
+  font-size: 20px;
 }
 .weatherContent .currentWeather .currentWeatherContent .leftColumn .weatherTitle {
   font-weight: 600;
+  text-align: center;
 }
 .weatherContent .currentWeather .currentWeatherContent .leftColumn .weatherDescription {
   text-align: center;
   max-width: 245px;
 }
 .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow {
+  margin-left: 11px;
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow .currentTemperature {
   font-weight: 600;
