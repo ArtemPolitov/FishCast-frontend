@@ -1,0 +1,129 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.474);
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.userPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  width: 430px;
+  border-radius: 7px;
+  background-color: white;
+  right: 0%;
+  z-index: 1010;
+  padding: 10px;
+  height: 100%;
+}
+.userPanel .itemIcon {
+  width: 23px;
+  height: 23px;
+}
+.userPanel .closeIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.userPanel.dark {
+  background-color: #3E3E3E;
+  color: white;
+}
+.userPanel .userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.userPanel .logoutButton {
+  width: 100px;
+  background-color: #cb0000;
+  color: white;
+  font-weight: 600;
+  padding: 5px 0px;
+}
+.userPanel .logoutButton:hover {
+  background-color: #e20000;
+}
+.userPanel .item {
+  display: flex;
+  align-items: center;
+}
+.userPanel .itemTitle {
+  font-weight: 600;
+}
+.userPanel .favoriteLocations {
+  padding-top: 5px;
+  padding-bottom: 8px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.userPanel .favoriteLocations.dark {
+  border-color: white;
+}
+.userPanel .favoriteLocations .favoriteLocationsTitle {
+  font-weight: 600;
+}
+.userPanel .favoriteLocations .locationRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.userPanel .favoriteLocations .locationRow .deleteIcon {
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+}
+.userPanel .favoriteLocations .locationRow .locationCard {
+  width: 382px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 7px;
+}
+.userPanel .favoriteLocations .locationRow .locationCard .imageAndText {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.userPanel .favoriteLocations .locationRow .locationCard .imageAndText .locationInfo {
+  font-size: 17px;
+}
+.userPanel .favoriteLocations .locationRow .locationCard .imgWrapper {
+  width: 60px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.userPanel .favoriteLocations .locationRow .locationCard .imgWrapper .locationImg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+.userPanel .favoriteLocations .locationRow .locationCardActive {
+  border: 1px solid rgb(0, 0, 0);
+}
+.userPanel .favoriteLocations .locationRow .locationCardActive.dark {
+  border: 1px solid rgb(255, 255, 255);
+}
+.userPanel .favoriteLocations .locationRow .locationCard:hover {
+  border-color: black;
+}
+.userPanel .favoriteLocations .locationRow .locationCard.dark:hover {
+  border-color: white;
+}/*# sourceMappingURL=UserPanel.module.css.map */

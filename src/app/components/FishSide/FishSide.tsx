@@ -6,11 +6,8 @@ import { useState } from 'react'
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store"; 
 import Image from 'next/image'
-import { useGetCurrentWeatherDataQuery,useGetHourlyForecast4daysQuery } from '@/services/weatherApi'
-import { SelectedFishData, setSelectedFishData } from '@/store/fishDataSlice'
-import { calculateFishBite,getWaterTemperature,getCurrentHourNum,checkRain } from '@/utils/calculateFishBite'
+import { useGetCurrentWeatherDataQuery } from '@/services/weatherApi'
 import { skipToken } from '@reduxjs/toolkit/query'
-import { convertKelvinToCelsius,convertHpaToMmHg } from '../WeatherSide/WeatherContent/WeatherContent'
 import FishBite from './FishBite/FishBite'
 import PeriodBite from './PeriodBite/PeriodBite'
 import { getFourNextDaysRu,getFourNextDaysUa } from '../WeatherSide/WeatherContent/WeatherContent'

@@ -25,9 +25,7 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedRegionId }) => {
   const { data: cityData } = useGetCityByIdQuery(selectedCityId ?? 0, {
     skip: selectedCityId === null,
   });
-  console.log(cityData);
 
-  // Диспатчим данные о городе в стор ТОЛЬКО когда cityData обновляется
   useEffect(() => {
     if (cityData) {
       dispatch(setSelectedCityData(cityData));

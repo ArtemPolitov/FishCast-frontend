@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux'
 import s from './WeatherSide.module.css'
 import RegionSelect from './RegionSelect/RegionSelect'
 import CitySelect from './CitySelect/CitySelect'
-import { useState } from 'react'
-import type { RootState, AppDispatch} from '../../../store/store';
+import type { RootState } from '../../../store/store';
 import WeatherContent from './WeatherContent/WeatherContent'
 
 

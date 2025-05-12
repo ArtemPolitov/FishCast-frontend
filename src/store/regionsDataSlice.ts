@@ -1,12 +1,11 @@
-import { SelectedFishData } from '@/store/fishDataSlice';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { regionsApi } from '../services/regionsApi';  // Импортируем наше API
+import { regionsApi } from '../services/regionsApi';  
 
 interface GeoDataState {
-  regions: any[];  // Массив с регионами
+  regions: any[];  
   selectedRegionData:SelectedRegionData|null,
-  isLoading: boolean;  // Статус загрузки
-  error: string | null;  // Ошибки
+  isLoading: boolean;  
+  error: string | null;
 }
 
 export interface SelectedRegionData {
@@ -25,25 +24,25 @@ const initialState: GeoDataState = {
 };
 
 const geoDataSlice = createSlice({
-  name: 'geoData',  // Название слайса
+  name: 'geoData',  
   initialState,
   reducers: {
     setSelectedRegionData: (state, action: PayloadAction<SelectedRegionData>) => {
-      state.selectedRegionData = action.payload;  // Сохраняем выбранный регион
+      state.selectedRegionData = action.payload;  
     },
   },
   extraReducers: (builder) => {
     builder
       .addMatcher(regionsApi.endpoints.getRegions.matchPending, (state) => {
-        state.isLoading = true;  // Устанавливаем статус загрузки
+        state.isLoading = true;  
       })
       .addMatcher(regionsApi.endpoints.getRegions.matchFulfilled, (state, action) => {
-        state.isLoading = false;  // Статус загрузки завершен
-        state.regions = action.payload;  // Сохраняем регионы в стейт
+        state.isLoading = false;  
+        state.regions = action.payload;  
       })
       .addMatcher(regionsApi.endpoints.getRegions.matchRejected, (state, action) => {
-        state.isLoading = false;  // Статус загрузки завершен
-        state.error = action.error.message || 'Ошибка при загрузке регионов';  // Сохраняем ошибку
+        state.isLoading = false;  
+        state.error = action.error.message || 'Ошибка при загрузке регионов';  
       });
   },
 });

@@ -3,9 +3,7 @@ import s from './FishBite.module.css'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/store/store'
 import { convertKelvinToCelsius,convertHpaToMmHg } from '../../WeatherSide/WeatherContent/WeatherContent'
-import { calculateFishBite,getWaterTemperature,getCurrentHourNum,checkRain } from '@/utils/calculateFishBite'
-import { useGetCurrentWeatherDataQuery } from '@/services/weatherApi'
-import { skipToken } from '@reduxjs/toolkit/query'
+import { calculateFishBite,getWaterTemperature,checkRain } from '@/utils/calculateFishBite'
 import { CurrentWeatherData } from '@/services/weatherApi'
 import Image from 'next/image'
 import { TimestampForecast } from '@/services/weatherApi'
@@ -20,7 +18,7 @@ interface FishBiteProps {
 export function getKyivHour(dt: number): number {
   const date = new Date(dt * 1000);
 
-  // Переводим дату в киевское время
+  // Перевод в киевское время
   const formatter = new Intl.DateTimeFormat('uk-UA', {
     timeZone: 'Europe/Kyiv',
     hour: 'numeric',
@@ -28,13 +26,12 @@ export function getKyivHour(dt: number): number {
     hour12: false,
   });
 
-  // Получаем строку типа "13:45"
   const [hourStr, minuteStr] = formatter.format(date).split(':');
   let hour = Number(hourStr);
   const minute = Number(minuteStr);
 
   if (minute >= 30) {
-    hour = (hour + 1) % 24; // если 23:45 → станет 0
+    hour = (hour + 1) % 24; 
   }
 
   return hour;
@@ -48,7 +45,6 @@ const FishBite:React.FC<FishBiteProps> = ({weatherData,fishGroup,size}) =>{
 
   return (
     <div className={s.fishBite}>
-      
       {
         fishBiteValueArr.map((item,index)=>{
           return(
@@ -56,8 +52,7 @@ const FishBite:React.FC<FishBiteProps> = ({weatherData,fishGroup,size}) =>{
             <Image src={'/images/opaque_fish.png'} alt='fish bite' height={26} width={26} key={index} className={s[size]}/>:
             <Image src={'/images/opaque_fish_dark.png'} alt='fish bite' height={26} width={26} key={index} className={s[size]}/>
           )
-        })
-        
+        })  
       }
       {
         idealBiteDifferenceArr.map((item,index)=>{

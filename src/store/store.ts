@@ -9,6 +9,8 @@ import {locationsApi} from '@/services/locationsApi';
 import fishDataReducer from './fishDataSlice';
 import themeReducer from './themeSlice';
 import localizationReducer from './localizationSlice';
+import userReducer from './userSlice';
+import { userApi } from '@/services/userApi';
 
 export const store = configureStore({
   reducer: {
@@ -17,13 +19,15 @@ export const store = configureStore({
     'fishData':fishDataReducer,
     'theme':themeReducer,
     'localization':localizationReducer,
+    'user':userReducer,
     [regionsApi.reducerPath]: regionsApi.reducer,
     [cityApi.reducerPath]: cityApi.reducer,
     [fishApi.reducerPath]: fishApi.reducer,
     [weatherApi.reducerPath]: weatherApi.reducer,
-    [locationsApi.reducerPath]: locationsApi.reducer
+    [locationsApi.reducerPath]: locationsApi.reducer,
+    [userApi.reducerPath]:userApi.reducer,
   }, 
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(regionsApi.middleware).concat(cityApi.middleware).concat(fishApi.middleware).concat(weatherApi.middleware).concat(locationsApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(regionsApi.middleware).concat(cityApi.middleware).concat(fishApi.middleware).concat(weatherApi.middleware).concat(locationsApi.middleware).concat(userApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

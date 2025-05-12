@@ -1,0 +1,132 @@
+.overlay{
+  position: fixed;
+  inset:0;
+  background-color: rgba(0, 0, 0, 0.474);
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.userPanel{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  .itemIcon{
+    width: 23px;
+    height: 23px;
+  }
+  .closeIcon{
+    position: absolute;
+    top:10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  &.dark{
+    background-color: #3E3E3E;
+    color:white;
+  }
+  .userInfo{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+  }
+  position: absolute;
+  width: 430px;
+  border-radius: 7px;
+  background-color: white;
+  right: 0%;
+  z-index: 1010;
+  padding: 10px;
+  height: 100%;
+  .logoutButton{
+    width: 100px;
+    background-color: #cb0000;
+    color: white;
+    font-weight: 600;
+    padding: 5px 0px;
+  }
+  .logoutButton:hover{
+    background-color: #e20000;
+  }
+  .item{
+    display: flex;
+    align-items: center;
+  }
+  .itemTitle{
+    font-weight:600 ;
+  }
+  .favoriteLocations{
+    padding-top: 5px;
+    padding-bottom: 8px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    &.dark{
+      border-color: white;
+    }
+    .favoriteLocationsTitle{
+      font-weight: 600;
+    }
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    .locationRow{
+      .deleteIcon{
+        height: 22px;
+        width: 22px;
+        cursor: pointer;
+      }
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap:8px;
+      .locationCard {
+        width: 382px;
+        padding: 5px;
+        display: flex;
+        align-items: center; 
+        justify-content: space-between;
+        gap: 10px; 
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-radius: 7px;
+        .imageAndText{
+          display: flex;
+          align-items: center;
+          gap:10px;
+          .locationInfo {
+            font-size: 17px;
+          }
+        }
+        .imgWrapper {
+          width: 60px;
+          height: 40px;
+          flex-shrink: 0; 
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      
+        .locationImg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .locationCardActive{
+      border: 1px solid rgb(0, 0, 0);
+    }
+    .locationCardActive.dark{
+      border: 1px solid rgb(255, 255, 255);
+    }
+    .locationCard:hover{
+      border-color: black;
+    }
+    .locationCard.dark:hover{
+      border-color: white;
+    }
+    
+  }
+  }
+
+}

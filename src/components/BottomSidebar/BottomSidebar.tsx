@@ -1,16 +1,16 @@
 'use client'
 import React from 'react'
 import s from './BottomSidebar.module.css'
-import { useGetAllLocationsQuery,useGetLocationByIdQuery } from '@/services/locationsApi'
+import { useGetAllLocationsQuery } from '@/services/locationsApi'
 import { useSelector } from 'react-redux'
-import { RootState, store } from '@/store/store'
+import { RootState } from '@/store/store'
 import { LocationData } from '@/services/locationsApi'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 interface NearestLocationData {
-  _id?:number,
+  _id?:string,
   id:number,
   name:{
     ru:string,

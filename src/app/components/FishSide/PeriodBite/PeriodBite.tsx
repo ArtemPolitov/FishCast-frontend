@@ -22,8 +22,7 @@ const PeriodBite:React.FC<PeriodBiteProps> = ({bitePeriod}) =>{
   const {data:hourlyForecast4daysData,isLoading:hourlyForecast4daysIsLoading,error:hourlyForecast4daysError}=useGetHourlyForecast4daysQuery(
       selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
     );
-
-
+    
   return (
     <div className={s.periodBite}>
       {
@@ -40,7 +39,6 @@ const PeriodBite:React.FC<PeriodBiteProps> = ({bitePeriod}) =>{
                 <p className={s.time}>{getKyivHour(item.dt)<10?`0${getKyivHour(item.dt)}:00`:`${getKyivHour(item.dt)}:00`}</p>
                 <FishBite weatherData={item} fishGroup={selectedFishData?.group} size='smallSize'/>
               </div>
-              
             )
           })
       }
@@ -88,7 +86,6 @@ const PeriodBite:React.FC<PeriodBiteProps> = ({bitePeriod}) =>{
                 <p className={s.time}>{getKyivHour(item.dt)<10?`0${getKyivHour(item.dt)}:00`:`${getKyivHour(item.dt)}:00`}</p>
                 <FishBite weatherData={item} fishGroup={selectedFishData.group} size='smallSize'/>
               </div>
-              
             )
           })
       }

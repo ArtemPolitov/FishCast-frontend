@@ -3,7 +3,7 @@
   height: 635px;
   position: relative;
   gap:20px;
-  overflow: hidden; /* добавляем */
+  overflow: hidden; 
   &.dark{
     .locationInfo{
       .locationInfoContent{
@@ -39,6 +39,12 @@
     display: flex;
     flex-direction: column;
     .locationInfoContent{
+      .favorite{
+        position: absolute;
+        top: 5px;
+        right: 20px;
+        cursor: pointer;
+      }
       .backButton{
         position: absolute;
         display: flex;
@@ -93,22 +99,16 @@
         width: 100%;
         
       }
-            /* Общая полоса прокрутки */
       &::-webkit-scrollbar {
         width: 8px; /* ширина полосы прокрутки */
       }
-    
-      /* "Дорожка" скроллбара */
       &::-webkit-scrollbar-track {
-        background: transparent; /* фон дорожки прозрачный */
+        background: transparent; /* фон */
       }
-    
-      /* "Бегунок" скроллбара */
       &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.4); /* темный ползунок с прозрачностью */
-        border-radius: 4px; /* скругление углов */
+        background-color: rgba(0, 0, 0, 0.4); 
+        border-radius: 4px; 
       }
-    
       &::-webkit-scrollbar-thumb:hover {
         background-color: rgba(0, 0, 0, 0.6); 
       }
@@ -129,28 +129,19 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      /* Общая полоса прокрутки */
       &::-webkit-scrollbar {
-        width: 8px; /* ширина полосы прокрутки */
+        width: 8px; 
       }
-    
-      /* "Дорожка" скроллбара */
       &::-webkit-scrollbar-track {
-        background: transparent; /* фон дорожки прозрачный */
+        background: transparent; 
       }
-    
-      /* "Бегунок" скроллбара */
       &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.4); /* темный ползунок с прозрачностью */
-        border-radius: 4px; /* скругление углов */
-
+        background-color: rgba(0, 0, 0, 0.4); 
+        border-radius: 4px;
       }
-    
-      /* Когда наводишь курсор на ползунок */
       &::-webkit-scrollbar-thumb:hover {
-        background-color: rgba(0, 0, 0, 0.6); /* чуть темнее при наведении */
+        background-color: rgba(0, 0, 0, 0.6); 
       }
-      
       .fishCard{
         padding-left: 10px;
         padding-right: 10px;
@@ -168,7 +159,5 @@
         }
       }
     }
-
   }
-
 }

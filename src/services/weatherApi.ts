@@ -57,61 +57,61 @@ export interface CurrentWeatherData {
 }
 
 export interface TimestampForecast {
-  dt: number; // Время прогноза, Unix timestamp
+  dt: number; 
   main: {
-    temp: number; // Температура (по умолчанию в Кельвинах)
-    feels_like: number; // Ощущаемая температура
-    temp_min: number; // Минимальная температура
-    temp_max: number; // Максимальная температура
-    pressure: number; // Давление на уровне моря
-    sea_level: number; // Давление на уровне моря
-    grnd_level: number; // Давление на уровне земли
-    humidity: number; // Влажность (%)
-    temp_kf: number; // Внутренний параметр
+    temp: number; 
+    feels_like: number;
+    temp_min: number;
+    temp_max: number; 
+    pressure: number; 
+    sea_level: number; 
+    grnd_level: number;
+    humidity: number; 
+    temp_kf: number; 
   };
   weather: {
-    id: number; // ID погодных условий
-    main: string; // Группа погодных условий (например, дождь, снег и т.д.)
-    description: string; // Описание погодных условий
-    icon: string; // Иконка погоды
+    id: number; 
+    main: string; 
+    description: string; 
+    icon: string; 
   }[];
   clouds: {
-    all: number; // Облачность в %
+    all: number; 
   };
   wind: {
-    speed: number; // Скорость ветра (м/с)
-    deg: number; // Направление ветра (в градусах)
-    gust: number; // Порывы ветра (м/с)
+    speed: number;
+    deg: number; 
+    gust: number; 
   };
-  visibility: number; // Видимость (в метрах)
-  pop: number; // Вероятность осадков (от 0 до 1)
+  visibility: number; 
+  pop: number; 
   rain?:RainData,
   snow?: {
-    '3h': number; // Объем снега за последние 3 часа (в мм)
+    '3h': number; 
   };
   sys: {
-    pod: 'd' | 'n'; // Часть дня (d - день, n - ночь)
+    pod: 'd' | 'n'; 
   };
-  dt_txt: string; // Время прогноза в ISO формате
+  dt_txt: string; 
 }
 
 export interface HourlyForecast4days {
-  cod: string; // Код ответа
-  message: number; // Сообщение
-  cnt: number; // Количество временных точек
+  cod: string; 
+  message: number; 
+  cnt: number; 
   list: TimestampForecast[];
   city: {
-    id: number; // ID города
-    name: string; // Название города
+    id: number; 
+    name: string; 
     coord: {
-      lat: number; // Широта города
-      lon: number; // Долгота города
+      lat: number; 
+      lon: number; 
     };
-    country: string; // Код страны
-    population: number; // Население города
-    timezone: number; // Часовой пояс города (в секундах от UTC)
-    sunrise: number; // Время восхода солнца (Unix timestamp)
-    sunset: number; // Время захода солнца (Unix timestamp)
+    country: string; 
+    population: number; 
+    timezone: number; 
+    sunrise: number; 
+    sunset: number; 
   };
 }
 

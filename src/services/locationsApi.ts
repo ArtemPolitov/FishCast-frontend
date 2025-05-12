@@ -1,9 +1,7 @@
-import { useGetAllFishesQuery } from '@/services/fishApi';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import build from "next/dist/build";
 
 export interface LocationData {
-  _id?:number,
+  _id:string,
   id:number,
   name:{
     ru:string,

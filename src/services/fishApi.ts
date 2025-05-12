@@ -1,7 +1,6 @@
 import { FishGroup } from '@/store/fishDataSlice';
 import { createApi,fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-//type FishGroup = 'peaceful'|'predatory'|'catfish'|'carp'|'northern'
 export interface FishData {
   _id?:number,
   id:number,

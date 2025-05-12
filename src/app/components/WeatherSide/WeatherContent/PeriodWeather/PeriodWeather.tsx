@@ -12,9 +12,9 @@ interface PeriodWeatherProps {
   weatherPeriod: string,
 }
 
-// Функция для конвертации метки времени в Киевский часовой пояс
+// конвертация метки времени в киевский часовой пояс
 const convertToKyivDate = (timestamp: number) => {
-  const date = new Date(timestamp * 1000); // Преобразуем метку времени в миллисекунды
+  const date = new Date(timestamp * 1000); 
   const kyivDate = new Date(date.toLocaleString('en-US', { timeZone: 'Europe/Kiev' }));
   return kyivDate;
 };
@@ -53,7 +53,7 @@ export const getThirdDayWeatherData = (forecast4daysData: HourlyForecast4days): 
   const yyyy = thirdDay.getFullYear();
   const mm = String(thirdDay.getMonth() + 1).padStart(2, '0');
   const dd = String(thirdDay.getDate()).padStart(2, '0');
-  const thirdDayDateStr = `${yyyy}-${mm}-${dd}`; // 'YYYY-MM-DD'
+  const thirdDayDateStr = `${yyyy}-${mm}-${dd}`; 
 
   if (forecast4daysData) {
     return forecast4daysData.list.filter(item => {
@@ -62,7 +62,6 @@ export const getThirdDayWeatherData = (forecast4daysData: HourlyForecast4days): 
       return itemDateStr === thirdDayDateStr;
     });
   }
-
   return [];
 };
 

@@ -395,7 +395,7 @@ export const getCurrentHourNum = () =>{
 }
 
 export const checkRain = (weatherData: CurrentWeatherData | TimestampForecast): boolean => {
-  if ('rain' in weatherData && weatherData.rain) { // Проверяем, что rain существует и не undefined
+  if ('rain' in weatherData && weatherData.rain) { 
     const rainAmount = weatherData.rain['3h'] || weatherData.rain['1h'];
     return rainAmount !== undefined && rainAmount <= 2.5;
   }

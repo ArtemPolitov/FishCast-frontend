@@ -20,25 +20,18 @@
       left:50%;
       transform: translate(-50%,-50%);
     }
-    /* Общая полоса прокрутки */
     &::-webkit-scrollbar {
-      width: 8px; /* ширина полосы прокрутки */
+      width: 8px;
     }
-  
-    /* "Дорожка" скроллбара */
     &::-webkit-scrollbar-track {
-      background: transparent; /* фон дорожки прозрачный */
+      background: transparent; 
     }
-  
-    /* "Бегунок" скроллбара */
     &::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.4); /* темный ползунок с прозрачностью */
-      border-radius: 4px; /* скругление углов */
+      background-color: rgba(0, 0, 0, 0.4); 
+      border-radius: 4px; 
     }
-  
-    /* Когда наводишь курсор на ползунок */
     &::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(0, 0, 0, 0.6); /* чуть темнее при наведении */
+      background-color: rgba(0, 0, 0, 0.6); 
     }
     &.dark{
       &::-webkit-scrollbar-thumb {
@@ -71,9 +64,12 @@
       .imgWrapper{
         width: 60px;
         height: 40px;
-        object-fit:cover;
+        display: flex;
+        align-items: center;
         .locationImg{
+
           border-radius: 5px;
+          object-fit:cover;
         }
       }
     }

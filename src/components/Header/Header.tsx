@@ -1,10 +1,7 @@
 "use client";
-
 import React from 'react'
 import s from './Header.module.css'
-import Link from 'next/link'
 import Image from "next/image";
-import Menu from './Menu/Menu';
 import Theme from './Theme/Theme';
 import Language from './Language/Language';
 import AuthorizationButton from './AuthorizationButton/AuthorizationButton';
@@ -13,11 +10,14 @@ import AuthorizationModal from './AuthorizationModal/AuthorizationModal';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import UserPanel from './UserPanel/UserPanel';
 
 export default function Header() {
   const [isMobileMenuOpen,setIsMobileMenuOpen] = useState(false);
   const [isAuthorizationModalOpen,setIsAuthorizationModalOpen] = useState(false);
+  const [isUserPanelOpen,setIsUserPanelOpen] = useState(false);
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
+  const isUserAuthorized = useSelector((state:RootState)=>state.user.isUserAuthorized);
 
   const burgerHandler = (e:React.MouseEvent<HTMLDivElement>) =>{
     e.stopPropagation();
@@ -25,7 +25,7 @@ export default function Header() {
   }
 
   const authorizationHandler = () =>{
-    setIsAuthorizationModalOpen(prev=>!prev);
+    !isUserAuthorized?setIsAuthorizationModalOpen(prev=>!prev):setIsUserPanelOpen(prev=>!prev);
   }
 
   return (
@@ -55,6 +55,7 @@ export default function Header() {
       </div>
       <MobileMenu isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen}/>
       <AuthorizationModal isAuthorizationModalOpen={isAuthorizationModalOpen} setIsAuthorizationModalOpen={setIsAuthorizationModalOpen}/>
+      <UserPanel isUserPanelOpen={isUserPanelOpen} setIsUserPanelOpen={setIsUserPanelOpen}/>
     </header>
   )
 }

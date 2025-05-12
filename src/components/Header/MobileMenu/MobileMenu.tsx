@@ -14,7 +14,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isMobileMenuOpen, setIsMobileMe
   const [modal, setModal] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    // Проверяем, что код выполняется в браузере
     if (typeof window !== 'undefined') {
       setModal(document.getElementById('modal-root'));
     }

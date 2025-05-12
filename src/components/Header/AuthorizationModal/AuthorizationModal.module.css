@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .overlay {
   position: fixed;
   inset: 0;
@@ -11,7 +10,6 @@
 .modal {
   position: absolute;
   width: 400px;
-  height: 335px;
   border-radius: 7px;
   background-color: white;
   top: 50%;
@@ -19,6 +17,10 @@
   transform: translate(-50%, -50%);
   z-index: 1010;
   padding: 10px;
+}
+.modal .successLabel {
+  font-weight: 600;
+  font-size: 17px;
 }
 .modal.dark {
   background-color: var(--background-dark);
@@ -54,10 +56,10 @@
   border: 1px solid black;
 }
 .modal input::-moz-placeholder {
-  color: grey; /* Цвет плейсхолдера */
+  color: grey;
 }
 .modal input::placeholder {
-  color: grey; /* Цвет плейсхолдера */
+  color: grey;
 }
 .modal .divInput {
   border: 2px solid rgba(245, 245, 220, 0);
@@ -82,6 +84,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  height: 315px;
   gap: 18px;
 }
 .modal .authModal .authForm {
@@ -96,6 +99,7 @@
   align-items: center;
   text-align: center;
   gap: 16px;
+  height: 443px;
 }
 .modal .regForm {
   display: flex;
@@ -131,15 +135,23 @@
 }
 
 .regNameErrorMessage {
-  top: 29%;
+  top: 21%;
 }
 
 .regEmailErrorMessage {
-  top: 46%;
+  top: 33.5%;
+}
+
+.regRegionSelectErrorMessage {
+  top: 47.5%;
+}
+
+.regCitySelectErrorMessage {
+  top: 61.5%;
 }
 
 .regPasswordErrorMessage {
-  top: 64%;
+  top: 74%;
 }
 
 .passwordInputWrapper {
@@ -156,6 +168,10 @@
 
 .setPasswordVisibility:hover {
   background-color: rgba(0, 0, 0, 0);
+}
+
+.defaultOption {
+  display: none;
 }
 
 @media (max-width: 640px) {

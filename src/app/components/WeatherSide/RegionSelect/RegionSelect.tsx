@@ -15,12 +15,10 @@ const RegionSelect = () => {
   const selectedRegionIdFromStore = useSelector((state:RootState)=>state.geoData.selectedRegionData?.id);
   const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
 
-  // Получаем данные выбранного региона
   const { data: selectedRegionData } = useGetRegionByIdQuery(selectedRegionId!, {
     skip: selectedRegionId === null,
   });
 
-  // Обновляем выбранный регион и сохраняем его в редаксе
   useEffect(() => {
     if (selectedRegionData) {
       dispatch(setSelectedRegionData(selectedRegionData));
@@ -31,8 +29,6 @@ const RegionSelect = () => {
   const handleRegionChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const id = +e.target.value;
     setSelectedRegionId(id);
-
-    // Если выбран город, сбрасываем его
     if (isCitySelected) {
       dispatch(setIsCitySelected(false));
       dispatch(setSelectedCityData(null));
@@ -49,7 +45,7 @@ const RegionSelect = () => {
         id="region-select"
       >
         <option value="" disabled className={s.defaultOption}>
-          {currentLanguage==='ru'?'Выберите область':'Виберіть область'}
+          {currentLanguage==='ru'?'Выберите область':'Оберіть область'}
         </option>
         {regions?.map((region) => (
           <option key={region.id} value={region.id}>

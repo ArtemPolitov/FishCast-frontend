@@ -8,6 +8,10 @@
 }
 
 .modal{
+  .successLabel{
+    font-weight: 600;
+    font-size: 17px;
+  }
   &.dark{
     background-color:var(--background-dark);
     input{
@@ -29,7 +33,6 @@
   }
   position: absolute;
   width: 400px;
-  height: 335px;
   border-radius: 7px;
   background-color: white;
   top: 50%;
@@ -54,7 +57,7 @@
     border: 1px solid black;
   }
   input::placeholder{
-    color: grey; /* Цвет плейсхолдера */
+    color: grey; 
     
   }
   .divInput{
@@ -81,6 +84,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: 315px;
     gap:18px;
     .authForm{
       display: flex;
@@ -96,6 +100,7 @@
     align-items: center;
     text-align: center;
     gap:16px;
+    height: 443px;
   }
   .regForm{
     display: flex;
@@ -132,15 +137,23 @@
 }
 
 .regNameErrorMessage{
-  top: 29%;
+  top: 21%;
 }
 
 .regEmailErrorMessage{
-  top:46%;
+  top:33.5%;
+}
+
+.regRegionSelectErrorMessage{
+  top:47.5%;
+}
+
+.regCitySelectErrorMessage{
+  top:61.5%;
 }
 
 .regPasswordErrorMessage{
-  top:64%;
+  top:74%;
 }
 
 .passwordInputWrapper{
@@ -157,6 +170,10 @@
 
 .setPasswordVisibility:hover{
   background-color: rgba(0, 0, 0, 0);
+}
+
+.defaultOption{
+  display: none;
 }
 
 @media (max-width:640px) {
@@ -195,17 +212,15 @@
     .regErrorMessage{
       left: 10%;
     }
-    
     .regNameErrorMessage{
       top: 28.5%;
     }
-    
     .regEmailErrorMessage{
       top:46.5%;
     }
-    
     .regPasswordErrorMessage{
       top:64.5%;
     }
   } 
 }
+

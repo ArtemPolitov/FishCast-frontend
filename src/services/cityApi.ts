@@ -17,15 +17,16 @@ export const cityApi = createApi({
     baseUrl:'http://localhost:5000/api/cities',
   }),
   endpoints:(builder)=>({
-        // Эндпоинт для получения всех городов
     getAllCities: builder.query<City[], void>({
-      query: () => '', // Пустая строка для запроса ко всем городам
+      query: () => '', 
     }),
-    
     getCityById: builder.query<City, number>({  
-      query: (id) => `${id}`,  
+      query: (id) => `/${id}`,  
     }),
+    getCitiesByRegionId: builder.query<City[],number>({
+      query: (id) => `/by-region/${id}`
+    })
   })
 }); 
 
-export const {useGetCityByIdQuery} = cityApi;
+export const {useGetCityByIdQuery,useGetAllCitiesQuery,useGetCitiesByRegionIdQuery} = cityApi;
