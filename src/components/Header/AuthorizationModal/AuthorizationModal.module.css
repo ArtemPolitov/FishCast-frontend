@@ -5,9 +5,14 @@
   width: 100%;
   height: 100%;
   z-index: 1000;
+  animation: fadeInUp 0.25s ease forwards;
+}
+.overlay.closing {
+  animation: fadeOutDown 0.25s ease forwards;
 }
 
 .modal {
+  animation: fadeInUp 0.25s ease forwards;
   position: absolute;
   width: 400px;
   border-radius: 7px;
@@ -17,6 +22,15 @@
   transform: translate(-50%, -50%);
   z-index: 1010;
   padding: 10px;
+}
+.modal .closeModal {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+}
+.modal.closing {
+  animation: fadeOutDown 0.25s ease forwards;
 }
 .modal .successLabel {
   font-weight: 600;
@@ -218,5 +232,21 @@
   }
   .modal .regPasswordErrorMessage {
     top: 64.5%;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }/*# sourceMappingURL=AuthorizationModal.module.css.map */

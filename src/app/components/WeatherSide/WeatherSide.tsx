@@ -6,6 +6,7 @@ import RegionSelect from './RegionSelect/RegionSelect'
 import CitySelect from './CitySelect/CitySelect'
 import type { RootState } from '../../../store/store';
 import WeatherContent from './WeatherContent/WeatherContent'
+import { motion } from 'framer-motion'; 
 
 
 export default function WeatherSide() {
@@ -14,16 +15,24 @@ export default function WeatherSide() {
   const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
 
   return (
-    <div className={s.weatherSide}>
-      <div className={s.selects}>
-        <RegionSelect/>
-        <CitySelect selectedRegionId={selectedRegionId}/>
-      </div>
-        {!isCitySelected ? (
-          <p className={s.chooseCityLabel}>{currentLanguage==='ru'?'Укажите Ваше местоположение':'Вкажіть Ваше місцезнаходження'}</p>
-        ) : (
-          <WeatherContent/>
-        )}
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className={s.weatherSide}
+    >
+      
+        <div className={s.selects}>
+          <RegionSelect/>
+          <CitySelect selectedRegionId={selectedRegionId}/>
+        </div>
+          {!isCitySelected ? (
+            <p className={s.chooseCityLabel}>{currentLanguage==='ru'?'Укажите Ваше местоположение':'Вкажіть Ваше  місцезнаходження'}</p>
+          ) : (
+            <WeatherContent/>
+          )}
+     
+    </motion.div>
   )
 }

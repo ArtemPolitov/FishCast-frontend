@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { Dispatch, SetStateAction } from "react";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import s from './AuthorizationModal.module.css'
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ import { RegisterData,LoginData } from '@/services/userApi';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { setIsUserAuthorized } from '@/store/userSlice';
 import { skipToken } from '@reduxjs/toolkit/query';
-import { setIsUserCitySelectionPermitted } from '@/store/citySelectionSlice';
+
 
 interface AuthorizationModal{
   isAuthorizationModalOpen:boolean,
@@ -51,6 +51,8 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
 
   const modal = document.getElementById('modal-root');
 
+  const [isModalClosing,setIsModalClosing] = useState(false);
+
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
   const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
 
@@ -79,27 +81,50 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
   }
 
   const closeModal = () =>{
-    setModalType('auth');
-    setIsAuthorizationModalOpen(false);
-    setAuthEmailInputData('');
-    setAuthEmailInputError('');
-    setAuthPasswordInputData('');
-    setAuthPasswordInputError('');
-    setRegNameInputData('');
-    setRegNameInputError('');
-    setRegEmailInputData('');
-    setRegEmailInputError('');
-    setRegPasswordInputData('');
-    setRegPasswordInputError('');
-    setIsAuthPasswordVisible(false);
-    setIsRegPasswordVisible(false);
-    setSelectedCityId(null);
-    setSelectedRegionId(null);
-    setIsAuthModalIsOpenFromReg(false);
-    setLoginErrorText(null);
-    setSelectedRegionIdError('');
-    setSelectedCityIdError('');
+    setIsModalClosing(true);
   }
+
+  useEffect(()=>{
+    if(isModalClosing===true){
+      const timeout = setTimeout(()=>{
+        setIsModalClosing(false);
+        setIsAuthorizationModalOpen(false);
+        setModalType('auth');
+        setAuthEmailInputData('');
+        setAuthEmailInputError('');
+        setAuthPasswordInputData('');
+        setAuthPasswordInputError('');
+        setRegNameInputData('');
+        setRegNameInputError('');
+        setRegEmailInputData('');
+        setRegEmailInputError('');
+        setRegPasswordInputData('');
+        setRegPasswordInputError('');
+        setIsAuthPasswordVisible(false);
+        setIsRegPasswordVisible(false);
+        setSelectedCityId(null);
+        setSelectedRegionId(null);
+        setIsAuthModalIsOpenFromReg(false);
+        setLoginErrorText(null);
+        setSelectedRegionIdError('');
+        setSelectedCityIdError('');
+      },250);
+      return()=>clearTimeout(timeout);
+    };
+  },[isModalClosing]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeModal(); 
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const nameValidation = (name: string): boolean => {
     const nameRegex = /^[A-Za-zА-Яа-яЁёІіЇїЄєҐґ0-9\s]{2,}$/;
@@ -160,7 +185,6 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
         const { token } = await login(loginData).unwrap();
         localStorage.setItem('token', token);
         dispatch(setIsUserAuthorized());
-        dispatch(setIsUserCitySelectionPermitted(true));
         closeModal();
       } catch (err) {
         if (isFetchBaseQueryError(err)) {
@@ -306,8 +330,9 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
   if(modal&&isAuthorizationModalOpen){
     return(
       createPortal(
-        <div className={s.overlay} onClick={closeModal}>
-          <div className={`${s.modal} ${currentTheme==='dark'?s.dark:''}`} onClick={(e)=>e.stopPropagation()}>
+        <div className={`${s.overlay} ${isModalClosing===true?s.closing:''}`} onClick={closeModal}>
+          <div className={`${s.modal} ${currentTheme==='dark'?s.dark:''} ${isModalClosing===true?s.closing:''}`} onClick={(e)=>e.stopPropagation()}>
+            <div className={s.closeModal} onClick={closeModal}><Image src={`/images/close_icon${currentTheme==='dark'?'_dark':''}.png`} alt='close-icon' height={27} width={27}/></div>
             {modalType==='auth'&&<div className={s.authModal}>
               <h2 className={s.modalTitle}>{currentLanguage==='ru'?'Вход':'Вхід'}</h2>
               {

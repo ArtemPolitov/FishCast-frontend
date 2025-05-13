@@ -11,6 +11,8 @@ import { skipToken } from '@reduxjs/toolkit/query'
 import FishBite from './FishBite/FishBite'
 import PeriodBite from './PeriodBite/PeriodBite'
 import { getFourNextDaysRu,getFourNextDaysUa } from '../WeatherSide/WeatherContent/WeatherContent'
+import { motion } from 'framer-motion'; 
+
 
 export default function FishSide() {
   const [bitePeriod,setBitePeriod] = useState('24h');
@@ -49,35 +51,43 @@ export default function FishSide() {
   }
 
   return (
-    <div className={s.fishSide}>
-      <div className={s.sidebar}>
-        <FishSelect/>
-      </div>
-        {!isCitySelected&&!isFishSelected&&<p className={s.chooseLabel}>{currentLanguage==='ru'?'Выберите населеный пункт':'Виберіть населений пункт'}</p>}
-        {isCitySelected&&!isFishSelected&&<p className={s.chooseLabel}>{currentLanguage==='ru'?'Выберите рыбу':'Оберіть рибу'}</p>}
-        {!isCitySelected&&isFishSelected&&<p className={s.chooseLabel}>{currentLanguage==='ru'?'Выберите населеный пункт':'Виберіть населений пункт'}</p>}
-        {selectedFishData&&isCitySelected&&isFishSelected&&
-          <div className={`${s.content} ${currentTheme==='dark'?s.dark:''}`}>
-            <div className={s.fishInfo}>
-              <Image src={selectedFishData?.image_url} alt='fish img' width={200} height={200} className={s.fishImg}/>
-              <p className={s.fishDescr}>{currentLanguage==='ru'?selectedFishData.description.ru:selectedFishData.description.ua}</p>
-            </div>
-            <div className={s.currentBite}>
-                  <p className={s.biteLabel}>{currentLanguage==='ru'?'Текущий клев:':'Поточний кльов:'}</p>
-                  {currentWeatherData&&<FishBite weatherData={currentWeatherData} fishGroup={selectedFishData.group} size='normalSize'/>}
-            </div>
-            <div className={s.periodBiteBlock}>
-              <div className={s.periodBiteButtons}>
-                <button className={`${s.periodBiteButton} ${bitePeriod==='24h'?s.activeButton:''}`} onClick={dayBiteHandler}>24 ч</button>
-                <button className={`${s.periodBiteButton} ${bitePeriod==='secondDay'?s.activeButton:''}`} onClick={secondDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[0]:fourNextDaysUa[0]}</button>
-                <button className={`${s.periodBiteButton} ${bitePeriod==='thirdDay'?s.activeButton:''}`} onClick={thirdDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[1]:fourNextDaysUa[1]}</ button>
-                <button className={`${s.periodBiteButton} ${bitePeriod==='fourthDay'?s.activeButton:''}`} onClick={fourthDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[2]:fourNextDaysUa[2]} </button>
-                <button className={`${s.periodBiteButton} ${bitePeriod==='fifthDay'?s.activeButton:''}`} onClick={fifthDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[3]:fourNextDaysUa[3]}</ button>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className={s.fishSide}
+    >
+      
+        <div className={s.sidebar}>
+          <FishSelect/>
+        </div>
+          {!isCitySelected&&!isFishSelected&&<p className={s.chooseLabel}>{currentLanguage==='ru'?'Выберите населеный   пункт':'Виберіть населений пункт'}</p>}
+          {isCitySelected&&!isFishSelected&&<p className={s.chooseLabel}>{currentLanguage==='ru'?'Выберите рыбу':'Оберіть   рибу'}</p>}
+          {!isCitySelected&&isFishSelected&&<p className={s.chooseLabel}>{currentLanguage==='ru'?'Выберите населеный  пункт':'Виберіть населений пункт'}</p>}
+          {selectedFishData&&isCitySelected&&isFishSelected&&
+            <div className={`${s.content} ${currentTheme==='dark'?s.dark:''}`}>
+              <div className={s.fishInfo}>
+                <Image src={selectedFishData?.image_url} alt='fish img' width={200} height={200} className={s.fishImg}/>
+                <p className={s.fishDescr}>{currentLanguage==='ru'?selectedFishData.description.ru:selectedFishData.  description.ua}</p>
               </div>
-              <PeriodBite bitePeriod={bitePeriod}/>
+              <div className={s.currentBite}>
+                    <p className={s.biteLabel}>{currentLanguage==='ru'?'Текущий клев:':'Поточний кльов:'}</p>
+                    {currentWeatherData&&<FishBite weatherData={currentWeatherData} fishGroup={selectedFishData.group}  size='normalSize'/>}
+              </div>
+              <div className={s.periodBiteBlock}>
+                <div className={s.periodBiteButtons}>
+                  <button className={`${s.periodBiteButton} ${bitePeriod==='24h'?s.activeButton:''}`} onClick={dayBiteHandler}  >24 ч</button>
+                  <button className={`${s.periodBiteButton} ${bitePeriod==='secondDay'?s.activeButton:''}`} onClick=  {secondDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[0]:fourNextDaysUa[0]}</button>
+                  <button className={`${s.periodBiteButton} ${bitePeriod==='thirdDay'?s.activeButton:''}`} onClick= {thirdDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[1]:fourNextDaysUa[1]}</ button>
+                  <button className={`${s.periodBiteButton} ${bitePeriod==='fourthDay'?s.activeButton:''}`} onClick=  {fourthDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[2]:fourNextDaysUa[2]} </button>
+                  <button className={`${s.periodBiteButton} ${bitePeriod==='fifthDay'?s.activeButton:''}`} onClick= {fifthDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[3]:fourNextDaysUa[3]}</ button>
+                </div>
+                <PeriodBite bitePeriod={bitePeriod}/>
+              </div>
             </div>
-          </div>
-        }
-    </div>
+          }
+      
+    </motion.div>
   )
 }

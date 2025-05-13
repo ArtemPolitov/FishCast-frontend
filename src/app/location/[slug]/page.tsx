@@ -21,6 +21,7 @@ import { RootState } from '@/store/store';
 import { useGetUserDataQuery } from '@/services/userApi';
 import { useState, useEffect } from 'react';
 import { useAddLocationToFavoritesMutation, useRemoveLocationFromFavoritesMutation } from '@/services/userApi';
+import { motion } from 'framer-motion'; 
 
 interface LocationPageProps {
   params: {
@@ -110,7 +111,13 @@ export default function LocationPage({ params }: LocationPageProps) {
   }
 
   return (
-    <div className={`${s.locationPage} ${currentTheme === 'dark' ? s.dark : ''}`}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className={`${s.locationPage} ${currentTheme === 'dark' ? s.dark : ''}`}
+    >
       <div className={s.locationInfo}>
         <div className={s.locationInfoContent}>
           <Link href='/' className={s.backButton}>
@@ -170,6 +177,6 @@ export default function LocationPage({ params }: LocationPageProps) {
             })}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

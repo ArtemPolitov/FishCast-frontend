@@ -17,7 +17,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import { useRemoveLocationFromFavoritesMutation } from '@/services/userApi';
 import { userLogout } from '@/store/userSlice';
-import { setIsUserCitySelectionPermitted } from '@/store/citySelectionSlice';
+import { useEffect,useState } from 'react';
 
 interface UserPanelProps {
   isUserPanelOpen:boolean,
@@ -47,9 +47,48 @@ interface UserPanelProps {
     userCityId??skipToken
   )
 
+  const [isUserPanelClosing,setIsUserPanelClosing] = useState(false);
+  const [settingOverlayPermitted,setSettingOverlayPermitted] = useState(false);
+
+  useEffect(()=>{
+    if(isUserPanelOpen){
+      const timer = setTimeout(()=>{
+        setSettingOverlayPermitted(true);
+      },200);
+      setSettingOverlayPermitted(false);
+      return()=>clearTimeout(timer);
+    };
+
+  },[isUserPanelOpen])
+
+  useEffect(()=>{
+    if(isUserPanelClosing){
+      const timer = setTimeout(()=>{
+        setIsUserPanelClosing(false);
+        setIsUserPanelOpen(false);
+      },300);
+
+      return()=>clearTimeout(timer);
+    }
+  },[isUserPanelClosing])
+
   const userPanelClose = () =>{
-    setIsUserPanelOpen(false);
+    setIsUserPanelClosing(true)
+    //setIsUserPanelOpen(false);
   }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        userPanelClose(); 
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const logoutButtonHandler = () => {
     localStorage.removeItem('token');
@@ -79,8 +118,8 @@ interface UserPanelProps {
   if(modal&&isUserPanelOpen){
     return (
       createPortal(
-        <div className={s.overlay} onClick={userPanelClose}>
-          <div className={`${s.userPanel} ${currentTheme==='dark'?s.dark:''}`} onClick={(e)=>e.stopPropagation()}>
+        <div className={`${s.overlay} ${settingOverlayPermitted?s.enter:''} ${isUserPanelClosing?s.exit:''}`} onClick={userPanelClose}>
+          <div className={`${s.userPanel} ${currentTheme==='dark'?s.dark:''} ${s.enter} ${isUserPanelClosing?s.exit:''}`} onClick={(e)=>e.stopPropagation()}>
             <Image src={`/images/close_icon${currentTheme==='dark'?'_dark':''}.png`} alt='close-icon' width={30} height={30} className={s.closeIcon} onClick={userPanelClose}/> 
             <div className={s.userInfo}>
               <div className={s.item} style={{gap:'4px'}}>

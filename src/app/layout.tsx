@@ -1,5 +1,4 @@
 import { Nunito } from 'next/font/google';
-import { ToastContainer } from 'react-toastify';
 import '../styles/reset.css';
 import '../styles/globals.css';
 import StoreProvider from '../providers/StoreProvider';
@@ -7,32 +6,33 @@ import Header from '@/components/Header/Header';
 import TopSidebar from '@/components/TopSidebar/TopSidebar';
 import BottomSidebar from '@/components/BottomSidebar/BottomSidebar';
 import StoreInitializer from '@/components/StoreInitializer/StoreInitializer';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 const nunito = Nunito({
-  subsets: ['latin', 'cyrillic'], 
+  subsets: ['latin', 'cyrillic'],
   weight: ['300', '400', '500', '700'],
-  variable: '--font-nunito', 
+  variable: '--font-nunito',
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning className={nunito.variable}>
-        <ToastContainer position="top-center" autoClose={3000} />
         <div id="modal-root"></div>
-        <div className='wrapper'>
-          <StoreProvider>
-            <StoreInitializer/>
-            <Header/>
-            <div className='content'>
-              <div className='sidebars'>
-                <TopSidebar/>
-                <BottomSidebar/>
+        <div className="fade-in">
+          <div className='wrapper'>
+            <StoreProvider>
+              <StoreInitializer />
+              <Header />
+              <div className="content">
+                <div className="sidebars">
+                  <TopSidebar />
+                  <BottomSidebar />
+                </div>
+                {children}
               </div>
-              {children}
-            </div>
-          </StoreProvider>
+            </StoreProvider>
+          </div>
         </div>
       </body>
     </html>
