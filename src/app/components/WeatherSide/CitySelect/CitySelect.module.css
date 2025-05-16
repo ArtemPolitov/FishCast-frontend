@@ -1,3 +1,9 @@
 .defaultOption {
   display: none;
+}
+
+@media (max-width: 850px) {
+  .select {
+    width: 185px;
+  }
 }/*# sourceMappingURL=CitySelect.module.css.map */

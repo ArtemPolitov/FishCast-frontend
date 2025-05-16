@@ -140,6 +140,49 @@
   border-color: white;
 }
 
+@media (max-width: 850px) {
+  .userPanel {
+    width: 290px;
+  }
+  .userPanel .closeIcon {
+    width: 22px;
+    height: 22px;
+  }
+  .userPanel .logoutButton {
+    width: 70px;
+    background-color: #cb0000;
+    color: white;
+    font-weight: 600;
+    padding: 4px 0px;
+    font-size: 15px;
+  }
+  .userPanel .userInfo .item p {
+    font-size: 15px;
+  }
+  .userPanel .itemIcon {
+    width: 19px;
+    height: 19px;
+  }
+  .userPanel .closeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  .userPanel .favoriteLocations .favoriteLocationsTitle {
+    font-size: 15px;
+  }
+  .userPanel .favoriteLocations .locationRow .deleteIcon {
+    width: 19px;
+    height: 19px;
+  }
+  .userPanel .favoriteLocations .locationRow .locationCard {
+    width: 241px;
+  }
+  .userPanel .favoriteLocations .locationRow .locationCard .imageAndText .locationInfo {
+    font-size: 15px;
+  }
+}
 @keyframes slideIn {
   from {
     right: -430px;

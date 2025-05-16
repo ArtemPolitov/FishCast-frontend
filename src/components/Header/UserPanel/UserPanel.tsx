@@ -130,7 +130,7 @@ interface UserPanelProps {
                 <p>{userData?.email}</p>
               </div>
               {userRegionId&&userCityId&&
-                <div style={{display:'flex',alignItems:'center', gap:'5px'}}>
+                <div style={{display:'flex',alignItems:'center', gap:'5px'}} className={s.item}>
                   <Image src={`/images/position_icon${currentTheme==='dark'?'_dark':''}.png`} alt='user-icon' height={40} width={40} className={s.itemIcon}/>
                   <p> {currentLanguage==='ru'?`${cityData?.name}, ${regionData?.name}`:`${cityData?.name_uk}, ${regionData?.name_uk}`}</p>
                 </div>

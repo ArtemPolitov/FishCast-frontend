@@ -54,9 +54,9 @@
         border-radius: 7px;
         gap:5px;
         top:10px;
-        left: 10px;
+        left: 15px;
         padding: 5px;
-        min-width: 150px;
+        width: 50px;
         p{
           font-size: 18px;
         }
@@ -124,11 +124,13 @@
     h3{
       text-align: center;
     }
-    min-width: 290px;
+    width: auto;
     .fishCards{
       overflow-y: auto;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
+      width: 270px;
       &::-webkit-scrollbar {
         width: 8px; 
       }
@@ -155,6 +157,107 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:1160px) {
+  .locationPage{
+    .locationInfo{
+      .locationInfoContent{
+        &::-webkit-scrollbar {
+          width: 6px; 
+        }
+        .favorite{
+          top:6px;
+          width: 32px;
+        }
+        .backButton{
+          width: 40px;
+          .backButtonImg{
+            width: 20px;
+            height: 20px;
+          }
+        }
+        .locationText{
+          .locationTitle{
+            font-size: 16px;
+          }
+          .locationDescr{
+            font-size: 15px;
+          }
+        }
+        .imgWrapper{
+          height: 200px;
+          width: 350px;
+          .locationImg{
+
+          }
+        }
+      }
+    }
+    .fishBite{
+      .fishCards{
+        width: 220px;
+        .fishCard{
+          .fishImgWrapper{
+            width: 75px;
+            height: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:850px) {
+  .locationPage{
+    height: 500px;
+    gap:5px;
+    .locationInfo{
+      .locationInfoContent{
+        .favorite{
+          top:9px;
+          right: 5px;
+          width: 23px;
+        }
+        .backButton{
+          left: 5px;
+          width: 25px;
+          height: 25px;
+          .backButtonImg{
+            width: 18px;
+            height: 18px;
+          }
+        }
+        .imgWrapper{
+          height: 140px;
+          width: 145px;
+          .locationImg{
+
+          }
+        }
+      }
+    }
+    .fishBite{
+      .fishBiteTitle{
+        font-size: 16px;
+        max-width: 130px;
+        text-align: center;
+      }
+      .fishCards{
+        width: 105px;
+        &::-webkit-scrollbar {
+          width: 6px; 
+        }
+        .fishCard{
+          flex-direction: column;
+          .fishImgWrapper{
+            width: 65px;
+            height: 39px;
           }
         }
       }

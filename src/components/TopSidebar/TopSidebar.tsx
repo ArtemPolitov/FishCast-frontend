@@ -61,7 +61,7 @@ export default function TopSidebar() {
 
   return (
     <div className={s.topSidebar}>
-      <h2 className={s.topSidebarTitle}>{currentLanguage==='ru'?'Лучший клев в окрестностях':'Найкращий кльов поблизу'}</h2>
+      <h2 className={s.topSidebarTitle}>{currentLanguage==='ru'?'Лучший клев поблизости':'Кращий кльов поблизу'}</h2>
       <div className={s.fishCards}>
         {
           currentWeatherDataIsLoading&&

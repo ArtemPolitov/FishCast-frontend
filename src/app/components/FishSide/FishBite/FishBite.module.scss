@@ -14,3 +14,29 @@
     height: 11px;
   }
 }
+
+@media (max-width:1340px) {
+  .fishBite{
+    display: flex;
+    gap:1px;
+
+    .normalSize{
+      width: 19px;
+      height: 11px;
+    }
+    .smallSize{
+      width: 17px;
+      height: 10px;
+    }
+
+  }
+}
+
+@media (max-width:1340px) {
+  .fishBite{
+    .smallSize{
+      width: 16px;
+      height: 9px;
+    }
+  }
+}

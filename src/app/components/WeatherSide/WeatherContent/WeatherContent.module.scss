@@ -7,7 +7,7 @@
   .currentWeather{
     display: flex;
     position: relative;
-    min-height: 210px;
+    height: 210px;
     .currentWeatherLoading{
       position: absolute;
       top:50%;
@@ -71,35 +71,279 @@
     padding-top: 5px;
     &.dark{
       border-color: white;
+      .periodWeatherButtons{
+        .periodWeatherButton:hover{
+          border-color: white;
+        }
+        .activeButton{
+          border-color: white;
+        }
+      }
+    }
+    .periodWeatherButtons{
+      display: flex;
+      justify-content: center;
+      gap:20px;
+      padding-bottom: 0px;
+      .periodWeatherButton{
+        padding: 2px;
+        background:none;
+        border-radius: 0;
+        width: 61px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0);
+        line-height: 1.3;
+      }
       .periodWeatherButton:hover{
-        border-color: white;
+        border-bottom: 1px solid black;
       }
       .activeButton{
-        border-color: white;
+        border-bottom: 1px solid black;
+      }    
+    }
+  }
+}
+
+@media (max-width:1340px) {
+  .weatherContent{
+    .currentWeather{
+      height:175px;
+      .currentWeatherContent{
+        gap:40px;
+        .leftColumn{
+
+          .iconTempRow{
+            margin-left: 11px;
+            display: flex;
+            align-items: center;
+            gap:7px;
+            .currentWeatherImg{
+              width: 60px;
+              height: 60px;
+            }
+            .currentTemperature{
+              font-weight: 600;
+              font-size: 31px;
+            }
+          }
+          .dateTime{
+            font-weight: 600;
+            font-size: 18px;
+          }
+        };
+        .rightColumn{
+          gap:7px;
+          .rightColumnItem{
+            .rightColumnIcon{
+              width: 25px;
+              height: 25px;
+            }
+          }
+        }  
+      }
+    }
+    .periodWeatherBlock{
+      padding-top: 5px;
+      .periodWeatherButtons{
+        gap:12px;
+        .periodWeatherButton{
+          width: 55px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:1280px) {
+  .weatherContent {
+    padding: 0px;
+    gap: 0;
+
+    .currentWeather {
+      height: auto;
+
+      .currentWeatherContent {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        .leftColumn {
+          .dateTime {
+            font-size: 17px;
+            text-align: center;
+          }
+
+          .iconTempRow {
+            margin-left: 30px;
+
+            .currentTemperature {
+              font-weight: 600;
+              font-size: 30px;
+            }
+          }
+        }
+
+        .rightColumn {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          .rightColumnItem {
+            display: flex;
+            gap: 5px;
+
+            .rightColumnIcon {
+              height: 25px;
+              width: 25px;
+            }
+          }
+        }
+      }
+    }
+    .periodWeatherBlock {
+      .periodWeatherButtons{
+        gap:5px;
+        .periodWeatherButton{
+          width: 48px;
+          font-size: 15px;
+        }
+      }
+      .periodWeatherContent {
+        overflow-x: hidden;
+        margin-top: 10px;
+        overflow-y: auto;
+        max-height: 250px;
+
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(0, 0, 0, 0.4);
+          border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        &.dark {
+          &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.551);
+          }
+
+          &::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(255, 255, 255, 0.69);
+          }
+
+          .locationCardActive {
+            border: 1px solid rgb(255, 255, 255);
+          }
+
+          .locationCard:hover {
+            border-color: rgb(255, 255, 255);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+@media (max-width:850px) {
+  .weatherContent{
+    .currentWeather{
+      .currentWeatherContent{
+        gap:7px;
+        .leftColumn{
+          .dateTime{
+            font-size: 16px;
+          }
+          .iconTempRow{
+            margin-left: 22px;
+            .currentTemperature{
+              font-size: 25px;
+            }
+          }
+        }
+        .rightColumn{
+          display: flex;
+          flex-direction: column;
+          gap:5px;
+          .rightColumnItem{
+            display: flex;
+            gap:5px;
+            p{
+              font-size: 15px;
+            }
+            .rightColumnIcon{
+              height: 20px;
+              width: 20px;
+            }
+          }
+        }
       }
     }
   }
   .periodWeatherButtons{
     display: flex;
-    justify-content: center;
-    gap:20px;
-  
+    gap: 5px;
+    padding-left: 80px;
+    max-width: 190px;
+    height: 35px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    margin: 0 auto;
     .periodWeatherButton{
-      padding: 2px;
-      background:none;
-      border-radius: 0;
-      width: 61px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0);
-      line-height: 1.3;
+      height: 25px;
     }
-    .periodWeatherButton:hover{
-      border-bottom: 1px solid black;
+    &::-webkit-scrollbar {
+      height: 5px; 
     }
+    &::-webkit-scrollbar-track {
+      background: transparent; 
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.4); 
+      border-radius: 4px; 
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.6); 
+    }
+    &.dark{
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.551); 
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 255, 255, 0.69);
+      }
+    }
+    .periodWeatherButton{
+      width: 48px;
+      font-size:15px;
+      flex-shrink: 0; 
+      &:hover{
+        border-bottom: 1px solid black;
+      }
+    }
+
+    .darkButton {
+      &:hover {
+        border-bottom: 1px solid white;
+      }
+    }
+
     .activeButton{
       border-bottom: 1px solid black;
+
     }    
   }
 }
-
 
 

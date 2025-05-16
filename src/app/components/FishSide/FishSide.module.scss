@@ -63,6 +63,9 @@
       gap:10px;
       border-bottom: 1px solid black;
       padding-bottom: 25px;
+      .biteLabelMobile{
+        display: none;
+      }
       .biteLabel{
         font-weight: 600;
         line-height: 1;
@@ -93,6 +96,149 @@
           border-bottom: 1px solid rgb(0, 0, 0);
         }
       }
+    }
+  }
+}
+
+@media (max-width:1340px) {
+  .fishSide{
+    width: 420px;
+    .content{
+      padding: 10px 0px;
+      .fishInfo{
+        height: auto;
+        .fishImg{
+          width: 190px;
+        }
+        .fishDescr{
+          font-size: 16px;
+          text-align: center;
+          line-height: 1.3;
+        }
+      }
+      .periodBiteBlock{
+        gap:17px;
+        .periodBiteButtons{
+          display: flex;
+          gap:5px;
+        }
+      }
+      .currentBite{
+        padding-bottom: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width:1280px) {
+  .fishSide{
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 220px;
+    .content{
+      .fishInfo{
+        gap:5px;
+        height: 322px;
+        .fishImg{
+          width: 140px;
+        }
+        .fishDescr{
+          font-size: 15px;
+          line-height: 1.2;
+        }
+      }
+      .periodBiteBlock{
+        gap:10px;
+        .periodBiteButtons{
+          display: flex;
+          flex-direction: row;
+          gap: 5px;
+          .periodBiteButton{
+            width: 48px;
+            font-size:15px;
+            flex-shrink: 0; 
+          }
+        }
+      }
+      .currentBite{
+        padding-bottom: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width:945px) {
+  .fishSide{
+    .content{
+      .fishInfo{
+        height: auto;
+        .fishImg{
+          width: 110px;
+        }
+        .fishDescr{
+          display: none;
+        }
+      }
+      .currentBite{
+        flex-direction: column;
+        .biteLabel{
+          display: none;
+        }
+        .biteLabelMobile{
+          display: block;
+          font-weight: 600;
+          font-size: 17px;
+        }
+      }
+      .periodBiteBlock{
+        gap:10px;
+        .periodBiteButtons{
+          display: flex;
+          flex-direction: row;
+          gap: 5px;
+          overflow-x: auto;
+          overflow-y: hidden;
+          min-height: 35px;
+          max-width: 100px;
+          scroll-behavior: smooth; 
+          padding-bottom: 5px;
+          &::-webkit-scrollbar {
+             height: 5px; 
+          }
+          &::-webkit-scrollbar-track {
+            background: transparent; 
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.4); 
+            border-radius: 4px; 
+          }
+          &::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0.6); 
+          }
+          &.dark{
+            &::-webkit-scrollbar-thumb {
+              background-color: rgba(255, 255, 255, 0.551); 
+            }
+            &::-webkit-scrollbar-thumb:hover {
+              background-color: rgba(255, 255, 255, 0.69);
+            }
+          }
+          .periodBiteButton{
+            width: 48px;
+            font-size:15px;
+            flex-shrink: 0; 
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:850px) {
+  .fishSide{
+    width: 136px;
+    .chooseLabel{
+      font-size: 15px;
     }
   }
 }

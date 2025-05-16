@@ -122,11 +122,10 @@ export default function LocationPage({ params }: LocationPageProps) {
         <div className={s.locationInfoContent}>
           <Link href='/' className={s.backButton}>
             {currentTheme === 'light' ? (
-              <Image src='/images/arrow_back_icon.png' alt='back img' height={25} width={25} />
+              <Image src='/images/arrow_back_icon.png' alt='back img' height={25} width={25} className={s.backButtonImg}/>
             ) : (
-              <Image src='/images/arrow_back_icon_dark.png' alt='back img' height={25} width={25} />
+              <Image src='/images/arrow_back_icon_dark.png' alt='back img' height={25} width={25} className={s.backButtonImg}/>
             )}
-            <p>{currentLanguage === 'ru' ? 'На главную' : 'На головну'}</p>
           </Link>
           {isUserAuthorized && (
             <div className={s.favorite} onClick={favoriteHandler}>
@@ -151,7 +150,7 @@ export default function LocationPage({ params }: LocationPageProps) {
             <Image src={locationData.image_url} alt='location img' height={350} width={350} className={s.locationImg} />
           </div>
           <div className={s.locationText}>
-            <h3>{currentLanguage === 'ru' ? locationData.name.ru : locationData.name.ua}</h3>
+            <h3 className={s.locationTitle}>{currentLanguage === 'ru' ? locationData.name.ru : locationData.name.ua}</h3>
             <p className={s.locationDescr}>{currentLanguage === 'ru' ? locationData.description.ru : locationData.description.ua}</p>
           </div>
           <div className={s.map}>
@@ -161,7 +160,7 @@ export default function LocationPage({ params }: LocationPageProps) {
         <div className={s.emptyBlock}></div>
       </div>
       <div className={s.fishBite}>
-        <h3>{currentLanguage === 'ru' ? 'Клев на локации' : 'Кльов на локації'}</h3>
+        <h3 className={s.fishBiteTitle}>{currentLanguage === 'ru' ? 'Клев на локации' : 'Кльов на локації'}</h3>
         <div className={s.fishCards}>
           {allFishesData &&
             currentWeatherData &&

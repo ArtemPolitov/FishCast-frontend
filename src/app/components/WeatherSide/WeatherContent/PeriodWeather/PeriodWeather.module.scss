@@ -1,17 +1,33 @@
 .periodWeather{
   position: relative;
-  max-width: 400px;
-  min-height: 236px;
+  max-width: 420px;
+  height: 260px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
   padding-top: 15px;
   row-gap: 30px;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
   .loadingLabel{
     position: absolute;
     top:45%;
     left: 50%;
     transform: translate(-50%,-50%);
+  }
+}
+
+@media (max-width:1340px) {
+  .periodWeather{
+    width: 405px;
+    row-gap: 5px;
+  }
+}
+
+@media (max-width:1280px) {
+  .periodWeather{
+    padding-top: 0px;
+    width: 151px;
+    row-gap: 5px;
+    height: 235px;
   }
 }

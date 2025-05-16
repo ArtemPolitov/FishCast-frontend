@@ -31,12 +31,14 @@ const AuthorizationButton: React.FC<AuthorizationButtonProps> = ({ onClick }) =>
   const { data: userRegionData } = useGetRegionByIdQuery(userData?.regionId ?? skipToken);
 
   useEffect(() => {
-    dispatch(setIsCitySelected(true));
-    userCityData&&dispatch(setSelectedCityData(userCityData));
-    localStorage.setItem('selectedCityData', JSON.stringify(userCityData));
-    userRegionData&&dispatch(setSelectedRegionData(userRegionData));
-    localStorage.setItem('selectedRegionData', JSON.stringify(userRegionData));
-    dispatch(setIsUserCitySelectionPermitted(false));
+    if(isUserAuthorized){
+      dispatch(setIsCitySelected(true));
+      userCityData&&dispatch(setSelectedCityData(userCityData));
+      localStorage.setItem('selectedCityData', JSON.stringify(userCityData));
+      userRegionData&&dispatch(setSelectedRegionData(userRegionData));
+      localStorage.setItem('selectedRegionData', JSON.stringify(userRegionData));
+      dispatch(setIsUserCitySelectionPermitted(false));
+    }
     
   }, [
     userCityData,

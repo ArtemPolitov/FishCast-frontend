@@ -73,15 +73,16 @@ export default function FishSide() {
               </div>
               <div className={s.currentBite}>
                     <p className={s.biteLabel}>{currentLanguage==='ru'?'Текущий клев:':'Поточний кльов:'}</p>
+                    <p className={s.biteLabelMobile}>{currentLanguage==='ru'?'Клев':'Кльов'}</p>
                     {currentWeatherData&&<FishBite weatherData={currentWeatherData} fishGroup={selectedFishData.group}  size='normalSize'/>}
               </div>
               <div className={s.periodBiteBlock}>
-                <div className={s.periodBiteButtons}>
-                  <button className={`${s.periodBiteButton} ${bitePeriod==='24h'?s.activeButton:''}`} onClick={dayBiteHandler}  >24 ч</button>
+                <div className={`${s.periodBiteButtons} ${currentTheme==='dark'?s.dark:''}`}>
+                  <button className={`${s.periodBiteButton} ${bitePeriod==='24h'?s.activeButton:''}`} onClick={dayBiteHandler}>24 ч</button>
                   <button className={`${s.periodBiteButton} ${bitePeriod==='secondDay'?s.activeButton:''}`} onClick=  {secondDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[0]:fourNextDaysUa[0]}</button>
-                  <button className={`${s.periodBiteButton} ${bitePeriod==='thirdDay'?s.activeButton:''}`} onClick= {thirdDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[1]:fourNextDaysUa[1]}</ button>
+                  <button className={`${s.periodBiteButton} ${bitePeriod==='thirdDay'?s.activeButton:''}`} onClick= {thirdDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[1]:fourNextDaysUa[1]}</button>
                   <button className={`${s.periodBiteButton} ${bitePeriod==='fourthDay'?s.activeButton:''}`} onClick=  {fourthDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[2]:fourNextDaysUa[2]} </button>
-                  <button className={`${s.periodBiteButton} ${bitePeriod==='fifthDay'?s.activeButton:''}`} onClick= {fifthDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[3]:fourNextDaysUa[3]}</ button>
+                  <button className={`${s.periodBiteButton} ${bitePeriod==='fifthDay'?s.activeButton:''}`} onClick= {fifthDayBiteHandler}>{currentLanguage==='ru'?fourNextDaysRu[3]:fourNextDaysUa[3]}</button>
                 </div>
                 <PeriodBite bitePeriod={bitePeriod}/>
               </div>

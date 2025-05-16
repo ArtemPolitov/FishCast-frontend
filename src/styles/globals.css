@@ -41,6 +41,10 @@ body {
   gap: 20px;
 }
 
+.sidebarsMobile {
+  display: none;
+}
+
 .sidebars {
   display: flex;
   flex-direction: column;
@@ -85,5 +89,47 @@ input {
 @keyframes fadeInApp {
   to {
     opacity: 1;
+  }
+}
+@media (max-width: 1340px) {
+  body {
+    font-size: 17px;
+  }
+  .content {
+    padding-top: 15px;
+    display: flex;
+    gap: 15px;
+  }
+  select {
+    width: 223px;
+    height: 35px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #000000;
+    border-radius: 7px;
+  }
+}
+@media (max-width: 1280px) {
+  .wrapper {
+    padding-bottom: 15px;
+  }
+}
+@media (max-width: 850px) {
+  .wrapper {
+    padding: 5px;
+  }
+  .content {
+    padding-top: 10px;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .sidebars {
+    display: none;
+  }
+  .sidebarsMobile {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 5px;
   }
 }/*# sourceMappingURL=globals.css.map */

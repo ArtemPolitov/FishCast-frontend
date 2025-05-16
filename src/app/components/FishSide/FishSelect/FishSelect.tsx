@@ -31,8 +31,8 @@ export default function FishSelect() {
   }
 
   return (
-    <div className={s.fishSelect}>
-      <select name="" id="" disabled={!isCitySelected} onChange={fishSelectHandler} value={selectedFishData?.id ?? ""}>
+    <div className={s.fishSelectWrapper}>
+      <select name="" id="" disabled={!isCitySelected} onChange={fishSelectHandler} value={selectedFishData?.id ?? ""} className={s.fishSelect}>
         <option value="" disabled className={s.defaultOption}>
           {currentLanguage==='ru'?'Выберите рыбу':'Оберіть рибу'}
         </option>

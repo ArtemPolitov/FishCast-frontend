@@ -25,14 +25,51 @@
   }
 }
 
+@media (max-width:1380px) {
+  .language{
+    gap:4.5px;
+    span{
+      height: 25px;
+    }
+  }
+}
+
 @media (max-width:1096px) {
   .language{
-    gap:4px;
+    gap:4.5px;
+    p{
+      &.active{
+        text-decoration: underline;
+        text-underline-offset: 7px;
+      }
+    }
     span{
       height: 25px;
     }
     P:hover{
-      text-underline-offset: 6px;
+      text-underline-offset: 7px;
+    }
+  }
+}
+
+@media (max-width:850px) {
+  .language{
+    align-items: center;
+    gap:4px;
+    p{
+      font-size: 16px;
+      line-height: 1;
+      &.active{
+        text-decoration: underline;
+        text-underline-offset: 7px;
+      }
+    }
+    span{
+      height: 22px;
+    }
+    
+    P:hover{
+      text-underline-offset: 7px;
     }
   }
 }

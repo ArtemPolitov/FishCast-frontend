@@ -19,8 +19,8 @@ const FishBiteDraw:React.FC<FishBiteDrawProps> = ({biteValue}) =>{
         shadedFishesQuantityArr.map(item=>{
           return(
             currentTheme==='light'?
-            <Image src='/images/opaque_fish.png' alt='bite img' height={25} width={25}/>:
-            <Image src='/images/opaque_fish_dark.png' alt='bite img' height={25} width={25}/>
+            <Image src='/images/opaque_fish.png' alt='bite img' height={25} width={25} className={s.biteImg}/>:
+            <Image src='/images/opaque_fish_dark.png' alt='bite img' height={25} width={25} className={s.biteImg}/>
           )
         })
       }
@@ -28,8 +28,8 @@ const FishBiteDraw:React.FC<FishBiteDrawProps> = ({biteValue}) =>{
         transparentFishesQuantityArr.map(item=>{
           return(
             currentTheme==='light'?
-            <Image src='/images/transparent_fish.png' alt='bite img' height={25} width={25}/>:
-            <Image src='/images/transparent_fish_dark.png' alt='bite img' height={25} width={25}/>
+            <Image src='/images/transparent_fish.png' alt='bite img' height={25} width={25} className={s.biteImg}/>:
+            <Image src='/images/transparent_fish_dark.png' alt='bite img' height={25} width={25} className={s.biteImg}/>
           )
         })
       }

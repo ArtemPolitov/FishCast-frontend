@@ -59,6 +59,9 @@
   padding-bottom: 25px;
   width: 100%;
 }
+.fishSide .content .currentBite .biteLabelMobile {
+  display: none;
+}
 .fishSide .content .currentBite .biteLabel {
   font-weight: 600;
   line-height: 1;
@@ -87,4 +90,136 @@
 }
 .fishSide .content .periodBiteBlock .periodBiteButtons .activeButton {
   border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+@media (max-width: 1340px) {
+  .fishSide {
+    width: 420px;
+  }
+  .fishSide .content {
+    padding: 10px 0px;
+  }
+  .fishSide .content .fishInfo {
+    height: auto;
+  }
+  .fishSide .content .fishInfo .fishImg {
+    width: 190px;
+  }
+  .fishSide .content .fishInfo .fishDescr {
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .fishSide .content .periodBiteBlock {
+    gap: 17px;
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons {
+    display: flex;
+    gap: 5px;
+  }
+  .fishSide .content .currentBite {
+    padding-bottom: 20px;
+  }
+}
+@media (max-width: 1280px) {
+  .fishSide {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 220px;
+  }
+  .fishSide .content .fishInfo {
+    gap: 5px;
+    height: 322px;
+  }
+  .fishSide .content .fishInfo .fishImg {
+    width: 140px;
+  }
+  .fishSide .content .fishInfo .fishDescr {
+    font-size: 15px;
+    line-height: 1.2;
+  }
+  .fishSide .content .periodBiteBlock {
+    gap: 10px;
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons .periodBiteButton {
+    width: 48px;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .fishSide .content .currentBite {
+    padding-bottom: 10px;
+  }
+}
+@media (max-width: 945px) {
+  .fishSide .content .fishInfo {
+    height: auto;
+  }
+  .fishSide .content .fishInfo .fishImg {
+    width: 110px;
+  }
+  .fishSide .content .fishInfo .fishDescr {
+    display: none;
+  }
+  .fishSide .content .currentBite {
+    flex-direction: column;
+  }
+  .fishSide .content .currentBite .biteLabel {
+    display: none;
+  }
+  .fishSide .content .currentBite .biteLabelMobile {
+    display: block;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .fishSide .content .periodBiteBlock {
+    gap: 10px;
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-height: 35px;
+    max-width: 100px;
+    scroll-behavior: smooth;
+    padding-bottom: 5px;
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons::-webkit-scrollbar {
+    height: 5px;
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons.dark::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.551);
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons.dark::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.69);
+  }
+  .fishSide .content .periodBiteBlock .periodBiteButtons .periodBiteButton {
+    width: 48px;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+}
+@media (max-width: 850px) {
+  .fishSide {
+    width: 136px;
+  }
+  .fishSide .chooseLabel {
+    font-size: 15px;
+  }
 }/*# sourceMappingURL=FishSide.module.css.map */

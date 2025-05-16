@@ -45,13 +45,12 @@ export default function Header() {
         </div>
       </div>
       <div className={s.mobileHeaderContent}>
-        <div className={`${s.burger} ${isMobileMenuOpen?s.active:''}`} onClick={burgerHandler}>
-          <span></span>
-          <span></span>
-          <span></span>
+        <div className={s.logo}><Image src={`/logo_${currentTheme==='dark'?'dark':'light'}_theme_mobile.png`} alt="FishCast Logo" width={100} height={57} priority/></div>
+        <div className={s.rightBlock}>
+          <Theme/>
+          <Language/>
+          <AuthorizationButton onClick={authorizationHandler}/>
         </div>
-        <div className={s.logo}><Image src="/logo_light_theme.png" alt="FishCast Logo" width={250} height={57} priority/></div>
-        <AuthorizationButton onClick={authorizationHandler}/>
       </div>
       <MobileMenu isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen}/>
       <AuthorizationModal isAuthorizationModalOpen={isAuthorizationModalOpen} setIsAuthorizationModalOpen={setIsAuthorizationModalOpen}/>

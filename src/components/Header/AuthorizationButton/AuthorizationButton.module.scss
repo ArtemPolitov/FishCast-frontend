@@ -3,7 +3,7 @@
   align-items: center;
   padding: 10px 10px;
   gap:5px;
-  min-width: 120px;
+  
   justify-content: center;
 }
 
@@ -19,6 +19,7 @@
 
 @media (max-width:640px) {
   .loginButton{
+    
     padding: 6px 6px;
     p{
       display: none;

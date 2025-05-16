@@ -64,11 +64,17 @@ export default function WeatherContent() {
   const selectedCityLon = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lon);
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
   const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
+  //console.log(currentLanguage);
   const {data:currentWeatherData,isLoading:currentWeatherDataIsLoading,error:currentWeatherDataError} = useGetCurrentWeatherDataQuery(
     selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
   );
 
-  const getWindDirection  = (windDegree:number,currentLanguage:string):string|null =>{
+  interface WindDirection {
+    ru:null|string,
+    ua:null|string
+  }
+
+  const getWindDirection  = (windDegree:number):WindDirection =>{
     interface WindDirection {
       ru:null|string,
       ua:null|string
@@ -105,7 +111,8 @@ export default function WeatherContent() {
       windDirection.ua = "північно-західний";
     }
 
-    return currentLanguage==="ru"?windDirection.ru:windDirection.ua;
+
+    return windDirection;
   }
 
   const fourNextDaysRu:string[] = getFourNextDaysRu();
@@ -159,9 +166,7 @@ export default function WeatherContent() {
   return (
     <div className={s.weatherContent}>
       <div className={s.currentWeather}>
-        {currentWeatherDataIsLoading&&
-          <p className={s.currentWeatherLoading}>{currentLanguage==='ru'?'Загрузка...':'Завантаження...'}</p>
-        }
+
         {
           currentWeatherDataError&&
           <p className={s.currentWeatherLoading}>{currentLanguage==='ru'?'Ошибка загрузки данных':'Помилка завантаження даних'}</p>
@@ -181,7 +186,7 @@ export default function WeatherContent() {
               currentTheme==='light'?
               <div className={s.rightColumn}>
                 <div className={s.rightColumnItem}>
-                  <Image src={`/images/temperature_feels_like_icon.png`} alt='feels like' height={50} width={50} className={s.  rightColumnIcon}/>
+                  <Image src={`/images/temperature_feels_like_icon.png`} alt='feels like' height={50} width={50} className={s.rightColumnIcon}/>
                   <p>{`${convertKelvinToCelsius(currentWeatherData.main.feels_like)}°C`}</p>
                 </div>
                 <div className={s.rightColumnItem}>
@@ -190,7 +195,7 @@ export default function WeatherContent() {
                 </div>
                 <div className={s.rightColumnItem}>
                   <Image src={`/images/wind_icon.png`} alt='wind' height={50} width={50} className={s.rightColumnIcon}/>
-                  <p>{`${Math.round(currentWeatherData.wind.speed)} м/с, ${currentLanguage==='ru'?getWindDirection(currentWeatherData.wind.deg,"ru"):getWindDirection(currentWeatherData.wind.deg,"ua")}`}</p>
+                  <p>{`${Math.round(currentWeatherData.wind.speed)} м/с, ${currentLanguage==='ru'?getWindDirection(currentWeatherData.wind.deg).ru:getWindDirection(currentWeatherData.wind.deg).ua}`}</p>
                 </div>
                 <div className={s.rightColumnItem}>
                   <Image src={`/images/cloudiness_icon.png`} alt='cloudiness' height={50} width={50} className={s.rightColumnIcon}/>
@@ -212,7 +217,7 @@ export default function WeatherContent() {
                 </div>
                 <div className={s.rightColumnItem}>
                   <Image src={`/images/wind_icon_dark.png`} alt='wind' height={50} width={50} className={s.rightColumnIcon}/>
-                  <p>{`${Math.round(currentWeatherData.wind.speed)} м/с, ${getWindDirection(currentWeatherData.wind.deg,"ru")}`}</p>
+                  <p>{`${Math.round(currentWeatherData.wind.speed)} м/с, ${currentLanguage==='ru'?getWindDirection(currentWeatherData.wind.deg).ru:getWindDirection(currentWeatherData.wind.deg).ua}`}</p>
                 </div>
                 <div className={s.rightColumnItem}>
                   <Image src={`/images/cloudiness_icon_dark.png`} alt='cloudiness' height={50} width={50} className={s.rightColumnIcon}/>
@@ -229,14 +234,16 @@ export default function WeatherContent() {
         }
       </div>
       <div className={`${s.periodWeatherBlock} ${currentTheme==='dark'?s.dark:''}`}>
-        <div className={s.periodWeatherButtons}>
-          <button className={`${s.periodWeatherButton} ${weatherPeriod==='24h'?s.activeButton:''}`} onClick={dayWeatherHandler}>24 ч</button>
+        <div className={`${s.periodWeatherButtons} ${currentTheme==='dark'?s.dark:''}`}>
+          <button className={`${s.periodWeatherButton} ${currentTheme==='dark'?s.darkButton:''} ${weatherPeriod==='24h'?s.activeButton:''}`} onClick={dayWeatherHandler}>24 ч</button>
           <button className={`${s.periodWeatherButton} ${weatherPeriod==='secondDay'?s.activeButton:''}`} onClick={secondDayWeatherHandler}>{currentLanguage==='ru'?fourNextDaysRu[0]:fourNextDaysUa[0]}</button>
           <button className={`${s.periodWeatherButton} ${weatherPeriod==='thirdDay'?s.activeButton:''}`} onClick={thirdDayWeatherHandler}>{currentLanguage==='ru'?fourNextDaysRu[1]:fourNextDaysUa[1]}</button>
           <button className={`${s.periodWeatherButton} ${weatherPeriod==='fourthDay'?s.activeButton:''}`} onClick={fourthDayWeatherHandler}>{currentLanguage==='ru'?fourNextDaysRu[2]:fourNextDaysUa[2]}</button>
           <button className={`${s.periodWeatherButton} ${weatherPeriod==='fifthDay'?s.activeButton:''}`} onClick={fifthDayWeatherHandler}>{currentLanguage==='ru'?fourNextDaysRu[3]:fourNextDaysUa[3]}</button>
         </div>
-        <PeriodWeather weatherPeriod={weatherPeriod}/>
+        <div className={`${s.periodWeatherContent} ${currentTheme==='dark'?s.dark:''}`}>
+          <PeriodWeather weatherPeriod={weatherPeriod}/>
+        </div>
       </div>
     </div>
   )

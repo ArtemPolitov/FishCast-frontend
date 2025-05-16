@@ -58,6 +58,7 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedRegionId }) => {
         disabled={!selectedRegionId}
         onChange={citySelectHandler}
         value={globalSelectedCityId ?? "default"}
+        className={s.select}
       >
         <option value="default" disabled className={s.defaultOption}>
           {currentLanguage==='ru'?'Выберите нас. пункт':'Оберіть нас. пункт'}

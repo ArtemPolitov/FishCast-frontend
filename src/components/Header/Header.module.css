@@ -50,7 +50,7 @@
     align-items: center;
   }
 }
-@media (max-width: 858px) {
+@media (max-width: 640px) {
   .headerContent {
     display: none;
   }
@@ -61,13 +61,16 @@
     justify-content: space-between;
     align-items: center;
   }
-}
-@media (max-width: 640px) {
   .logo {
     width: 180px;
     height: auto;
   }
   .mobileHeaderContent {
     height: 50px;
+  }
+  .rightBlock {
+    display: flex;
+    gap: 11px;
+    align-items: center;
   }
 }/*# sourceMappingURL=Header.module.css.map */

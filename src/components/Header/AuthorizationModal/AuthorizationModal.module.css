@@ -188,10 +188,44 @@
   display: none;
 }
 
+@media (max-width: 1380px) {
+  .modal {
+    width: 330px;
+  }
+  .modal .authModal {
+    height: 300px;
+  }
+  .modal .regModal {
+    height: 417px;
+  }
+  .regErrorMessage {
+    left: 14%;
+  }
+  .regNameErrorMessage {
+    top: 20.5%;
+  }
+  .regEmailErrorMessage {
+    top: 32.5%;
+  }
+  .regRegionSelectErrorMessage {
+    top: 47%;
+  }
+  .regCitySelectErrorMessage {
+    top: 61%;
+  }
+  .regPasswordErrorMessage {
+    top: 73.5%;
+  }
+}
 @media (max-width: 640px) {
   .modal {
     width: 295px;
-    height: 312px;
+  }
+  .modal .closeModal {
+    top: 12px;
+    right: 12px;
+    height: 22px;
+    width: 22px;
   }
   .modal P {
     font-size: 14px;
@@ -207,31 +241,39 @@
     padding: 0;
   }
   .modal .modalTitle {
-    font-size: 26px;
+    font-size: 22px;
   }
   .modal input {
-    font-size: 18px;
+    font-size: 15px;
   }
   .modal .mainBtn {
-    font-size: 18px;
+    font-size: 15px;
   }
   .modal .authModal {
     gap: 16px;
+    height: 275px;
   }
   .modal .regModal {
     gap: 14px;
+    height: 395px;
   }
-  .modal .regErrorMessage {
+  .regErrorMessage {
     left: 10%;
   }
-  .modal .regNameErrorMessage {
-    top: 28.5%;
+  .regNameErrorMessage {
+    top: 19%;
   }
-  .modal .regEmailErrorMessage {
+  .regEmailErrorMessage {
+    top: 31.5%;
+  }
+  .regRegionSelectErrorMessage {
     top: 46.5%;
   }
-  .modal .regPasswordErrorMessage {
-    top: 64.5%;
+  .regCitySelectErrorMessage {
+    top: 61.5%;
+  }
+  .regPasswordErrorMessage {
+    top: 73.5%;
   }
 }
 @keyframes fadeInUp {

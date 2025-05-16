@@ -1,4 +1,17 @@
 .fishBite {
   display: flex;
   gap: 1px;
+}
+
+@media (max-width: 1160px) {
+  .biteImg {
+    width: 20px;
+    height: 11px;
+  }
+}
+@media (max-width: 850px) {
+  .biteImg {
+    width: 16px;
+    height: 9px;
+  }
 }/*# sourceMappingURL=FishBiteDraw.module.css.map */

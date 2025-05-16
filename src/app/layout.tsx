@@ -30,6 +30,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <BottomSidebar />
                 </div>
                 {children}
+                <div className="sidebarsMobile">
+                  <TopSidebar />
+                  <BottomSidebar />
+                </div>
               </div>
             </StoreProvider>
           </div>

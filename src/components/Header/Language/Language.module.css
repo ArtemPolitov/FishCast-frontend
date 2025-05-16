@@ -23,14 +23,46 @@
   text-underline-offset: 8px;
 }
 
+@media (max-width: 1380px) {
+  .language {
+    gap: 4.5px;
+  }
+  .language span {
+    height: 25px;
+  }
+}
 @media (max-width: 1096px) {
   .language {
-    gap: 4px;
+    gap: 4.5px;
+  }
+  .language p.active {
+    text-decoration: underline;
+    text-underline-offset: 7px;
   }
   .language span {
     height: 25px;
   }
   .language P:hover {
-    text-underline-offset: 6px;
+    text-underline-offset: 7px;
+  }
+}
+@media (max-width: 850px) {
+  .language {
+    align-items: center;
+    gap: 4px;
+  }
+  .language p {
+    font-size: 16px;
+    line-height: 1;
+  }
+  .language p.active {
+    text-decoration: underline;
+    text-underline-offset: 7px;
+  }
+  .language span {
+    height: 22px;
+  }
+  .language P:hover {
+    text-underline-offset: 7px;
   }
 }/*# sourceMappingURL=Language.module.css.map */

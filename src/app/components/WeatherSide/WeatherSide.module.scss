@@ -22,3 +22,30 @@
 
   }
 }
+
+@media (max-width:1340px) {
+  .weatherSide{
+    width: 510px;
+  }
+}
+
+@media (max-width:1280px) {
+  .weatherSide{
+    width: auto;
+    .selects{
+      flex-direction: column;
+      gap:10px;
+    }
+  }
+}
+
+@media (max-width:850px) {
+  .weatherSide{
+    width: 196px;
+    min-height: 300px;
+    .chooseCityLabel{
+      font-size: 15px;
+    }
+  }
+  
+}

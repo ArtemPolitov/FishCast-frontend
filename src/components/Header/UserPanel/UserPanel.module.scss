@@ -141,7 +141,60 @@
     
   }
   }
+}
 
+@media (max-width:850px) {
+  .userPanel{
+    width: 290px;
+    .closeIcon{
+      width: 22px;
+      height: 22px;
+    }
+    .logoutButton{
+      width: 70px;
+      background-color: #cb0000;
+      color: white;
+      font-weight: 600;
+      padding: 4px 0px;
+      font-size: 15px;
+    }
+    .userInfo{
+      .item{
+        p{
+          font-size: 15px;
+        }
+      }
+    }
+    .itemIcon{
+      width: 19px;
+      height: 19px;
+    }
+    .closeIcon{
+      position: absolute;
+      top:10px;
+      right: 10px;
+      cursor: pointer;
+    }
+    .favoriteLocations{
+      .favoriteLocationsTitle{
+        font-size: 15px;
+      }
+      .locationRow{
+        .deleteIcon{
+          width: 19px;
+          height: 19px;
+        }
+        .locationCard{
+          width: 241px;
+          .imageAndText{
+            .locationInfo{
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @keyframes slideIn {

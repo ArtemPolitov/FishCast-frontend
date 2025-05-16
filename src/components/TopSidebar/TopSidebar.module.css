@@ -39,4 +39,49 @@
   width: auto;
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+@media (max-width: 1340px) {
+  .topSidebar {
+    width: 285px;
+    height: 210px;
+  }
+  .topSidebar .topSidebarTitle {
+    font-size: 20px;
+  }
+  .topSidebar .fishCards {
+    gap: 5px;
+  }
+  .topSidebar .fishCards .fishCard .imageWrapper {
+    height: 30px;
+    width: 85px;
+  }
+}
+@media (max-width: 1280px) {
+  .topSidebar {
+    width: 240px;
+    height: 210px;
+  }
+  .topSidebar .topSidebarTitle {
+    font-size: 18px;
+  }
+}
+@media (max-width: 850px) {
+  .topSidebar {
+    height: 240px;
+    width: 170px;
+    min-width: 155px;
+  }
+  .topSidebar .topSidebarTitle {
+    font-size: 16px;
+    max-width: 150px;
+    margin: 0 auto;
+    margin-bottom: 8px;
+  }
+  .topSidebar .fishCards .fishCard {
+    gap: 7px;
+  }
+  .topSidebar .fishCards .fishCard .imageWrapper {
+    width: 55px;
+  }
 }/*# sourceMappingURL=TopSidebar.module.css.map */

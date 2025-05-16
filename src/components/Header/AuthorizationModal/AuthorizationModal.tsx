@@ -14,7 +14,6 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { setIsUserAuthorized } from '@/store/userSlice';
 import { skipToken } from '@reduxjs/toolkit/query';
 
-
 interface AuthorizationModal{
   isAuthorizationModalOpen:boolean,
   setIsAuthorizationModalOpen:Dispatch<SetStateAction<boolean>>,

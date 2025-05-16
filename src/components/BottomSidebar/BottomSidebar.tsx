@@ -91,19 +91,30 @@ export default function BottomSidebar() {
         {
           allLocationsDataIsLoading&&<p className={s.isLoadingLabel}>{currentLanguage==='ru'?'Загрузка...':'Завантаження...'}</p>
         }
-        {selectedCityLat&&selectedCityLon&&allLocationsData&&isCitySelected&&
-          getNearestLocationsData(selectedCityLat,selectedCityLon,allLocationsData)?.map(location=>{
+        {selectedCityLat && selectedCityLon && allLocationsData && isCitySelected && (() => {
+          const nearestLocations = getNearestLocationsData(selectedCityLat, selectedCityLon, allLocationsData);
+        
+          if (!nearestLocations || nearestLocations.length === 0) {
+            return <p className={s.noLocationsMsg}>{currentLanguage === 'ru' ? 'Ближайших водоёмов не найдено' : 'Поруч немає водоймів'}</p>;
+          }
+        
+          return nearestLocations.map(location => {
             const isActive = pathname === `/location/${location.slug}`;
-            return(
+            return (
               <Link key={location._id} href={`/location/${location.slug}`} passHref>
-                <div className={`${s.locationCard} ${isActive?s.locationCardActive:''}`} key={location._id}>
-                  <div className={s.imgWrapper}><Image src={location.image_url} alt={'location img'} height={50} width={50} className=  {s.locationImg}/></div>
-                  <p className={s.locationInfo}>{`${currentLanguage==='ru'?location.name.ru:location.name.ua}, ${location.distance} км`}</p>
+                <div className={`${s.locationCard} ${isActive ? s.locationCardActive : ''}`}>
+                  <div className={s.imgWrapper}>
+                    <Image src={location.image_url} alt="location img" height={50} width={50} className={s.locationImg} />
+                  </div>
+                  <p className={s.locationInfo}>
+                    {`${currentLanguage === 'ru' ? location.name.ru : location.name.ua}, ${location.distance} км`}
+                  </p>
                 </div>
               </Link>
-            )
-          })
-        }
+            );
+          });
+        })()}
+
       </div>
       <div className={s.emptyBlock}></div>
     </div>

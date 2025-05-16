@@ -8,7 +8,7 @@
 .weatherContent .currentWeather {
   display: flex;
   position: relative;
-  min-height: 210px;
+  height: 210px;
 }
 .weatherContent .currentWeather .currentWeatherLoading {
   position: absolute;
@@ -73,18 +73,19 @@
 .weatherContent .periodWeatherBlock.dark {
   border-color: white;
 }
-.weatherContent .periodWeatherBlock.dark .periodWeatherButton:hover {
+.weatherContent .periodWeatherBlock.dark .periodWeatherButtons .periodWeatherButton:hover {
   border-color: white;
 }
-.weatherContent .periodWeatherBlock.dark .activeButton {
+.weatherContent .periodWeatherBlock.dark .periodWeatherButtons .activeButton {
   border-color: white;
 }
-.weatherContent .periodWeatherButtons {
+.weatherContent .periodWeatherBlock .periodWeatherButtons {
   display: flex;
   justify-content: center;
   gap: 20px;
+  padding-bottom: 0px;
 }
-.weatherContent .periodWeatherButtons .periodWeatherButton {
+.weatherContent .periodWeatherBlock .periodWeatherButtons .periodWeatherButton {
   padding: 2px;
   background: none;
   border-radius: 0;
@@ -92,9 +93,206 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0);
   line-height: 1.3;
 }
-.weatherContent .periodWeatherButtons .periodWeatherButton:hover {
+.weatherContent .periodWeatherBlock .periodWeatherButtons .periodWeatherButton:hover {
   border-bottom: 1px solid black;
 }
-.weatherContent .periodWeatherButtons .activeButton {
+.weatherContent .periodWeatherBlock .periodWeatherButtons .activeButton {
   border-bottom: 1px solid black;
+}
+
+@media (max-width: 1340px) {
+  .weatherContent .currentWeather {
+    height: 175px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent {
+    gap: 40px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow {
+    margin-left: 11px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow .currentWeatherImg {
+    width: 60px;
+    height: 60px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow .currentTemperature {
+    font-weight: 600;
+    font-size: 31px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .dateTime {
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .rightColumn {
+    gap: 7px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .rightColumn .rightColumnItem .rightColumnIcon {
+    width: 25px;
+    height: 25px;
+  }
+  .weatherContent .periodWeatherBlock {
+    padding-top: 5px;
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherButtons {
+    gap: 12px;
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherButtons .periodWeatherButton {
+    width: 55px;
+  }
+}
+@media (max-width: 1280px) {
+  .weatherContent {
+    padding: 0px;
+    gap: 0;
+  }
+  .weatherContent .currentWeather {
+    height: auto;
+  }
+  .weatherContent .currentWeather .currentWeatherContent {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .dateTime {
+    font-size: 17px;
+    text-align: center;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow {
+    margin-left: 30px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow .currentTemperature {
+    font-weight: 600;
+    font-size: 30px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .rightColumn .rightColumnItem {
+    display: flex;
+    gap: 5px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .rightColumn .rightColumnItem .rightColumnIcon {
+    height: 25px;
+    width: 25px;
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherButtons {
+    gap: 5px;
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherButtons .periodWeatherButton {
+    width: 48px;
+    font-size: 15px;
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherContent {
+    overflow-x: hidden;
+    margin-top: 10px;
+    overflow-y: auto;
+    max-height: 250px;
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherContent::-webkit-scrollbar {
+    width: 6px;
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherContent::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherContent::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherContent::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherContent.dark::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.551);
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherContent.dark::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.69);
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherContent.dark .locationCardActive {
+    border: 1px solid rgb(255, 255, 255);
+  }
+  .weatherContent .periodWeatherBlock .periodWeatherContent.dark .locationCard:hover {
+    border-color: rgb(255, 255, 255);
+  }
+}
+@media (max-width: 850px) {
+  .weatherContent .currentWeather .currentWeatherContent {
+    gap: 7px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .dateTime {
+    font-size: 16px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow {
+    margin-left: 22px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .leftColumn .iconTempRow .currentTemperature {
+    font-size: 25px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .rightColumn .rightColumnItem {
+    display: flex;
+    gap: 5px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .rightColumn .rightColumnItem p {
+    font-size: 15px;
+  }
+  .weatherContent .currentWeather .currentWeatherContent .rightColumn .rightColumnItem .rightColumnIcon {
+    height: 20px;
+    width: 20px;
+  }
+  .periodWeatherButtons {
+    display: flex;
+    gap: 5px;
+    padding-left: 80px;
+    max-width: 190px;
+    height: 35px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+  .periodWeatherButtons .periodWeatherButton {
+    height: 25px;
+  }
+  .periodWeatherButtons::-webkit-scrollbar {
+    height: 5px;
+  }
+  .periodWeatherButtons::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .periodWeatherButtons::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+  }
+  .periodWeatherButtons::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .periodWeatherButtons.dark::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.551);
+  }
+  .periodWeatherButtons.dark::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.69);
+  }
+  .periodWeatherButtons .periodWeatherButton {
+    width: 48px;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .periodWeatherButtons .periodWeatherButton:hover {
+    border-bottom: 1px solid black;
+  }
+  .periodWeatherButtons .darkButton:hover {
+    border-bottom: 1px solid white;
+  }
+  .periodWeatherButtons .activeButton {
+    border-bottom: 1px solid black;
+  }
 }/*# sourceMappingURL=WeatherContent.module.css.map */
