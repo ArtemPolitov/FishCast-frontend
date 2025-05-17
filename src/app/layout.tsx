@@ -15,7 +15,7 @@ const nunito = Nunito({
 
 export const metadata = {
   title: 'FishCast',
-  description: 'Прогноз клёва и погоды для рыбаков',
+  description: 'Прогноз погоди та кльову риби',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
