@@ -79,7 +79,7 @@ export default function BottomSidebar() {
   const isCitySelected = useSelector((store:RootState)=>store.citySelection.isCitySelected);
   const selectedCityLat = useSelector((store:RootState)=>store.citySelection.selectedCityData?.lat);
   const selectedCityLon = useSelector((store:RootState)=>store.citySelection.selectedCityData?.lon);
-  const {data:allLocationsData,isLoading:allLocationsDataIsLoading,error:allLocationsDataIsError} = useGetAllLocationsQuery();
+  const {data:allLocationsData,isLoading:allLocationsDataIsLoading} = useGetAllLocationsQuery();
   const pathname = usePathname();
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
   const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
@@ -88,9 +88,6 @@ export default function BottomSidebar() {
     <div className={s.bottomSidebar}>
       <h2 className={s.bottomSidebarTitle}>{currentLanguage==='ru'?'Локации поблизости':'Локації поблизу'}</h2>
       <div className={`${s.nearestLocations} ${currentTheme==='dark'?s.dark:''}`}>
-        {
-          allLocationsDataIsLoading&&<p className={s.isLoadingLabel}>{currentLanguage==='ru'?'Загрузка...':'Завантаження...'}</p>
-        }
         {selectedCityLat && selectedCityLon && allLocationsData && isCitySelected && (() => {
           const nearestLocations = getNearestLocationsData(selectedCityLat, selectedCityLon, allLocationsData);
         

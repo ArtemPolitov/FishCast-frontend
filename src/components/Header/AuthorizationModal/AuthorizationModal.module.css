@@ -192,6 +192,9 @@
   .modal {
     width: 330px;
   }
+  .modal .successBlock .successLabel {
+    font-size: 15px;
+  }
   .modal .authModal {
     height: 300px;
   }
@@ -220,6 +223,12 @@
 @media (max-width: 640px) {
   .modal {
     width: 295px;
+  }
+  .modal .successBlock .successLabel {
+    font-size: 14px;
+  }
+  .modal .successBlock .successIcon {
+    display: none;
   }
   .modal .closeModal {
     top: 12px;

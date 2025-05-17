@@ -59,7 +59,7 @@ interface UserPanelProps {
       return()=>clearTimeout(timer);
     };
 
-  },[isUserPanelOpen])
+  },[isUserPanelOpen]);
 
   useEffect(()=>{
     if(isUserPanelClosing){
@@ -70,11 +70,26 @@ interface UserPanelProps {
 
       return()=>clearTimeout(timer);
     }
-  },[isUserPanelClosing])
+  },[isUserPanelClosing]);
+
+  useEffect(() => {
+    if (isUserPanelOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`; 
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+  
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [isUserPanelOpen]);
 
   const userPanelClose = () =>{
     setIsUserPanelClosing(true)
-    //setIsUserPanelOpen(false);
   }
 
   useEffect(() => {
@@ -147,7 +162,7 @@ interface UserPanelProps {
                 locationsData&&userData&&getFavoriteLocationsData(locationsData,userData).map(location=>{
                   const isActive = pathname === `/location/${location.slug}`;
                   return(
-                    <div className={s.locationRow}>
+                    <div className={s.locationRow} key={location._id}>
                       <Link key={location._id} href={`/location/${location.slug}`} passHref>
                         <div className={`${s.locationCard} ${isActive?s.locationCardActive:''} ${currentTheme==='dark'?s.dark:''}`} key={location._id} onClick={userPanelClose}>
                           <div className={s.imageAndText}>

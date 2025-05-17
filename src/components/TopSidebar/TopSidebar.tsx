@@ -71,7 +71,7 @@ export default function TopSidebar() {
         {isCitySelected&&
           bestBiteFishesData&&bestBiteFishesData.map(item=>{
             return(
-              <div className={s.fishCard}>
+              <div className={s.fishCard} key={item.name}>
                 <div className={s.imageWrapper}><Image src={item.img} alt='fish img' height={40} width={70} className={s.fishImg}/></div>
                 {currentWeatherData&&<FishBite weatherData={currentWeatherData} fishGroup={item.group} size='smallSize'/>}
               </div>

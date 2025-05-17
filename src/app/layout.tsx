@@ -7,16 +7,33 @@ import TopSidebar from '@/components/TopSidebar/TopSidebar';
 import BottomSidebar from '@/components/BottomSidebar/BottomSidebar';
 import StoreInitializer from '@/components/StoreInitializer/StoreInitializer';
 
-
 const nunito = Nunito({
   subsets: ['latin', 'cyrillic'],
   weight: ['300', '400', '500', '700'],
   variable: '--font-nunito',
 });
 
+export const metadata = {
+  title: 'FishCast',
+  description: 'Прогноз клёва и погоды для рыбаков',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-96x96.png', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
+  other: {
+    'apple-mobile-web-app-title': 'FishCast',
+  },
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head />
       <body suppressHydrationWarning className={nunito.variable}>
         <div id="modal-root"></div>
         <div className="fade-in">
@@ -42,3 +59,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

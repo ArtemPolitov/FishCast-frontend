@@ -69,18 +69,18 @@ export interface FishDataWithBite {
 }
 
 export const fishApi = createApi({
-  reducerPath:'fishApi',
-  baseQuery:fetchBaseQuery({
-    baseUrl:'http://localhost:5000/api/fishes'
+  reducerPath: 'fishApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/fishes`,
   }),
-  endpoints:(builder)=>({
-    getAllFishes:builder.query<FishData[],void>({
-      query:()=>'',
+  endpoints: (builder) => ({
+    getAllFishes: builder.query<FishData[], void>({
+      query: () => '',
     }),
-    getFishById:builder.query<FishData,number>({
-      query:(id)=>`/${id}`,
-    })
-  })
+    getFishById: builder.query<FishData, number>({
+      query: (id) => `/${id}`,
+    }),
+  }),
 });
 
-export const {useGetAllFishesQuery, useGetFishByIdQuery} = fishApi;
+export const { useGetAllFishesQuery, useGetFishByIdQuery } = fishApi;

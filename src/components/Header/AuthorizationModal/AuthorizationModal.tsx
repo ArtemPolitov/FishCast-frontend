@@ -125,6 +125,22 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
     };
   }, []);
 
+  useEffect(() => {
+    if (isAuthorizationModalOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`; 
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+  
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [isAuthorizationModalOpen]);
+
   const nameValidation = (name: string): boolean => {
     const nameRegex = /^[A-Za-zА-Яа-яЁёІіЇїЄєҐґ0-9\s]{2,}$/;
     return nameRegex.test(name);
@@ -336,8 +352,8 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
               <h2 className={s.modalTitle}>{currentLanguage==='ru'?'Вход':'Вхід'}</h2>
               {
                 isAuthModalIsOpenFromReg===true&&
-                <div style={{display:'flex',gap:'5px'}}>
-                  <Image src={`/images/${currentTheme==='dark'?'accept_icon_dark.png':'accept_icon.png'}`} alt='success-icon' height={20} width={20}/>
+                <div style={{display:'flex',gap:'5px'}} className={s.successBlock}>
+                  <Image src={`/images/${currentTheme==='dark'?'accept_icon_dark.png':'accept_icon.png'}`} alt='success-icon' height={20} width={20} className={s.successIcon}/>
                   <p className={s.successLabel}>{currentLanguage==='ru'?'Пользователь зарегистрирован!':'Користувач успішно зареєстрований!'}</p>
                 </div>
               }

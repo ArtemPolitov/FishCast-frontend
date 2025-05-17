@@ -64,7 +64,6 @@ export default function WeatherContent() {
   const selectedCityLon = useSelector((state:RootState)=>state.citySelection.selectedCityData?.lon);
   const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
   const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
-  //console.log(currentLanguage);
   const {data:currentWeatherData,isLoading:currentWeatherDataIsLoading,error:currentWeatherDataError} = useGetCurrentWeatherDataQuery(
     selectedCityLat&&selectedCityLon?{lat:selectedCityLat,lon:selectedCityLon}:skipToken,
   );

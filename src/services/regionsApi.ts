@@ -4,16 +4,16 @@ import { SelectedRegionData } from "@/store/regionsDataSlice";
 export const regionsApi = createApi({
   reducerPath: "regionsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/", 
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}`,
   }),
   endpoints: (builder) => ({
-    getRegions: builder.query<any[], void>({  
-      query: () => "regions",  
+    getRegions: builder.query<any[], void>({
+      query: () => "regions",
     }),
-    getRegionById: builder.query<SelectedRegionData,number>({
-      query:(id)=>`regions/${id}`,
-    })
+    getRegionById: builder.query<SelectedRegionData, number>({
+      query: (id) => `regions/${id}`,
+    }),
   }),
 });
 
-export const { useGetRegionsQuery,useGetRegionByIdQuery } = regionsApi;
+export const { useGetRegionsQuery, useGetRegionByIdQuery } = regionsApi;

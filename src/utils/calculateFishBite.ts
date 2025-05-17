@@ -2,7 +2,6 @@ import { CurrentWeatherData,TimestampForecast } from "@/services/weatherApi";
 
 import { FishGroup } from "@/store/fishDataSlice";
 
-
 export const calculateFishBite = (fishGroup:FishGroup,waterTemperature: number,pressure: number,windSpeed: number,cloudiness: number,isRain: boolean, time: number) =>{
   let fishBite = 0;
   switch(fishGroup){

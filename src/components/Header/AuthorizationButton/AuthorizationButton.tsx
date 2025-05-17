@@ -22,11 +22,10 @@ const AuthorizationButton: React.FC<AuthorizationButtonProps> = ({ onClick }) =>
   const currentTheme = useSelector((state: RootState) => state.theme.currentTheme);
   const currentLanguage = useSelector((state: RootState) => state.localization.currentLanguage);
   const isUserAuthorized = useSelector((state: RootState) => state.user.isUserAuthorized);
-  //const isUserCitySelectionPermitted = useSelector((state:RootState)=>state.citySelection.isUserCitySelectionPermitted);
 
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
-  const { data: userData, refetch: refetchUserData } = useGetUserDataQuery(token ? { token } : skipToken);
+  const { data: userData } = useGetUserDataQuery(token ? { token } : skipToken);
   const { data: userCityData } = useGetCityByIdQuery(userData?.cityId ?? skipToken);
   const { data: userRegionData } = useGetRegionByIdQuery(userData?.regionId ?? skipToken);
 

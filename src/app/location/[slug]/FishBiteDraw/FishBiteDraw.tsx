@@ -16,20 +16,20 @@ const FishBiteDraw:React.FC<FishBiteDrawProps> = ({biteValue}) =>{
   return (
     <div className={s.fishBite}>
       {
-        shadedFishesQuantityArr.map(item=>{
+        shadedFishesQuantityArr.map((item,index)=>{
           return(
             currentTheme==='light'?
-            <Image src='/images/opaque_fish.png' alt='bite img' height={25} width={25} className={s.biteImg}/>:
-            <Image src='/images/opaque_fish_dark.png' alt='bite img' height={25} width={25} className={s.biteImg}/>
+            <Image src='/images/opaque_fish.png' alt='bite img' height={25} width={25} className={s.biteImg} key={index}/>:
+            <Image src='/images/opaque_fish_dark.png' alt='bite img' height={25} width={25} className={s.biteImg} key={index}/>
           )
         })
       }
       {
-        transparentFishesQuantityArr.map(item=>{
+        transparentFishesQuantityArr.map((item,index)=>{
           return(
             currentTheme==='light'?
-            <Image src='/images/transparent_fish.png' alt='bite img' height={25} width={25} className={s.biteImg}/>:
-            <Image src='/images/transparent_fish_dark.png' alt='bite img' height={25} width={25} className={s.biteImg}/>
+            <Image src='/images/transparent_fish.png' alt='bite img' height={25} width={25} className={s.biteImg} key={index}/>:
+            <Image src='/images/transparent_fish_dark.png' alt='bite img' height={25} width={25} className={s.biteImg} key={index}/>
           )
         })
       }

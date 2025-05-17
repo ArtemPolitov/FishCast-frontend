@@ -5,7 +5,6 @@ import Image from "next/image";
 import Theme from './Theme/Theme';
 import Language from './Language/Language';
 import AuthorizationButton from './AuthorizationButton/AuthorizationButton';
-import MobileMenu from './MobileMenu/MobileMenu';
 import AuthorizationModal from './AuthorizationModal/AuthorizationModal';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -52,7 +51,6 @@ export default function Header() {
           <AuthorizationButton onClick={authorizationHandler}/>
         </div>
       </div>
-      <MobileMenu isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen}/>
       <AuthorizationModal isAuthorizationModalOpen={isAuthorizationModalOpen} setIsAuthorizationModalOpen={setIsAuthorizationModalOpen}/>
       <UserPanel isUserPanelOpen={isUserPanelOpen} setIsUserPanelOpen={setIsUserPanelOpen}/>
     </header>

@@ -25,7 +25,7 @@ export interface UserData {
 export const userApi = createApi({
   reducerPath:'userApi',
   baseQuery:fetchBaseQuery({
-    baseUrl:'http://localhost:5000/api/users/'
+    baseUrl:`${process.env.NEXT_PUBLIC_API_URL}/users/`
   }),
   endpoints:(builder)=>({
     register: builder.mutation<{ message: string }, RegisterData>({

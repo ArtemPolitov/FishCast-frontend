@@ -38,7 +38,7 @@
 @media (max-width: 850px) {
   .weatherSide {
     width: 196px;
-    min-height: 300px;
+    min-height: 450px;
   }
   .weatherSide .chooseCityLabel {
     font-size: 15px;

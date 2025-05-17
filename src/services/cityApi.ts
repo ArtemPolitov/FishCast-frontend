@@ -12,21 +12,25 @@ interface City {
 }
 
 export const cityApi = createApi({
-  reducerPath:'cityApi',
-  baseQuery:fetchBaseQuery({
-    baseUrl:'http://localhost:5000/api/cities',
+  reducerPath: 'cityApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/cities`,
   }),
-  endpoints:(builder)=>({
+  endpoints: (builder) => ({
     getAllCities: builder.query<City[], void>({
-      query: () => '', 
+      query: () => '',
     }),
-    getCityById: builder.query<City, number>({  
-      query: (id) => `/${id}`,  
+    getCityById: builder.query<City, number>({
+      query: (id) => `/${id}`,
     }),
-    getCitiesByRegionId: builder.query<City[],number>({
-      query: (id) => `/by-region/${id}`
-    })
-  })
-}); 
+    getCitiesByRegionId: builder.query<City[], number>({
+      query: (id) => `/by-region/${id}`,
+    }),
+  }),
+});
 
-export const {useGetCityByIdQuery,useGetAllCitiesQuery,useGetCitiesByRegionIdQuery} = cityApi;
+export const {
+  useGetCityByIdQuery,
+  useGetAllCitiesQuery,
+  useGetCitiesByRegionIdQuery,
+} = cityApi;

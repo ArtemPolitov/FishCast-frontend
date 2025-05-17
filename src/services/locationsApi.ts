@@ -39,7 +39,7 @@ export interface LocationData {
 export const locationsApi = createApi({
   reducerPath: 'locationsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/locations"
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL}/locations`
   }),
   endpoints: (builder) => ({
     getAllLocations: builder.query<LocationData[], void>({

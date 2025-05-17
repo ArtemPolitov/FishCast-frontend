@@ -13,7 +13,6 @@ import PeriodBite from './PeriodBite/PeriodBite'
 import { getFourNextDaysRu,getFourNextDaysUa } from '../WeatherSide/WeatherContent/WeatherContent'
 import { motion } from 'framer-motion'; 
 
-
 export default function FishSide() {
   const [bitePeriod,setBitePeriod] = useState('24h');
   const isCitySelected = useSelector((state:RootState)=>state.citySelection.selectedCityData);
