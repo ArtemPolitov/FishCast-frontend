@@ -24,14 +24,19 @@ interface UserPanelProps {
   setIsUserPanelOpen:Dispatch<SetStateAction<boolean>>,
 }
 
- const UserPanel:React.FC<UserPanelProps> = ({isUserPanelOpen,setIsUserPanelOpen}) =>{
-
-  const modal = document.getElementById('modal-root');
+const UserPanel: React.FC<UserPanelProps> = ({ isUserPanelOpen, setIsUserPanelOpen }) => {
+  const [modal, setModal] = useState<HTMLElement | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const dispatch = useDispatch();
-  const currentLanguage = useSelector((state:RootState)=>state.localization.currentLanguage);
-  const currentTheme = useSelector((state:RootState)=>state.theme.currentTheme);
-  const token = localStorage.getItem('token');
-  const {data:userData,refetch: refetchUserData} = useGetUserDataQuery(
+  const currentLanguage = useSelector((state: RootState) => state.localization.currentLanguage);
+  const currentTheme = useSelector((state: RootState) => state.theme.currentTheme);
+
+  useEffect(() => {
+    setModal(document.getElementById('modal-root'));
+    setToken(localStorage.getItem('token'));
+  }, []);
+
+  const { data: userData, refetch: refetchUserData } = useGetUserDataQuery(
     token ? { token } : skipToken
   );
 

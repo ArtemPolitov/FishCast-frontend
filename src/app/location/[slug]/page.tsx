@@ -24,9 +24,7 @@ import { useAddLocationToFavoritesMutation, useRemoveLocationFromFavoritesMutati
 import { motion } from 'framer-motion'; 
 
 interface LocationPageProps {
-  params: {
-    slug: string;
-  };
+  params:any
 }
 
 export default function LocationPage({ params }: LocationPageProps) {

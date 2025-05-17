@@ -48,7 +48,11 @@ const AuthorizationModal:React.FC<AuthorizationModal> = ({isAuthorizationModalOp
 
   const [isAuthModalIsOpenFromReg,setIsAuthModalIsOpenFromReg] = useState(false);
 
-  const modal = document.getElementById('modal-root');
+  const [modal, setModal] = useState<HTMLElement | null>(null);
+  
+  useEffect(() => {
+    setModal(document.getElementById('modal-root'));
+  }, []);
 
   const [isModalClosing,setIsModalClosing] = useState(false);
 
