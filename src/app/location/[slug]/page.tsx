@@ -165,7 +165,7 @@ export default function LocationPage({ params }: LocationPageProps) {
             getLocationFishesDataWithBite(allFishesData, locationData, currentWeatherData).map(fishData => {
               return (
                 <div className={s.fishCard} key={fishData.id}>
-                  <div className={s.fishImgWrapper}>
+                  <div className={s.fishImgWrapper} title={currentLanguage==='ru'?fishData.name.ru:fishData.name.ua}>
                     <Image src={fishData.image_url} alt='fish img' width={50} height={50} className={s.fishImg} />
                   </div>
                   <FishBiteDraw biteValue={fishData.fishBite} />

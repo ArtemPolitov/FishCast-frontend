@@ -92,7 +92,7 @@ export default function BottomSidebar() {
           const nearestLocations = getNearestLocationsData(selectedCityLat, selectedCityLon, allLocationsData);
         
           if (!nearestLocations || nearestLocations.length === 0) {
-            return <p className={s.noLocationsMsg}>{currentLanguage === 'ru' ? 'Ближайших водоёмов не найдено' : 'Поруч немає водоймів'}</p>;
+            return <p className={s.noLocationsMsg}>{currentLanguage === 'ru' ? 'Информация скоро появится' : 'Інформація згодом з’явиться'}</p>;
           }
         
           return nearestLocations.map(location => {

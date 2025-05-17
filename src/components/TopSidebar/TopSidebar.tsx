@@ -28,7 +28,8 @@ export default function TopSidebar() {
 
   const getFiveBestBiteFishes = (data:FishData[]) =>{
     interface FishDataWithBite {
-      name:string,
+      name_ru:string,
+      name_ua:string,
       img:string,
       group:FishGroup,
       bite:number
@@ -37,7 +38,8 @@ export default function TopSidebar() {
     if(currentWeatherData){
       for (let i = 0; i<data.length; i++){
         fishDataWithBiteArr.push({
-          name: data[i].name.ru,
+          name_ru: data[i].name.ru,
+          name_ua: data[i].name.ua,
           img: data[i].image_url,
           group:data[i].group,
           bite: calculateFishBite(
@@ -71,8 +73,8 @@ export default function TopSidebar() {
         {isCitySelected&&
           bestBiteFishesData&&bestBiteFishesData.map(item=>{
             return(
-              <div className={s.fishCard} key={item.name}>
-                <div className={s.imageWrapper}><Image src={item.img} alt='fish img' height={40} width={70} className={s.fishImg}/></div>
+              <div className={s.fishCard} key={item.name_ru}>
+                <div className={s.imageWrapper} title={currentLanguage==='ru'?item.name_ru:item.name_ua}><Image src={item.img} alt='fish img' height={40} width={70} className={s.fishImg}/></div>
                 {currentWeatherData&&<FishBite weatherData={currentWeatherData} fishGroup={item.group} size='smallSize'/>}
               </div>
             )
